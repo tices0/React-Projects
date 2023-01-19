@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/style.css";
 
 function Question(props) {
+	const [show, setShow] = useState(false);
+	const onClick = () => {
+		if (show) {
+			setShow(false);
+			console.log("show is true");
+		} else {
+			setShow(true);
+			console.log("show is false");
+		}
+	};
+
 	const questionList = props.questionList;
 	const questions = questionList.map(question => (
-		<div onClick={showAnswer()} className="container">
+		<div onClick={onClick} className="container">
 			<div className="line"></div>
 			<div className="question-container">
 				<h3 className="question">{question.question}</h3>
@@ -13,17 +24,26 @@ function Question(props) {
 					<i className="fa-solid fa-caret-down"></i>
 				</div>
 			</div>
-			<div className="answer">
+			{/* <div className="answer">
 				<p>{question.answer}</p>
-			</div>
+			</div> */}
+			{show ? <Answer question={question} /> : null}
 		</div>
-		// Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur doloremque dolore quia iusto repudiandae quisquam rerum maiores ipsa totam illum quam ipsam, dolorum commodi cupiditate.
-		// Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit est dignissimos esse ipsa saepe rerum aliquid voluptate consectetur! Nesciunt odio autem ipsa! Sed cupiditate cum iusto voluptate deleniti, quia quisquam.
 	));
+	// console.log(questions);
 	return <section>{questions}</section>;
 }
 
-// function Answer(props) {}
+function Answer(props) {
+	const question = props.question;
+	console.log(question);
+	const answer = (
+		<div className="answer">
+			<p>{question.answer}</p>
+		</div>
+	);
+	return answer;
+}
 
 let questions = [];
 
@@ -53,5 +73,3 @@ console.log(questions[0].question);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Question questionList={questions} />);
-
-function showAnswer() {}

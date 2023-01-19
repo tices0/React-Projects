@@ -10,5 +10,6 @@ Inspiration from [ActiveCampaign's FAQ](https://www.activecampaign.com/about/faq
 -   how to add objects from a **constructor** to a list
 -   how to **render** multiple components at once
 -   use font awesome with react
+-   using **useState** and different React Components to show and hide a div
 
 _recaps = lessons that were already previously learned thorugh another project but applied to this_
