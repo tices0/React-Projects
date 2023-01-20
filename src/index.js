@@ -2,6 +2,21 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/style.css";
 
+let questions;
+
+console.log(localStorage.getItem("questions"));
+console.log(JSON.parse(localStorage.getItem("questions")));
+
+if (JSON.parse(localStorage.getItem("questions"))) {
+	questions = JSON.parse(localStorage.getItem("questions"));
+	console.log("local storage");
+} else {
+	questions = [];
+	console.log("not local storage");
+}
+
+console.log(questions);
+
 function Question({ questionList }) {
 	const [show, setShow] = useState({});
 	const onClick = index =>
@@ -66,7 +81,7 @@ function ColorToNormal(props) {
 	);
 }
 
-let questions = [];
+console.log(questions);
 
 function NewQuestion(question, answer) {
 	this.question = question;
@@ -77,6 +92,9 @@ function NewQuestion(question, answer) {
 	};
 
 	this.addToArray();
+
+	console.log("add to questions list");
+	localStorage.setItem("questions", JSON.stringify(questions));
 }
 
 const example1 = new NewQuestion(
@@ -93,10 +111,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Question questionList={questions} />);
 
 // button
+const formContainer = ReactDOM.createRoot(document.getElementById("form"));
 
 function Button() {
+	function showForm() {
+		formContainer.render(<New />);
+	}
+
 	return (
-		<button className="btn btn-primary">
+		<button onClick={showForm} className="btn btn-primary">
 			<i>+</i> Add FAQ
 		</button>
 	);
@@ -105,24 +128,54 @@ function Button() {
 const buttonContainer = ReactDOM.createRoot(document.getElementById("button"));
 buttonContainer.render(<Button />);
 
+// console.log(questions.length);
+// let length = questions.length;
+
+// questions[questions.length] = { example: "worked" };
+
+// console.log(length);
+
+// const converter = require("number-to-words");
+// console.log(converter.toWords(length), "length");
+
 function New() {
+	function hideForm() {
+		formContainer.render(null);
+	}
+
+	const [question, setQuestion] = useState("");
+	const [answer, setAnswer] = useState("");
+
+	function submitNew(event) {
+		console.log("submit");
+		questions[questions.length] = new NewQuestion(question, answer);
+		console.log(questions.length);
+		console.log(questions);
+
+		return null;
+	}
+
+	const questionChange = event => setQuestion(event.target.value);
+	const answerChange = event => setAnswer(event.target.value);
+
 	return (
-		<form action="">
+		<form onSubmit={submitNew}>
+			<i onClick={hideForm} className="fa-solid fa-xmark fa-xl"></i>
 			<input
 				type="text"
-				className="new-question"
+				className="new new-question"
 				placeholder="How do I contact you?"
+				onChange={questionChange}
+				// value={this.value}
 			/>
 			<textarea
-				className="new-answer"
-				placeholder="You can email us at company@example.com or call us at 01234 56789"
+				className="new new-answer"
+				placeholder="You can email us at company@example.com or call us at 01234 567890."
 				cols="30"
 				rows="10"
+				onChange={answerChange}
 			></textarea>
 			<input type="submit" value="Submit" className="btn btn-primary" />
 		</form>
 	);
 }
-
-const formContainer = ReactDOM.createRoot(document.getElementById("form"));
-formContainer.render(<New />);

@@ -16,6 +16,14 @@
 	flex-direction: $direction;
 }
 
+@mixin btnBackground() {
+	background-color: $main;
+
+	&:hover {
+		background-color: $dark;
+	}
+}
+
 $main: #004cff;
 $light: #e3eafd;
 $dark: #0040d6;
@@ -26,6 +34,7 @@ $info: rgba(78, 84, 104, 1);
 
 body {
 	font-family: imb;
+	// position: relative;
 }
 
 .top {
@@ -126,13 +135,55 @@ section {
 		padding: 0.5rem 1rem;
 		text-align: center;
 		font-size: 15px;
-		background-color: $main;
-
-		&:hover {
-			background-color: $dark;
-		}
+		@include btnBackground();
 	}
 }
 
 // form
 
+#form {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	form {
+		background-color: #fff;
+		// border: 1px solid black;
+		border-radius: 10px;
+		@include flexCenter(column);
+		padding: 3rem;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+		input,
+		textarea {
+			width: 380px;
+		}
+
+		.new {
+			background-color: $light;
+			border: none;
+			outline: none;
+			padding: 0.5rem 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.btn {
+			border-radius: 0;
+			@include btnBackground();
+		}
+
+		i {
+			position: absolute;
+			top: 0;
+			right: 0;
+			color: #c3c3c3;
+			margin: 1.5rem 1rem;
+			cursor: pointer;
+
+			&:hover {
+				color: #b3b3b3;
+			}
+		}
+	}
+}

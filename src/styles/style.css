@@ -91,4 +91,50 @@ section {
 }
 #button button:hover {
   background-color: #0040d6;
+}
+
+#form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#form form {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#form form input,
+#form form textarea {
+  width: 380px;
+}
+#form form .new {
+  background-color: #e3eafd;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+#form form .btn {
+  border-radius: 0;
+  background-color: #004cff;
+}
+#form form .btn:hover {
+  background-color: #0040d6;
+}
+#form form i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #c3c3c3;
+  margin: 1.5rem 1rem;
+  cursor: pointer;
+}
+#form form i:hover {
+  color: #b3b3b3;
 }/*# sourceMappingURL=style.css.map */
