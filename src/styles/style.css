@@ -29,7 +29,7 @@ body {
 
 section {
   width: 85vw;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .container .line {
@@ -74,4 +74,21 @@ section {
   margin: 0;
   padding: 0;
   font-size: 1rem;
+}
+
+#button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 2rem;
+}
+#button button {
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 15px;
+  background-color: #004cff;
+}
+#button button:hover {
+  background-color: #0040d6;
 }/*# sourceMappingURL=style.css.map */

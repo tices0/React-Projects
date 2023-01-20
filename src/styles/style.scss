@@ -18,6 +18,7 @@
 
 $main: #004cff;
 $light: #e3eafd;
+$dark: #0040d6;
 $dark-grey: #4e5468;
 $grey: #5f667e;
 $other-grey: #9298ad;
@@ -56,7 +57,7 @@ body {
 section {
 	width: 85vw;
 	// border: 1px solid red;
-	margin: auto;
+	margin: 2rem auto;
 }
 
 .container {
@@ -111,3 +112,27 @@ section {
 		}
 	}
 }
+
+// button
+
+#button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 2rem;
+
+	button {
+		border-radius: 20px;
+		padding: 0.5rem 1rem;
+		text-align: center;
+		font-size: 15px;
+		background-color: $main;
+
+		&:hover {
+			background-color: $dark;
+		}
+	}
+}
+
+// form
+

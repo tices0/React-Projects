@@ -2,36 +2,23 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/style.css";
 
-function Question(props) {
-	const [show, setShow] = useState(false);
-	const onClick = () => {
-		console.log(this, "this");
-		if (show) {
-			setShow(false);
-			console.log("show is true");
-		} else {
-			setShow(true);
-			console.log("show is false");
-		}
-	};
+function Question({ questionList }) {
+	const [show, setShow] = useState({});
+	const onClick = index =>
+		setShow(prev => ({ ...prev, [index]: !Boolean(prev[index]) }));
 
-	const questionList = props.questionList;
-	const questions = questionList.map(question => (
-		<div onClick={onClick} className="container">
+	const questions = questionList.map((question, index) => (
+		<div key={index} onClick={() => onClick(index)} className="container">
 			<div className="line"></div>
-			<div className="question-container">
-				<h3 className="question">{question.question}</h3>
-				<div className="drop-icon">
-					<i className="fa-solid fa-caret-down"></i>
-				</div>
-			</div>
-			{/* <div className="answer">
-				<p>{question.answer}</p>
-			</div> */}
-			{show ? <Answer question={question} /> : null}
+			{show[index] ? (
+				<ColorToBlue question={question} show={show} index={index} />
+			) : (
+				<ColorToNormal question={question} show={show} index={index} />
+			)}
+
+			{show[index] ? <Answer question={question} /> : null}
 		</div>
 	));
-	// console.log(questions);
 	return <section>{questions}</section>;
 }
 
@@ -44,6 +31,39 @@ function Answer(props) {
 		</div>
 	);
 	return answer;
+}
+
+function DownArrow() {
+	return <i className="fa-solid fa-caret-down"></i>;
+}
+
+function UpArrow() {
+	return <i className="fa-solid fa-caret-up"></i>;
+}
+
+function ColorToBlue(props) {
+	return (
+		<div
+			className="question-container"
+			style={{ backgroundColor: "#e3eafd" }}
+		>
+			<h3 className="question">{props.question.question}</h3>
+			<div className="drop-icon">
+				{props.show[props.index] ? <UpArrow /> : <DownArrow />}
+			</div>
+		</div>
+	);
+}
+
+function ColorToNormal(props) {
+	return (
+		<div className="question-container">
+			<h3 className="question">{props.question.question}</h3>
+			<div className="drop-icon">
+				{props.show[props.index] ? <UpArrow /> : <DownArrow />}
+			</div>
+		</div>
+	);
 }
 
 let questions = [];
@@ -69,14 +89,40 @@ const example2 = new NewQuestion(
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus in ornare quam viverra orci sagittis eu. Sit amet tellus cras adipiscing enim eu turpis egestas. Tristique senectus et netus et malesuada fames ac turpis. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Sit amet venenatis urna cursus eget nunc scelerisque. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Consectetur a erat nam at lectus urna. Commodo elit at imperdiet dui accumsan sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Tristique magna sit amet purus gravida. Euismod in pellentesque massa placerat duis. At augue eget arcu dictum varius duis at consectetur.",
 );
 
-function Button() {
-	
-}
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Question questionList={questions} />);
 
-const buttonContainer = ReactDOM.createRoot(
-	document.getElementsByClassName("button-container"),
-);
+// button
+
+function Button() {
+	return (
+		<button className="btn btn-primary">
+			<i>+</i> Add FAQ
+		</button>
+	);
+}
+
+const buttonContainer = ReactDOM.createRoot(document.getElementById("button"));
 buttonContainer.render(<Button />);
+
+function New() {
+	return (
+		<form action="">
+			<input
+				type="text"
+				className="new-question"
+				placeholder="How do I contact you?"
+			/>
+			<textarea
+				className="new-answer"
+				placeholder="You can email us at company@example.com or call us at 01234 56789"
+				cols="30"
+				rows="10"
+			></textarea>
+			<input type="submit" value="Submit" className="btn btn-primary" />
+		</form>
+	);
+}
+
+const formContainer = ReactDOM.createRoot(document.getElementById("form"));
+formContainer.render(<New />);
