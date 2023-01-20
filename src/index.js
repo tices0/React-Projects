@@ -5,6 +5,7 @@ import "./styles/style.css";
 function Question(props) {
 	const [show, setShow] = useState(false);
 	const onClick = () => {
+		console.log(this, "this");
 		if (show) {
 			setShow(false);
 			console.log("show is true");
@@ -36,7 +37,7 @@ function Question(props) {
 
 function Answer(props) {
 	const question = props.question;
-	console.log(question);
+	console.log(question.question);
 	const answer = (
 		<div className="answer">
 			<p>{question.answer}</p>
@@ -68,8 +69,14 @@ const example2 = new NewQuestion(
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus in ornare quam viverra orci sagittis eu. Sit amet tellus cras adipiscing enim eu turpis egestas. Tristique senectus et netus et malesuada fames ac turpis. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Sit amet venenatis urna cursus eget nunc scelerisque. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Consectetur a erat nam at lectus urna. Commodo elit at imperdiet dui accumsan sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Tristique magna sit amet purus gravida. Euismod in pellentesque massa placerat duis. At augue eget arcu dictum varius duis at consectetur.",
 );
 
-console.log(questions);
-console.log(questions[0].question);
+function Button() {
+	
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Question questionList={questions} />);
+
+const buttonContainer = ReactDOM.createRoot(
+	document.getElementsByClassName("button-container"),
+);
+buttonContainer.render(<Button />);
