@@ -14,5 +14,8 @@ Inspiration from [ActiveCampaign's FAQ](https://www.activecampaign.com/about/faq
     -   using an index to differentiate between containers and display the correct answer
 -   change things depending on **state** of component
 -   change style inline of JSX component
+-   create new object from constructor when a form is submitted _(recap)_
+-   get the value of form inputs
+-   storing data in **local storage** _(recap)_
 
 _recaps = lessons that were already previously learned thorugh another project but applied to this_

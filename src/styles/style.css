@@ -8,6 +8,25 @@
 }
 body {
   font-family: imb;
+  transition: background 300ms linear;
+}
+body.dark {
+  background: #292c35;
+  color: #fff;
+  transition: background 300ms linear;
+}
+body.dark .question-container:hover {
+  background-color: #0040d6;
+}
+body.dark .question-container:hover .drop-icon {
+  color: #fff;
+}
+
+.mode {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2rem;
 }
 
 .top {
@@ -73,7 +92,6 @@ section {
 .container .answer p {
   margin: 0;
   padding: 0;
-  font-size: 1rem;
 }
 
 #button {
@@ -81,6 +99,7 @@ section {
   right: 0;
   bottom: 0;
   margin: 2rem;
+  z-index: 100;
 }
 #button button {
   border-radius: 20px;

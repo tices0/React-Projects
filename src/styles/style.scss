@@ -34,8 +34,33 @@ $info: rgba(78, 84, 104, 1);
 
 body {
 	font-family: imb;
-	// position: relative;
+	transition: background 300ms linear;
+
+	&.dark {
+		background: #292c35;
+		color: #fff;
+		transition: background 300ms linear;
+
+		.question-container:hover {
+			background-color: $dark;
+
+			.drop-icon {
+				color: #fff;
+			}
+		}
+	}
 }
+
+// light and darkmode
+
+.mode {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 2rem;
+}
+
+// title
 
 .top {
 	text-align: center;
@@ -58,20 +83,12 @@ body {
 
 // questions
 
-// #root {
-// 	@include flexCenter(column);
-// 	width: 100vw;
-// }
-
 section {
 	width: 85vw;
-	// border: 1px solid red;
 	margin: 2rem auto;
 }
 
 .container {
-	// border: 1px solid red;
-
 	.line {
 		margin: 0;
 		padding: 0;
@@ -84,7 +101,6 @@ section {
 		@include flexCenter(row);
 		justify-content: space-between;
 		padding: 1rem;
-		// border: 1px solid blue;
 		margin: 0;
 
 		&:hover {
@@ -109,15 +125,10 @@ section {
 		padding: 1rem;
 		padding-bottom: 3rem;
 		margin: 0;
-		// display: none;
-		// font-family: light;
 
 		p {
 			margin: 0;
 			padding: 0;
-			font-size: 1rem;
-			// font-weight: bold;
-			// color: $info;
 		}
 	}
 }
@@ -129,6 +140,7 @@ section {
 	right: 0;
 	bottom: 0;
 	margin: 2rem;
+	z-index: 100;
 
 	button {
 		border-radius: 20px;

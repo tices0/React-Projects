@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/style.css";
 
 let questions;
 
-console.log(localStorage.getItem("questions"));
-console.log(JSON.parse(localStorage.getItem("questions")));
+// localStorage.removeItem("questions");
 
 if (JSON.parse(localStorage.getItem("questions"))) {
 	questions = JSON.parse(localStorage.getItem("questions"));
@@ -57,17 +56,31 @@ function UpArrow() {
 }
 
 function ColorToBlue(props) {
-	return (
-		<div
-			className="question-container"
-			style={{ backgroundColor: "#e3eafd" }}
-		>
-			<h3 className="question">{props.question.question}</h3>
-			<div className="drop-icon">
-				{props.show[props.index] ? <UpArrow /> : <DownArrow />}
+	if (document.querySelector("body").classList.contains("dark")) {
+		return (
+			<div
+				className="question-container"
+				style={{ backgroundColor: "#0040d6" }}
+			>
+				<h3 className="question">{props.question.question}</h3>
+				<div className="drop-icon">
+					{props.show[props.index] ? <UpArrow /> : <DownArrow />}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div
+				className="question-container"
+				style={{ backgroundColor: "#e3eafd" }}
+			>
+				<h3 className="question">{props.question.question}</h3>
+				<div className="drop-icon">
+					{props.show[props.index] ? <UpArrow /> : <DownArrow />}
+				</div>
+			</div>
+		);
+	}
 }
 
 function ColorToNormal(props) {
@@ -80,8 +93,6 @@ function ColorToNormal(props) {
 		</div>
 	);
 }
-
-console.log(questions);
 
 function NewQuestion(question, answer) {
 	this.question = question;
@@ -97,20 +108,26 @@ function NewQuestion(question, answer) {
 	localStorage.setItem("questions", JSON.stringify(questions));
 }
 
-const example1 = new NewQuestion(
-	"How does this work?",
-	"Lorem ipsum dolor sit amet. Sit autem odit At consequatur ipsum vel facilis molestiae ut itaque quas eos necessitatibus necessitatibus aut tenetur debitis et facilis architecto. Sit quisquam impedit eos eveniet doloremque et omnis obcaecati aut illo aperiam est odit ratione eos rerum voluptatem ea reiciendis quaerat.",
-);
+if (!localStorage.getItem("questions")) {
+	const example1 = new NewQuestion(
+		"How does this work?",
+		"Lorem ipsum dolor sit amet. Sit autem odit At consequatur ipsum vel facilis molestiae ut itaque quas eos necessitatibus necessitatibus aut tenetur debitis et facilis architecto. Sit quisquam impedit eos eveniet doloremque et omnis obcaecati aut illo aperiam est odit ratione eos rerum voluptatem ea reiciendis quaerat.",
+	);
 
-const example2 = new NewQuestion(
-	"Where can I find you?",
-	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus in ornare quam viverra orci sagittis eu. Sit amet tellus cras adipiscing enim eu turpis egestas. Tristique senectus et netus et malesuada fames ac turpis. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Sit amet venenatis urna cursus eget nunc scelerisque. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Consectetur a erat nam at lectus urna. Commodo elit at imperdiet dui accumsan sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Tristique magna sit amet purus gravida. Euismod in pellentesque massa placerat duis. At augue eget arcu dictum varius duis at consectetur.",
-);
+	const example2 = new NewQuestion(
+		"Where can I find you?",
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus in ornare quam viverra orci sagittis eu. Sit amet tellus cras adipiscing enim eu turpis egestas. Tristique senectus et netus et malesuada fames ac turpis. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Sit amet venenatis urna cursus eget nunc scelerisque. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Consectetur a erat nam at lectus urna. Commodo elit at imperdiet dui accumsan sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Tristique magna sit amet purus gravida. Euismod in pellentesque massa placerat duis. At augue eget arcu dictum varius duis at consectetur.",
+	);
+}
+
+console.log(questions, "after examples added");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Question questionList={questions} />);
 
-// button
+// ===============
+// button + form
+
 const formContainer = ReactDOM.createRoot(document.getElementById("form"));
 
 function Button() {
@@ -128,16 +145,6 @@ function Button() {
 const buttonContainer = ReactDOM.createRoot(document.getElementById("button"));
 buttonContainer.render(<Button />);
 
-// console.log(questions.length);
-// let length = questions.length;
-
-// questions[questions.length] = { example: "worked" };
-
-// console.log(length);
-
-// const converter = require("number-to-words");
-// console.log(converter.toWords(length), "length");
-
 function New() {
 	function hideForm() {
 		formContainer.render(null);
@@ -149,10 +156,6 @@ function New() {
 	function submitNew(event) {
 		console.log("submit");
 		questions[questions.length] = new NewQuestion(question, answer);
-		console.log(questions.length);
-		console.log(questions);
-
-		return null;
 	}
 
 	const questionChange = event => setQuestion(event.target.value);
@@ -166,7 +169,6 @@ function New() {
 				className="new new-question"
 				placeholder="How do I contact you?"
 				onChange={questionChange}
-				// value={this.value}
 			/>
 			<textarea
 				className="new new-answer"
@@ -179,3 +181,55 @@ function New() {
 		</form>
 	);
 }
+
+// dark mode
+
+function Dark() {
+	return (
+		<button className="btn btn-outline-dark">
+			<i className="fa-solid fa-moon"></i>
+		</button>
+	);
+}
+
+function Light() {
+	return (
+		<button className="btn btn-outline-light">
+			<i className="fa-solid fa-sun"></i>
+		</button>
+	);
+}
+
+const mode = ReactDOM.createRoot(document.getElementById("dark-mode"));
+
+function Mode() {
+	// localStorage.removeItem("dark");
+
+	if (localStorage.getItem("dark") === null) {
+		localStorage.setItem("dark", false);
+	}
+
+	const [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")));
+
+	console.log(dark);
+
+	const classList = document.body.classList;
+
+	if (dark) classList.add("dark");
+	else classList.remove("dark");
+
+	const onClick = () => {
+		classList.toggle("dark", dark);
+		localStorage.setItem("dark", !dark);
+		setDark(!dark);
+		console.log("change theme");
+	};
+
+	return (
+		<div onClick={onClick} className="mode">
+			{dark ? <Light /> : <Dark />}
+		</div>
+	);
+}
+
+mode.render(<Mode />);
