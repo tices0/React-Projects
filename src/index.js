@@ -211,8 +211,6 @@ function Mode() {
 
 	const [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")));
 
-	console.log(dark);
-
 	const classList = document.body.classList;
 
 	if (dark) classList.add("dark");
