@@ -17,5 +17,6 @@ Inspiration from [ActiveCampaign's FAQ](https://www.activecampaign.com/about/faq
 -   create new object from constructor when a form is submitted _(recap)_
 -   get the value of form inputs
 -   storing data in **local storage** _(recap)_
+-   switch between light and dark mode with a button
 
 _recaps = lessons that were already previously learned thorugh another project but applied to this_
