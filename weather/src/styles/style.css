@@ -12,6 +12,9 @@ body {
   background-color: #1e213a;
 }
 
+.sidebar {
+  position: relative;
+}
 .sidebar .top {
   display: flex;
   justify-content: center;
@@ -32,11 +35,32 @@ body {
   padding: 0.5rem 1rem;
   font-size: 16px;
   line-height: 19px;
+  cursor: pointer;
 }
 .sidebar .top button.current {
+  cursor: pointer;
   border-radius: 50%;
   height: 40px;
   width: 40px;
   text-align: center;
   vertical-align: middle;
+}
+.sidebar .background {
+  position: absolute;
+  left: -111px;
+  top: 80px;
+}
+.sidebar .background img {
+  opacity: 10%;
+  height: 210px;
+  width: 650px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+.sidebar .image img {
+  position: absolute;
+  width: 150px;
+  left: 50%;
+  top: 120px;
+  transform: translate(-50%);
 }/*# sourceMappingURL=style.css.map */

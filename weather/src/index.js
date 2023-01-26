@@ -2,24 +2,47 @@ import react, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 
-navigator.geolocation.getCurrentPosition(show);
-
 let currentLon;
 let currentLat;
 
-function show(position) {
-	currentLon = position.coords.longitude;
-	currentLat = position.coords.latitude;
+setCurrent()
+
+async function setCurrent() {
+    navigator.geolocation.getCurrentPosition(position => {
+       return currentLon = position.coords.longitude;
+        // currentLat = position.coords.latitude;
+    });
 }
 
-function Sidebar(props) {
-	let lat = currentLat;
-	let lon = currentLon;
+let lat = await currentLat
+let lon
+
+function Sidebar() {
+
 
 	const setToCurrent = () => {
 		lat = currentLat;
 		lon = currentLon;
+		console.log("set to current location");
+		console.log(lon, lat, "lon and  lat");
+		console.log(currentLon);
 	};
+
+	const data = (lon, lat) => {
+		fetch(
+			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=GMT`,
+			{
+				method: "GET",
+			},
+		)
+			.then(res => res.json())
+			.then(data => {
+				return data;
+			})
+			.catch(error => console.error(error));
+	};
+
+	console.log(data(lon, lat));
 
 	let insideSection = (
 		<>
@@ -31,9 +54,12 @@ function Sidebar(props) {
 			</div>
 			<div className="background">
 				<img
-					src="../media/Cloud-background.png"
+					src={require("./media/Cloud-background.png")}
 					alt="Cloud Background"
 				/>
+			</div>
+			<div className="image">
+				<img src={require("./media/Shower.png")} alt="" />
 			</div>
 		</>
 	);

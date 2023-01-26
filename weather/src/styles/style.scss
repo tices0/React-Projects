@@ -40,6 +40,8 @@ body {
 }
 
 .sidebar {
+	position: relative;
+
 	.top {
 		@include flexCenter(row);
 		justify-content: space-between;
@@ -57,9 +59,11 @@ body {
 				padding: 0.5rem 1rem;
 				font-size: 16px;
 				line-height: 19px;
+				cursor: pointer;
 			}
 
 			&.current {
+				cursor: pointer;
 				border-radius: 50%;
 				height: 40px;
 				width: 40px;
@@ -67,5 +71,26 @@ body {
 				vertical-align: middle;
 			}
 		}
+	}
+
+	.background {
+		position: absolute;
+		left: -111px;
+		top: 80px;
+
+		img {
+			opacity: 10%;
+			height: 210px;
+			width: 650px;
+			object-fit: scale-down;
+		}
+	}
+
+	.image img {
+		position: absolute;
+		width: 150px;
+		left: 50%;
+		top: 120px;
+		transform: translate(-50%);
 	}
 }
