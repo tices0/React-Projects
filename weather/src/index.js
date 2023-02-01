@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 
@@ -23,55 +23,70 @@ function setGeo() {
 }
 
 function Sidebar() {
-	let imgcode;
+	const [code, setCode] = useState("");
+	const [codeSet, setCodeSet] = useState(false);
 
-	async function setCurrent() {
-		const both = await setGeo();
-		lon = both[0];
-		lat = both[1];
-		console.log("lon:", lon, "lat:", lat);
+	useEffect(() => {
+		async function setCurrent() {
+			const both = await setGeo();
+			lon = both[0];
+			lat = both[1];
+			console.log("lon:", lon, "lat:", lat);
 
-		let data = await getData(lon, lat);
-		console.log(data);
-		imgcode = weathercode(data);
-		console.log(imgcode, "weathercode");
-	}
+			let data = await getData(lon, lat);
+			console.log(data);
+			let imgcode = weathercode(data);
+			console.log(imgcode, "weathercode");
 
-	setCurrent();
+			setCode(imgcode);
+			setCodeSet(true);
+		}
 
-	const getData = async (lon, lat) => {
-		const res = await fetch(
-			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=GMT`,
+		setCurrent();
+
+		const getData = async (lon, lat) => {
+			const res = await fetch(
+				`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=GMT`,
+			);
+			const data = await res.json();
+			return data;
+		};
+	}, [code]);
+
+	const InsideSection = () => {
+		let img = code;
+		console.log(img, "in inside section");
+
+		return (
+			<>
+				<div className="top">
+					<button className="places">Search for places</button>
+					<button className="current">
+						<i className="fa-solid fa-location-crosshairs fa-xl"></i>
+					</button>
+				</div>
+				<div className="background">
+					<img
+						src={require("./media/Cloud-background.png")}
+						alt="Cloud Background"
+					/>
+				</div>
+				<div className="image">
+					{codeSet ? (
+						<img src={require(`./media/${img}.png`)} alt="" />
+					) : (
+						""
+					)}
+				</div>
+			</>
 		);
-		const data = await res.json();
-		return data;
 	};
 
-	let insideSection = () => {
-        const inside = (
-            <>
-                <div className="top">
-                    <button className="places">Search for places</button>
-                    <button className="current" onClick={setCurrent}>
-                        <i className="fa-solid fa-location-crosshairs fa-xl"></i>
-                    </button>
-                </div>
-                <div className="background">
-                    <img
-                        src={require("./media/Cloud-background.png")}
-                        alt="Cloud Background"
-                    />
-                </div>
-                <div className="image">
-                    <img src={require(`./media/${imgcode}.png`)} alt="" />
-                </div>
-            </>
-        );
-    return inside
-    }
-        
-
-	return <section className="sidebar">{insideSection}</section>;
+	return (
+		<section className="sidebar">
+			<InsideSection />
+		</section>
+	);
 }
 
 function weathercode(data) {
