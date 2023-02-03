@@ -31,11 +31,18 @@ function Sidebar() {
 	const [date, setDate] = useState();
 	const [location, setLocation] = useState();
 
+	const [isCurrent, setIsCurrent] = useState(true);
+
 	useEffect(() => {
 		async function setCurrent() {
-			const both = await setGeo();
-			lon = both[0];
-			lat = both[1];
+			if (isCurrent) {
+				const both = await setGeo();
+				lon = both[0];
+				lat = both[1];
+				console.log("current is true");
+			} else {
+				console.log("current is false");
+			}
 			console.log("lon:", lon, "lat:", lat);
 
 			let data = await getData(lon, lat);
@@ -70,14 +77,18 @@ function Sidebar() {
 			const data = await res.json();
 			return data;
 		};
-	}, [code, temp, label]);
+	}, [code, temp, label, date, location, isCurrent]);
+
+	const setToCurrent = () => {
+		setIsCurrent(true);
+	};
 
 	const InsideSection = () => {
 		return (
 			<>
 				<div className="top">
 					<button className="places">Search for places</button>
-					<button className="current">
+					<button className="current" onClick={setToCurrent}>
 						<i className="fa-solid fa-location-crosshairs fa-xl"></i>
 					</button>
 				</div>
