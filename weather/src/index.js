@@ -26,6 +26,11 @@ function Sidebar() {
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
 
+	const [temp, setTemp] = useState();
+	const [label, setLabel] = useState();
+	const [date, setDate] = useState();
+	const [location, setLocation] = useState()
+
 	useEffect(() => {
 		async function setCurrent() {
 			const both = await setGeo();
@@ -35,11 +40,22 @@ function Sidebar() {
 
 			let data = await getData(lon, lat);
 			console.log(data);
-			let imgcode = weathercode(data);
-			console.log(imgcode, "weathercode");
 
+			let imgcode = weathercode(data);
 			setCode(imgcode);
 			setCodeSet(true);
+
+			let label = imgcode.replace(/([A-Z])/g, " $1").trim();
+			setLabel(label);
+			console.log(label, "label");
+
+			let current_temp = data.current_weather.temperature;
+			setTemp(Math.round(current_temp));
+
+			let date = new Date(
+				data.current_weather.time.split("T")[0],
+			).toString("ddd, d MMM");
+			setDate(date);
 		}
 
 		setCurrent();
@@ -51,12 +67,9 @@ function Sidebar() {
 			const data = await res.json();
 			return data;
 		};
-	}, [code]);
+	}, [code, temp, label]);
 
 	const InsideSection = () => {
-		let img = code;
-		console.log(img, "in inside section");
-
 		return (
 			<>
 				<div className="top">
@@ -73,10 +86,24 @@ function Sidebar() {
 				</div>
 				<div className="image">
 					{codeSet ? (
-						<img src={require(`./media/${img}.png`)} alt="" />
+						<img src={require(`./media/${code}.png`)} alt="" />
 					) : (
 						""
 					)}
+				</div>
+				<div className="temp">
+					{codeSet ? <span>{temp}</span> : ""}
+					<i>&#176;C</i>
+				</div>
+				<div className="label">
+					{codeSet ? <span>{label}</span> : ""}
+				</div>
+				<div className="date">
+					<span>Today</span> <i className="fa-solid fa-circle"></i>
+					{codeSet ? <span>{date}</span> : ""}
+				</div>
+				<div className="location">
+				<i className="fa-solid fa-location-dot"></i>
 				</div>
 			</>
 		);

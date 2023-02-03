@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", serif;
+  color: #e7e7eb;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -5,7 +13,7 @@ body {
   grid-template-columns: 1fr 2fr;
   height: 100vh;
   color: #e7e7eb;
-  font-family: "Poppins", serif;
+  font-family: "Raleway", serif;
 }
 
 #sidebar {
@@ -14,6 +22,7 @@ body {
 
 .sidebar {
   position: relative;
+  height: 100vh;
 }
 .sidebar .top {
   display: flex;
@@ -28,8 +37,10 @@ body {
   color: #e7e7eb;
   border: 0;
   cursor: pointer;
-  font-family: "Poppins", serif;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+}
+.sidebar .top button:hover {
+  background-color: #a09fb1;
 }
 .sidebar .top button.places {
   padding: 0.5rem 1rem;
@@ -63,4 +74,54 @@ body {
   left: 50%;
   top: 120px;
   transform: translate(-50%);
+}
+.sidebar .temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 280px;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 100px;
+  line-height: 1em;
+  font-weight: 500;
+}
+.sidebar .temp i {
+  font-style: normal;
+  font-size: 30px;
+  color: #a09fb1;
+  align-self: flex-end;
+  line-height: 1em;
+  padding-bottom: 20px;
+}
+.sidebar .label {
+  font-weight: 600;
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 20px;
+}
+.sidebar .label span {
+  color: #a09fb1;
+}
+.sidebar .date {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 14px;
+}
+.sidebar .date * {
+  color: #88869d;
+}
+.sidebar .date i {
+  font-size: 3px;
 }/*# sourceMappingURL=style.css.map */

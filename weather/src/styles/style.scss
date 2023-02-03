@@ -22,6 +22,14 @@ $search-border: #616475;
 
 // ===========
 
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Raleway", serif;
+	color: $white;
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -29,7 +37,7 @@ body {
 	grid-template-columns: 1fr 2fr;
 	height: 100vh;
 	color: $white;
-	font-family: "Poppins", serif;
+	font-family: "Raleway", serif;
 }
 
 // ============
@@ -41,6 +49,7 @@ body {
 
 .sidebar {
 	position: relative;
+	height: 100vh;
 
 	.top {
 		@include flexCenter(row);
@@ -52,8 +61,11 @@ body {
 			color: $white;
 			border: 0;
 			cursor: pointer;
-			font-family: "Poppins", serif;
 			box-shadow: 0px 4px 4px 0px #00000040;
+
+			&:hover {
+				background-color: $light-grey;
+			}
 
 			&.places {
 				padding: 0.5rem 1rem;
@@ -92,5 +104,56 @@ body {
 		left: 50%;
 		top: 120px;
 		transform: translate(-50%);
+	}
+
+	.temp {
+		@include flexCenter(row);
+		position: absolute;
+		top: 280px;
+		left: 50%;
+		transform: translate(-50%);
+		font-size: 100px;
+		line-height: 1em;
+		font-weight: 500;
+
+		i {
+			font-style: normal;
+			font-size: 30px;
+			color: $light-grey;
+			align-self: flex-end;
+			line-height: 1em;
+			padding-bottom: 20px;
+		}
+	}
+
+	.label {
+		font-weight: 600;
+		position: absolute;
+		bottom: 150px;
+		left: 50%;
+		transform: translate(-50%);
+		font-size: 20px;
+
+		span {
+			color: $light-grey;
+		}
+	}
+
+	.date {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		bottom: 80px;
+		@include flexCenter(row);
+		gap: 1rem;
+		font-size: 14px;
+
+		* {
+			color: $small-text;
+		}
+
+		i {
+			font-size: 3px;
+		}
 	}
 }
