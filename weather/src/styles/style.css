@@ -124,4 +124,17 @@ body {
 }
 .sidebar .date i {
   font-size: 3px;
+}
+.sidebar .location {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 40px;
+  font-size: 14px;
+}
+.sidebar .location i {
+  margin-right: 0.5rem;
+}
+.sidebar .location * {
+  color: #88869d;
 }/*# sourceMappingURL=style.css.map */

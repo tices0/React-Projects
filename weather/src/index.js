@@ -29,7 +29,7 @@ function Sidebar() {
 	const [temp, setTemp] = useState();
 	const [label, setLabel] = useState();
 	const [date, setDate] = useState();
-	const [location, setLocation] = useState()
+	const [location, setLocation] = useState();
 
 	useEffect(() => {
 		async function setCurrent() {
@@ -56,6 +56,9 @@ function Sidebar() {
 				data.current_weather.time.split("T")[0],
 			).toString("ddd, d MMM");
 			setDate(date);
+
+			let location = await locationToCity(lon, lat);
+			setLocation(location);
 		}
 
 		setCurrent();
@@ -103,7 +106,8 @@ function Sidebar() {
 					{codeSet ? <span>{date}</span> : ""}
 				</div>
 				<div className="location">
-				<i className="fa-solid fa-location-dot"></i>
+					<i className="fa-solid fa-location-dot"></i>
+					{codeSet ? <span>{location}</span> : ""}
 				</div>
 			</>
 		);
@@ -150,6 +154,27 @@ function weathercode(data) {
 		return console.error("Invalid Weather Code");
 	}
 	return img;
+}
+
+async function locationToCity(lon, lat) {
+	const res = await fetch(
+		`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${lat}&lon=${lon}`,
+	);
+	const data = await res.json();
+
+	let rtn;
+	if (data.features[0].properties.geocoding.city) {
+		rtn = data.features[0].properties.geocoding.city;
+	} else if (data.features[0].properties.geocoding.county) {
+		rtn = data.features[0].properties.geocoding.county;
+	} else if (data.features[0].properties.geocoding.state) {
+		rtn = data.features[0].properties.geocoding.state;
+	} else if (data.features[0].properties.geocoding.country) {
+		rtn = data.features[0].properties.geocoding.country;
+	} else {
+		rtn = data.features[0].properties.geocoding.place;
+	}
+	return rtn;
 }
 
 const sidebar = createRoot(document.querySelector("#sidebar"));
