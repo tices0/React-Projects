@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 
-// find og country code so that time right always
-// change timezone every time new location searched
-
 let currentLon;
 let currentLat;
 
@@ -27,16 +24,29 @@ function setGeo() {
 	});
 }
 
-const getData = async (lon, lat, timezone) => {
-	if (!timezone) {
-		timezone = "GMT";
-	}
+async function getCountryCode(lon, lat) {
+	const res = await fetch(
+		`https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`,
+	);
+	const data = await res.json();
+	return data.features[0].properties.address.country_code;
+}
+
+const getData = async (lon, lat) => {
+	const timezone = await getTimezone(lon, lat);
 	const res = await fetch(
 		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=${timezone}`,
 	);
 	const data = await res.json();
 	return data;
 };
+
+async function getTimezone(lon, lat) {
+	const code = await getCountryCode(lon, lat);
+	const ct = require("countries-and-timezones");
+	const country = ct.getCountry(code.toUpperCase());
+	return country.timezones[0];
+}
 
 function Sidebar() {
 	const [code, setCode] = useState("");
@@ -55,6 +65,9 @@ function Sidebar() {
 
 	useEffect(() => {
 		async function setCurrent() {
+			if (localStorage.getItem('location')) {
+				lon = loc
+			}
 			if (isCurrent) {
 				const both = await setGeo();
 				lon = both[0];
@@ -79,6 +92,9 @@ function Sidebar() {
 			setCodeSet(true);
 
 			let label = imgcode.replace(/([A-Z])/g, " $1").trim();
+			if (imgcode.includes("Cloud")) {
+				label = "Cloudy";
+			}
 			setLabel(label);
 			console.log(label, "label");
 
@@ -101,16 +117,20 @@ function Sidebar() {
 
 	const handleSubmit = async event => {
 		event.preventDefault();
-		const res = await fetch(
-			`https://nominatim.openstreetmap.org/?addressdetails=1&q=${search}&format=json&limit=1`,
-		);
-		const data = await res.json();
-		setOnSearch(false);
-		setIsCurrent(false);
-		setSearch("");
+		try {
+			const res = await fetch(
+				`https://nominatim.openstreetmap.org/?addressdetails=1&q=${search}&format=json&limit=1`,
+			);
+			const data = await res.json();
+			setOnSearch(false);
+			setIsCurrent(false);
+			setSearch("");
 
-		setLat(parseFloat(data[0].lat));
-		setLon(parseFloat(data[0].lon));
+			setLat(parseFloat(data[0].lat));
+			setLon(parseFloat(data[0].lon));
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const InsideSection = () => {
@@ -217,12 +237,6 @@ function Sidebar() {
 	);
 }
 
-function getTimezone(code) {
-	const ct = require("countries-and-timezones");
-	const country = ct.getCountry(code.toUpperCase());
-	return country.timezones[0];
-}
-
 function weathercode(data) {
 	const code = data.current_weather.weathercode;
 	let img;
@@ -264,6 +278,7 @@ async function locationToCity(lon, lat) {
 		`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${lat}&lon=${lon}`,
 	);
 	const data = await res.json();
+	console.log(data);
 
 	let rtn;
 	if (data.features[0].properties.geocoding.city) {
