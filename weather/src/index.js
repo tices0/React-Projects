@@ -5,7 +5,7 @@ import "./styles/style.css";
 let currentLon;
 let currentLat;
 
-console.log(window.innerWidth, "window width");
+// console.log(window.innerWidth, "window width");
 
 let lon;
 let lat;
@@ -65,23 +65,17 @@ function Sidebar() {
 
 	useEffect(() => {
 		async function setCurrent() {
-			if (localStorage.getItem('location')) {
-				lon = loc
-			}
 			if (isCurrent) {
 				const both = await setGeo();
 				lon = both[0];
 				lat = both[1];
-				console.log("current is true");
 			} else {
 				lon = newLon;
 				lat = newLat;
-				console.log("current is false");
 			}
-			console.log("lon:", lon, "lat:", lat);
+			// console.log("lon:", lon, "lat:", lat);
 
 			let data = await getData(lon, lat);
-			console.log(data);
 
 			return setUp(data);
 		}
@@ -96,7 +90,6 @@ function Sidebar() {
 				label = "Cloudy";
 			}
 			setLabel(label);
-			console.log(label, "label");
 
 			let current_temp = data.current_weather.temperature;
 			setTemp(Math.round(current_temp));
@@ -278,7 +271,6 @@ async function locationToCity(lon, lat) {
 		`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${lat}&lon=${lon}`,
 	);
 	const data = await res.json();
-	console.log(data);
 
 	let rtn;
 	if (data.features[0].properties.geocoding.city) {
@@ -297,13 +289,3 @@ async function locationToCity(lon, lat) {
 
 const sidebar = createRoot(document.querySelector("#sidebar"));
 sidebar.render(<Sidebar />);
-
-// fetch(
-// 	`https://nominatim.openstreetmap.org/?addressdetails=1&q=London&format=json&limit=1`,
-// 	{
-// 		method: "GET",
-// 	},
-// )
-// 	.then(res => res.json())
-// 	.then(data => console.log(data))
-// 	.catch(error => console.error(error));
