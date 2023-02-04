@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 
+// find og country code so that time right always
+// change timezone every time new location searched
+
 let currentLon;
 let currentLat;
+
+console.log(window.innerWidth, "window width");
 
 let lon;
 let lat;
@@ -22,6 +27,17 @@ function setGeo() {
 	});
 }
 
+const getData = async (lon, lat, timezone) => {
+	if (!timezone) {
+		timezone = "GMT";
+	}
+	const res = await fetch(
+		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=${timezone}`,
+	);
+	const data = await res.json();
+	return data;
+};
+
 function Sidebar() {
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
@@ -32,6 +48,10 @@ function Sidebar() {
 	const [location, setLocation] = useState();
 
 	const [isCurrent, setIsCurrent] = useState(true);
+	const [onSearch, setOnSearch] = useState(false);
+
+	const [newLat, setLat] = useState();
+	const [newLon, setLon] = useState();
 
 	useEffect(() => {
 		async function setCurrent() {
@@ -41,6 +61,8 @@ function Sidebar() {
 				lat = both[1];
 				console.log("current is true");
 			} else {
+				lon = newLon;
+				lat = newLat;
 				console.log("current is false");
 			}
 			console.log("lon:", lon, "lat:", lat);
@@ -48,6 +70,10 @@ function Sidebar() {
 			let data = await getData(lon, lat);
 			console.log(data);
 
+			return setUp(data);
+		}
+
+		async function setUp(data) {
 			let imgcode = weathercode(data);
 			setCode(imgcode);
 			setCodeSet(true);
@@ -69,26 +95,86 @@ function Sidebar() {
 		}
 
 		setCurrent();
+	}, [code, temp, label, date, location, isCurrent, newLat, newLon]);
 
-		const getData = async (lon, lat) => {
-			const res = await fetch(
-				`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=GMT`,
-			);
-			const data = await res.json();
-			return data;
-		};
-	}, [code, temp, label, date, location, isCurrent]);
+	const [search, setSearch] = useState("");
 
-	const setToCurrent = () => {
-		setIsCurrent(true);
+	const handleSubmit = async event => {
+		event.preventDefault();
+		const res = await fetch(
+			`https://nominatim.openstreetmap.org/?addressdetails=1&q=${search}&format=json&limit=1`,
+		);
+		const data = await res.json();
+		setOnSearch(false);
+		setIsCurrent(false);
+		setSearch("");
+
+		setLat(parseFloat(data[0].lat));
+		setLon(parseFloat(data[0].lon));
 	};
 
 	const InsideSection = () => {
+		if (onSearch) {
+			return (
+				<>
+					<div className="search-container">
+						<i
+							className="fa-solid fa-xmark fa-xl"
+							onClick={() => setOnSearch(false)}
+						></i>
+						<form action="" onSubmit={handleSubmit}>
+							<div className="bar">
+								<i className="fa-solid fa-magnifying-glass"></i>
+								<input
+									type="text"
+									className="search"
+									placeholder="search location"
+									onChange={event =>
+										setSearch(event.target.value)
+									}
+									value={search}
+									autoFocus
+								/>
+							</div>
+							<input
+								type="submit"
+								value="Search"
+								className="submit"
+							/>
+						</form>
+						<ul className="results">
+							<li className="result">
+								London{" "}
+								<i className="fa-solid fa-chevron-right"></i>
+							</li>
+							<li className="result">
+								Barcelona{" "}
+								<i className="fa-solid fa-chevron-right"></i>
+							</li>
+							<li className="result">
+								Paris{" "}
+								<i className="fa-solid fa-chevron-right"></i>
+							</li>
+						</ul>
+					</div>
+				</>
+			);
+		}
+
+		// else
 		return (
 			<>
 				<div className="top">
-					<button className="places">Search for places</button>
-					<button className="current" onClick={setToCurrent}>
+					<button
+						className="places"
+						onClick={() => setOnSearch(true)}
+					>
+						Search for places
+					</button>
+					<button
+						className="current"
+						onClick={() => setIsCurrent(true)}
+					>
 						<i className="fa-solid fa-location-crosshairs fa-xl"></i>
 					</button>
 				</div>
@@ -129,6 +215,12 @@ function Sidebar() {
 			<InsideSection />
 		</section>
 	);
+}
+
+function getTimezone(code) {
+	const ct = require("countries-and-timezones");
+	const country = ct.getCountry(code.toUpperCase());
+	return country.timezones[0];
 }
 
 function weathercode(data) {
