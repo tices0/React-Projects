@@ -58,10 +58,12 @@ function Sidebar() {
 	const [location, setLocation] = useState();
 
 	const [isCurrent, setIsCurrent] = useState(true);
-	const [onSearch, setOnSearch] = useState(false);
+	const [onSearch, setOnSearch] = useState(true);
 
 	const [newLat, setLat] = useState();
 	const [newLon, setLon] = useState();
+
+	const [recent, setRecent] = useState([]);
 
 	useEffect(() => {
 		async function setCurrent() {
@@ -76,20 +78,27 @@ function Sidebar() {
 			// console.log("lon:", lon, "lat:", lat);
 
 			let data = await getData(lon, lat);
-
 			return setUp(data);
 		}
 
 		async function setUp(data) {
 			let imgcode = weathercode(data);
-			setCode(imgcode);
+			if (imgcode) {
+				setCode(imgcode);
+			} else {
+				setCode("Clear");
+			}
 			setCodeSet(true);
 
-			let label = imgcode.replace(/([A-Z])/g, " $1").trim();
-			if (imgcode.includes("Cloud")) {
-				label = "Cloudy";
+			if (imgcode) {
+				let label = imgcode.replace(/([A-Z])/g, " $1").trim();
+				if (imgcode.includes("Cloud")) {
+					label = "Cloudy";
+				}
+				setLabel(label);
+			} else {
+				setLabel("No Image");
 			}
-			setLabel(label);
 
 			let current_temp = data.current_weather.temperature;
 			setTemp(Math.round(current_temp));
@@ -106,9 +115,77 @@ function Sidebar() {
 		setCurrent();
 	}, [code, temp, label, date, location, isCurrent, newLat, newLon]);
 
+	const [reverse, setReverse] = useState(true);
+	const [list, setList] = useState();
+
+	const RecentSearches = () => {
+		useEffect(() => {
+			if (reverse) {
+				console.log(recent, "before reverse");
+				setList([...recent].reverse());
+				setReverse(false);
+				console.log(recent, "after reverse");
+				console.log(recent[0], "first item");
+			}
+
+			if (list) {
+				const alreadySeen = {};
+				let duplicate;
+				list.forEach(str => {
+					alreadySeen[str]
+						? (duplicate = str)
+						: (alreadySeen[str] = true);
+				});
+
+				const index = list.indexOf(duplicate);
+				let item = list[index];
+				if (index > -1) {
+					let i = 0;
+					while (i < list.length) {
+						if (list[i] === duplicate) {
+							list.splice(i, 1);
+						} else {
+							++i;
+						}
+					}
+					setRecent([...recent, item]);
+					setList([item].concat(list));
+				}
+			}
+		}, []);
+
+		let searches;
+		console.log("============");
+		console.log(recent);
+		console.log(recent[0], "first item");
+		console.log("---------");
+		console.log(list);
+		console.log("============");
+
+		if (list) {
+			searches = list.map((value, index) => (
+				<button
+					type="submit"
+					form="form"
+					key={index}
+					onClick={() => setSearch(value)}
+					onMouseEnter={() => setSearch(value)}
+					onMouseLeave={() => setSearch("")}
+				>
+					{value}
+					<i className="fa-solid fa-chevron-right"></i>
+				</button>
+			));
+		} else {
+			searches = "";
+		}
+		return searches;
+	};
+
 	const [search, setSearch] = useState("");
 
 	const handleSubmit = async event => {
+		console.log("form submitted");
 		event.preventDefault();
 		try {
 			const res = await fetch(
@@ -117,10 +194,12 @@ function Sidebar() {
 			const data = await res.json();
 			setOnSearch(false);
 			setIsCurrent(false);
-			setSearch("");
 
 			setLat(parseFloat(data[0].lat));
 			setLon(parseFloat(data[0].lon));
+
+			setRecent([...recent, search]);
+			setReverse(true);
 		} catch (error) {
 			console.error(error);
 		}
@@ -135,10 +214,11 @@ function Sidebar() {
 							className="fa-solid fa-xmark fa-xl"
 							onClick={() => setOnSearch(false)}
 						></i>
-						<form action="" onSubmit={handleSubmit}>
+						<form id="form" onSubmit={handleSubmit}>
 							<div className="bar">
 								<i className="fa-solid fa-magnifying-glass"></i>
 								<input
+									required
 									type="text"
 									className="search"
 									placeholder="search location"
@@ -155,19 +235,8 @@ function Sidebar() {
 								className="submit"
 							/>
 						</form>
-						<ul className="results">
-							<li className="result">
-								London{" "}
-								<i className="fa-solid fa-chevron-right"></i>
-							</li>
-							<li className="result">
-								Barcelona{" "}
-								<i className="fa-solid fa-chevron-right"></i>
-							</li>
-							<li className="result">
-								Paris{" "}
-								<i className="fa-solid fa-chevron-right"></i>
-							</li>
+						<ul>
+							<RecentSearches />
 						</ul>
 					</div>
 				</>
@@ -180,7 +249,10 @@ function Sidebar() {
 				<div className="top">
 					<button
 						className="places"
-						onClick={() => setOnSearch(true)}
+						onClick={() => {
+							setOnSearch(true);
+							setSearch("");
+						}}
 					>
 						Search for places
 					</button>

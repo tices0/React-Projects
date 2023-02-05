@@ -192,7 +192,7 @@ body {
 		@include flexCenter(row);
 		justify-content: space-between;
 		gap: 0.75rem;
-		margin-bottom: 3rem;
+		margin-bottom: 2.5rem;
 		width: calc(100% - 6rem);
 		height: 2.5rem;
 		font-size: 14px;
@@ -222,7 +222,7 @@ body {
 			}
 
 			i {
-				padding-left: 0.5rem;
+				padding-left: 0.75rem;
 				font-size: 16px;
 			}
 		}
@@ -241,7 +241,39 @@ body {
 		}
 	}
 
-	
+	ul {
+		@include flexCenter(column);
+		list-style-type: none;
+		width: calc(100% - 6rem);
+		gap: 1rem;
+		overflow: scroll;
+
+		button {
+			all: unset;
+			box-sizing: border-box;
+			@include flexCenter(row);
+			justify-content: space-between;
+			width: 100%;
+			font-size: 14px;
+			padding: 0.75rem;
+			height: 3.5rem;
+			cursor: pointer;
+
+			i {
+				color: $search-border;
+				font-size: 12px;
+				visibility: hidden;
+			}
+
+			&:hover {
+				border: 1px solid $search-border;
+
+				i {
+					visibility: visible;
+				}
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: 846px) {
