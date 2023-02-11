@@ -243,10 +243,11 @@ body {
 
 	ul {
 		@include flexCenter(column);
+		justify-content: flex-start;
 		list-style-type: none;
 		width: calc(100% - 6rem);
 		gap: 1rem;
-		overflow: scroll;
+		overflow-y: auto;
 
 		button {
 			all: unset;
@@ -256,7 +257,7 @@ body {
 			width: 100%;
 			font-size: 14px;
 			padding: 0.75rem;
-			height: 3.5rem;
+			min-height: 3.5rem;
 			cursor: pointer;
 
 			i {

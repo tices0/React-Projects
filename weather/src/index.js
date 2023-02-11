@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 
@@ -63,7 +63,14 @@ function Sidebar() {
 	const [newLat, setLat] = useState();
 	const [newLon, setLon] = useState();
 
-	const [recent, setRecent] = useState([]);
+	const [recent, setRecent] = useState([
+		"Dartford",
+		"Paris",
+		"London",
+		"paris",
+		"new york",
+		"dartford",
+	]);
 
 	useEffect(() => {
 		async function setCurrent() {
@@ -121,11 +128,8 @@ function Sidebar() {
 	const RecentSearches = () => {
 		useEffect(() => {
 			if (reverse) {
-				console.log(recent, "before reverse");
 				setList([...recent].reverse());
 				setReverse(false);
-				console.log(recent, "after reverse");
-				console.log(recent[0], "first item");
 			}
 
 			if (list) {
@@ -155,12 +159,7 @@ function Sidebar() {
 		}, []);
 
 		let searches;
-		console.log("============");
-		console.log(recent);
-		console.log(recent[0], "first item");
-		console.log("---------");
 		console.log(list);
-		console.log("============");
 
 		if (list) {
 			searches = list.map((value, index) => (
@@ -206,6 +205,14 @@ function Sidebar() {
 	};
 
 	const InsideSection = () => {
+		const ulRef = createRef();
+		useLayoutEffect(() => {
+			ulRef.current.style.height =
+				"calc(" +
+				(window.innerHeight - ulRef.current.offsetTop) +
+				"px - 2rem - 0.5rem)";
+		}, [ulRef]);
+
 		if (onSearch) {
 			return (
 				<>
@@ -235,7 +242,7 @@ function Sidebar() {
 								className="submit"
 							/>
 						</form>
-						<ul>
+						<ul ref={ulRef}>
 							<RecentSearches />
 						</ul>
 					</div>
