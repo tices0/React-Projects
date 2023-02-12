@@ -19,6 +19,12 @@ body {
   overflow-y: auto;
 }
 
+button {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
 #sidebar {
   background-color: #1e213a;
 }
@@ -39,7 +45,6 @@ body {
   background-color: #6e707a;
   color: #e7e7eb;
   border: 0;
-  cursor: pointer;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
 .sidebar .top button:hover {
@@ -49,10 +54,8 @@ body {
   padding: 0.5rem 1rem;
   font-size: 16px;
   line-height: 19px;
-  cursor: pointer;
 }
 .sidebar .top button.current {
-  cursor: pointer;
   border-radius: 50%;
   height: 40px;
   width: 40px;
@@ -216,8 +219,6 @@ body {
   overflow-y: auto;
 }
 .search-container ul button {
-  all: unset;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,7 +228,6 @@ body {
   font-size: 14px;
   padding: 0.75rem;
   min-height: 3.5rem;
-  cursor: pointer;
 }
 .search-container ul button i {
   color: #616475;
@@ -250,4 +250,28 @@ body {
   body {
     grid-template-columns: 1fr;
   }
+}
+.main {
+  height: 100vh;
+  width: 100%;
+  background-color: #100e1d;
+}
+.main .btns {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+}
+.main .btns button {
+  border-radius: 50%;
+  background-color: grey;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-weight: bold;
+}
+.main .btns button:hover {
+  background-color: #a09fb1;
+}
+.main .btns button.c {
+  margin-right: 1rem;
 }/*# sourceMappingURL=style.css.map */

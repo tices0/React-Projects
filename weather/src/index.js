@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
+import Sidebar from "./Sidebar";
+
+export { getData, weathercode, setGeo };
 
 let currentLon;
 let currentLat;
 
 // console.log(window.innerWidth, "window width");
-
-let lon;
-let lat;
 
 function setGeo() {
 	return new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ function setGeo() {
 				return resolve([currentLon, currentLat]);
 			});
 		} else {
-			return reject(null);
+			return reject([100, 100]);
 		}
 	});
 }
@@ -32,11 +32,18 @@ async function getCountryCode(lon, lat) {
 	return data.features[0].properties.address.country_code;
 }
 
-const getData = async (lon, lat) => {
+const getData = async (lon, lat, unit) => {
 	const timezone = await getTimezone(lon, lat);
-	const res = await fetch(
-		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=${timezone}`,
-	);
+	let res;
+	if (!unit) {
+		res = await fetch(
+			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relativehumidity_2m,surface_pressure,visibility,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&windspeed_unit=mph&timezone=${timezone}`,
+		);
+	} else {
+		res = await fetch(
+			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relativehumidity_2m,surface_pressure,visibility,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&windspeed_unit=mph&timezone=${timezone}&temperature_unit=fahrenheit`,
+		);
+	}
 	const data = await res.json();
 	return data;
 };
@@ -46,267 +53,6 @@ async function getTimezone(lon, lat) {
 	const ct = require("countries-and-timezones");
 	const country = ct.getCountry(code.toUpperCase());
 	return country.timezones[0];
-}
-
-function Sidebar() {
-	const [code, setCode] = useState("");
-	const [codeSet, setCodeSet] = useState(false);
-
-	const [temp, setTemp] = useState();
-	const [label, setLabel] = useState();
-	const [date, setDate] = useState();
-	const [location, setLocation] = useState();
-
-	const [isCurrent, setIsCurrent] = useState(true);
-	const [onSearch, setOnSearch] = useState(true);
-
-	const [newLat, setLat] = useState();
-	const [newLon, setLon] = useState();
-
-	const [recent, setRecent] = useState([
-		"Dartford",
-		"Paris",
-		"London",
-		"paris",
-		"new york",
-		"dartford",
-	]);
-
-	useEffect(() => {
-		async function setCurrent() {
-			if (isCurrent) {
-				const both = await setGeo();
-				lon = both[0];
-				lat = both[1];
-			} else {
-				lon = newLon;
-				lat = newLat;
-			}
-			// console.log("lon:", lon, "lat:", lat);
-
-			let data = await getData(lon, lat);
-			return setUp(data);
-		}
-
-		async function setUp(data) {
-			let imgcode = weathercode(data);
-			if (imgcode) {
-				setCode(imgcode);
-			} else {
-				setCode("Clear");
-			}
-			setCodeSet(true);
-
-			if (imgcode) {
-				let label = imgcode.replace(/([A-Z])/g, " $1").trim();
-				if (imgcode.includes("Cloud")) {
-					label = "Cloudy";
-				}
-				setLabel(label);
-			} else {
-				setLabel("No Image");
-			}
-
-			let current_temp = data.current_weather.temperature;
-			setTemp(Math.round(current_temp));
-
-			let date = new Date(
-				data.current_weather.time.split("T")[0],
-			).toString("ddd, d MMM");
-			setDate(date);
-
-			let location = await locationToCity(lon, lat);
-			setLocation(location);
-		}
-
-		setCurrent();
-	}, [code, temp, label, date, location, isCurrent, newLat, newLon]);
-
-	const [reverse, setReverse] = useState(true);
-	const [list, setList] = useState();
-
-	const RecentSearches = () => {
-		useEffect(() => {
-			if (reverse) {
-				setList([...recent].reverse());
-				setReverse(false);
-			}
-
-			if (list) {
-				const alreadySeen = {};
-				let duplicate;
-				list.forEach(str => {
-					alreadySeen[str]
-						? (duplicate = str)
-						: (alreadySeen[str] = true);
-				});
-
-				const index = list.indexOf(duplicate);
-				let item = list[index];
-				if (index > -1) {
-					let i = 0;
-					while (i < list.length) {
-						if (list[i] === duplicate) {
-							list.splice(i, 1);
-						} else {
-							++i;
-						}
-					}
-					setRecent([...recent, item]);
-					setList([item].concat(list));
-				}
-			}
-		}, []);
-
-		let searches;
-		console.log(list);
-
-		if (list) {
-			searches = list.map((value, index) => (
-				<button
-					type="submit"
-					form="form"
-					key={index}
-					onClick={() => setSearch(value)}
-					onMouseEnter={() => setSearch(value)}
-					onMouseLeave={() => setSearch("")}
-				>
-					{value}
-					<i className="fa-solid fa-chevron-right"></i>
-				</button>
-			));
-		} else {
-			searches = "";
-		}
-		return searches;
-	};
-
-	const [search, setSearch] = useState("");
-
-	const handleSubmit = async event => {
-		console.log("form submitted");
-		event.preventDefault();
-		try {
-			const res = await fetch(
-				`https://nominatim.openstreetmap.org/?addressdetails=1&q=${search}&format=json&limit=1`,
-			);
-			const data = await res.json();
-			setOnSearch(false);
-			setIsCurrent(false);
-
-			setLat(parseFloat(data[0].lat));
-			setLon(parseFloat(data[0].lon));
-
-			setRecent([...recent, search]);
-			setReverse(true);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const InsideSection = () => {
-		const ulRef = createRef();
-		useLayoutEffect(() => {
-			ulRef.current.style.height =
-				"calc(" +
-				(window.innerHeight - ulRef.current.offsetTop) +
-				"px - 2rem - 0.5rem)";
-		}, [ulRef]);
-
-		if (onSearch) {
-			return (
-				<>
-					<div className="search-container">
-						<i
-							className="fa-solid fa-xmark fa-xl"
-							onClick={() => setOnSearch(false)}
-						></i>
-						<form id="form" onSubmit={handleSubmit}>
-							<div className="bar">
-								<i className="fa-solid fa-magnifying-glass"></i>
-								<input
-									required
-									type="text"
-									className="search"
-									placeholder="search location"
-									onChange={event =>
-										setSearch(event.target.value)
-									}
-									value={search}
-									autoFocus
-								/>
-							</div>
-							<input
-								type="submit"
-								value="Search"
-								className="submit"
-							/>
-						</form>
-						<ul ref={ulRef}>
-							<RecentSearches />
-						</ul>
-					</div>
-				</>
-			);
-		}
-
-		// else
-		return (
-			<>
-				<div className="top">
-					<button
-						className="places"
-						onClick={() => {
-							setOnSearch(true);
-							setSearch("");
-						}}
-					>
-						Search for places
-					</button>
-					<button
-						className="current"
-						onClick={() => setIsCurrent(true)}
-					>
-						<i className="fa-solid fa-location-crosshairs fa-xl"></i>
-					</button>
-				</div>
-				<div className="background">
-					<img
-						src={require("./media/Cloud-background.png")}
-						alt="Cloud Background"
-					/>
-				</div>
-				<div className="image">
-					{codeSet ? (
-						<img src={require(`./media/${code}.png`)} alt="" />
-					) : (
-						""
-					)}
-				</div>
-				<div className="temp">
-					{codeSet ? <span>{temp}</span> : ""}
-					<i>&#176;C</i>
-				</div>
-				<div className="label">
-					{codeSet ? <span>{label}</span> : ""}
-				</div>
-				<div className="date">
-					<span>Today</span> <i className="fa-solid fa-circle"></i>
-					{codeSet ? <span>{date}</span> : ""}
-				</div>
-				<div className="location">
-					<i className="fa-solid fa-location-dot"></i>
-					{codeSet ? <span>{location}</span> : ""}
-				</div>
-			</>
-		);
-	};
-
-	return (
-		<section className="sidebar">
-			<InsideSection />
-		</section>
-	);
 }
 
 function weathercode(data) {
@@ -345,26 +91,66 @@ function weathercode(data) {
 	return img;
 }
 
-async function locationToCity(lon, lat) {
-	const res = await fetch(
-		`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${lat}&lon=${lon}`,
+function RenderSidebar() {
+	return (
+		<section className="sidebar">
+			<Sidebar />
+		</section>
 	);
-	const data = await res.json();
-
-	let rtn;
-	if (data.features[0].properties.geocoding.city) {
-		rtn = data.features[0].properties.geocoding.city;
-	} else if (data.features[0].properties.geocoding.county) {
-		rtn = data.features[0].properties.geocoding.county;
-	} else if (data.features[0].properties.geocoding.state) {
-		rtn = data.features[0].properties.geocoding.state;
-	} else if (data.features[0].properties.geocoding.country) {
-		rtn = data.features[0].properties.geocoding.country;
-	} else {
-		rtn = data.features[0].properties.geocoding.place;
-	}
-	return rtn;
 }
 
 const sidebar = createRoot(document.querySelector("#sidebar"));
-sidebar.render(<Sidebar />);
+sidebar.render(<RenderSidebar />);
+
+function Main() {
+	const [celcius, setCelcius] = useState(true);
+	const c_button = createRef();
+	const f_button = createRef();
+
+	useEffect(() => {
+		if (celcius) {
+			c_button.current.style.backgroundColor = "#E7E7EB";
+			c_button.current.style.color = "#110E3C";
+			f_button.current.style.backgroundColor = "#585676";
+			f_button.current.style.color = "#E7E7EB";
+		} else {
+			f_button.current.style.backgroundColor = "#E7E7EB";
+			f_button.current.style.color = "#110E3C";
+			c_button.current.style.backgroundColor = "#585676";
+			c_button.current.style.color = "#E7E7EB";
+		}
+	}, [celcius, c_button, f_button]);
+
+	return (
+		<>
+			<div className="btns">
+				<button
+					className="c"
+					ref={c_button}
+					onClick={() => setCelcius(true)}
+				>
+					&#176;C
+				</button>
+				<button
+					className="f"
+					ref={f_button}
+					onClick={() => setCelcius(false)}
+				>
+					&#176;F
+				</button>
+			</div>
+			<main></main>
+		</>
+	);
+}
+
+function RenderMain() {
+	return (
+		<section className="main">
+			<Main />
+		</section>
+	);
+}
+
+const main = createRoot(document.querySelector("#main"));
+main.render(<RenderMain />);
