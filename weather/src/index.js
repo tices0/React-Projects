@@ -8,7 +8,7 @@ export { getData, weathercode, setGeo };
 let currentLon;
 let currentLat;
 
-console.log(window.innerWidth, "window width");
+// console.log(window.innerWidth, "window width");
 
 function setGeo() {
 	return new Promise((resolve, reject) => {
@@ -117,7 +117,7 @@ function Main() {
 	useEffect(() => {
 		async function setCurrent() {
 			let both = await getLocation();
-			console.log(both, "both values");
+			// console.log(both, "both values");
 			let lon = both[0];
 			let lat = both[1];
 			const data = await getData(lon, lat);
@@ -141,7 +141,6 @@ function Main() {
 
 			for (let i = 0; i < 6; i++) {
 				let imgcode = weathercode(data, true, i);
-				console.log(imgcode, i);
 				if (imgcode) {
 					setImgs(old => [...old, imgcode]);
 				} else {
@@ -149,7 +148,6 @@ function Main() {
 				}
 			}
 
-			console.log(imgs);
 			setLoaded(true);
 		}
 
