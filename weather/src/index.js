@@ -114,6 +114,11 @@ function Main() {
 	const [minTemps, setMinTemps] = useState([]);
 	const [maxTemps, setMaxTemps] = useState([]);
 
+	const [wind, setWind] = useState()
+	const [humidity, setHumidity] = useState()
+	const [visibility, setVisibil] = useState()
+	const [wind, setWind] = useState()
+
 	useEffect(() => {
 		async function setCurrent() {
 			let both = await getLocation();
@@ -193,35 +198,28 @@ function Main() {
 					<p>Wind Status</p>
 					<div className="value">
 						<strong>7 </strong>
-						<span> mph</span>
+						<span>mph</span>
 					</div>
-					{/* <span className="direction">WSW</span> */}
 				</li>
 				<li className="humidity">
 					<p>Humidity</p>
 					<div className="value">
 						<strong>84 </strong>
-						<span> %</span>
+						<span>%</span>
 					</div>
-					{/* <div className="bar">
-						<div
-							className="inside-bar"
-							style={{ width: "84%" }}
-						></div>
-					</div> */}
 				</li>
 				<li className="visibility">
 					<p>Visibility</p>
 					<div className="value">
 						<strong>998 </strong>
-						<span> miles</span>
+						<span>miles</span>
 					</div>
 				</li>
 				<li className="air-pressure">
 					<p>Air Pressure</p>
 					<div className="value">
-						<strong>6.4 </strong>
-						<span> mb</span>
+						<strong>6,4 </strong>
+						<span>mb</span>
 					</div>
 				</li>
 			</>
@@ -284,4 +282,4 @@ function RenderMain() {
 }
 
 const main = createRoot(document.querySelector("#main"));
-main.render(<RenderMain />);
+main.render(<RenderMain />);

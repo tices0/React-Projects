@@ -255,6 +255,11 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+#main {
+  height: 100%;
+  background-color: #100e1d;
+}
+
 .main {
   height: 100vh;
   width: 100%;
@@ -359,6 +364,7 @@ main .daily li .temp .min i {
   }
   .main {
     padding: 4rem;
+    height: 100%;
   }
   main .daily {
     grid-template-columns: repeat(2, 110px);
@@ -384,7 +390,7 @@ main .highlights li {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding: 1rem;
 }
 main .highlights li .value {
@@ -399,23 +405,6 @@ main .highlights li .value strong {
 main .highlights li .value span {
   font-size: 25px;
 }
-main .highlights li.wind-status .direction {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 1rem;
-}
-main .highlights li.wind-status .direction .icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
 main .highlights li.humidity .bar {
   width: calc(100% - 2rem);
   background-color: #e7e7eb;
@@ -425,4 +414,16 @@ main .highlights li.humidity .bar .inside-bar {
   background-color: #ffec65;
   height: 8px;
   border-radius: 50px;
+}
+
+@media only screen and (max-width: 573px) {
+  main h1 {
+    margin: 3rem 0 1.5rem 0;
+  }
+  main .highlights {
+    grid-template-columns: 1fr;
+  }
+  main .highlights li {
+    padding: 2rem;
+  }
 }/*# sourceMappingURL=style.css.map */
