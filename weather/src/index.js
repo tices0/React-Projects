@@ -1,12 +1,19 @@
 import React, { useState, useEffect, createRef } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
-import Sidebar, { getLocation } from "./Sidebar";
+import Sidebar, { getLocation, currentLon as lon } from "./Sidebar";
 
 export { getData, weathercode, setGeo };
 
 let currentLon;
 let currentLat;
+
+// find way to monitor changes in lon and lat
+
+// const root = document.querySelector(".sidebar");
+// root.addEventListener("DOMSubtreeModified", () => {
+// 	console.log("root changed");
+// });
 
 // console.log(window.innerWidth, "window width");
 
@@ -37,7 +44,7 @@ const getData = async (lon, lat, unit) => {
 	// let res;
 	// if (!unit) {
 	const res = await fetch(
-		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relativehumidity_2m,surface_pressure,visibility,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&windspeed_unit=mph&timezone=${timezone}`,
+		`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relativehumidity_2m,surface_pressure,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&windspeed_unit=mph&timezone=${timezone}`,
 	);
 	// } else {
 	// const res = await fetch(
@@ -114,10 +121,10 @@ function Main() {
 	const [minTemps, setMinTemps] = useState([]);
 	const [maxTemps, setMaxTemps] = useState([]);
 
-	const [wind, setWind] = useState()
-	const [humidity, setHumidity] = useState()
-	const [visibility, setVisibil] = useState()
-	const [wind, setWind] = useState()
+	const [wind, setWind] = useState();
+	const [humidity, setHumidity] = useState();
+	const [visibility, setVisibility] = useState();
+	const [pressure, setPressure] = useState();
 
 	useEffect(() => {
 		async function setCurrent() {
@@ -126,6 +133,7 @@ function Main() {
 			let lon = both[0];
 			let lat = both[1];
 			const data = await getData(lon, lat);
+			console.log(data);
 			return setUp(data);
 		}
 
@@ -153,11 +161,21 @@ function Main() {
 				}
 			}
 
+			let vInMeters = data.hourly.visibility[12];
+			let vInMiles = vInMeters * 0.000621371;
+			vInMiles = vInMiles.toFixed(1).toString();
+
+			// 0.000621371
+			setWind(Math.round(data.hourly.windspeed_10m[12]));
+			setHumidity(Math.round(data.hourly.relativehumidity_2m[12]));
+			setVisibility(vInMiles.replace(".", ","));
+			setPressure(Math.round(data.hourly.surface_pressure[12]));
+
 			setLoaded(true);
 		}
 
 		setCurrent();
-	}, [loaded]);
+	}, []);
 
 	let days = [];
 	for (let i = 0; i < 6; i++) {
@@ -197,28 +215,28 @@ function Main() {
 				<li className="wind-status">
 					<p>Wind Status</p>
 					<div className="value">
-						<strong>7 </strong>
+						<strong>{wind}</strong>
 						<span>mph</span>
 					</div>
 				</li>
 				<li className="humidity">
 					<p>Humidity</p>
 					<div className="value">
-						<strong>84 </strong>
+						<strong>{humidity}</strong>
 						<span>%</span>
 					</div>
 				</li>
 				<li className="visibility">
 					<p>Visibility</p>
 					<div className="value">
-						<strong>998 </strong>
+						<strong> {visibility} </strong>
 						<span>miles</span>
 					</div>
 				</li>
 				<li className="air-pressure">
 					<p>Air Pressure</p>
 					<div className="value">
-						<strong>6,4 </strong>
+						<strong> {pressure} </strong>
 						<span>mb</span>
 					</div>
 				</li>
@@ -282,4 +300,4 @@ function RenderMain() {
 }
 
 const main = createRoot(document.querySelector("#main"));
-main.render(<RenderMain />);
+main.render(<RenderMain />);
