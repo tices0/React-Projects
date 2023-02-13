@@ -2,10 +2,27 @@ import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
 import "./styles/style.css";
 import { getData, weathercode, setGeo } from "./index.js";
 
-function Sidebar() {
-	let lon;
-	let lat;
+let lon;
+let lat;
 
+export let currentLon;
+export let currentLat;
+
+function updateLocation(lon, lat) {
+	currentLon = lon;
+	currentLat = lat;
+	return [currentLon, currentLat];
+}
+
+export async function getLocation() {
+	while (typeof currentLon === "undefined") {
+		console.log("waiting...");
+		await new Promise(resolve => setTimeout(resolve, 250));
+	}
+	return [currentLon, currentLat];
+}
+
+function Sidebar() {
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
 
@@ -32,8 +49,8 @@ function Sidebar() {
 				lon = newLon;
 				lat = newLat;
 			}
-
-			let data = await getData(lon, lat);
+			updateLocation(lon, lat);
+			const data = await getData(lon, lat);
 			return setUp(data);
 		}
 
