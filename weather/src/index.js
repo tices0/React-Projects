@@ -163,24 +163,20 @@ function Main() {
 		const boxes = days.map((value, index) => (
 			<li key={index} className="day">
 				<div className="date">
-					{loaded ? (
-						value === 1 ? (
-							<span>Tomorrow</span>
-						) : (
-							<span>{dates[value]}</span>
-						)
+					{value === 1 ? (
+						<span>Tomorrow</span>
 					) : (
-						""
+						<span>{dates[value]}</span>
 					)}
 				</div>
 				<img src={require(`./media/${imgs[value]}.png`)} alt="" />
 				<div className="temp">
 					<span className="max">
-						{loaded ? maxTemps[value] : ""}
+						{maxTemps[value]}
 						{celcius ? <i>&#176;C</i> : <i>&#176;F</i>}
 					</span>
 					<span className="min">
-						{loaded ? minTemps[value] : ""}
+						{minTemps[value]}
 						{celcius ? <i>&#176;C</i> : <i>&#176;F</i>}
 					</span>
 				</div>
@@ -188,6 +184,48 @@ function Main() {
 		));
 		boxes.shift();
 		return boxes;
+	};
+
+	const Highlights = () => {
+		return (
+			<>
+				<li className="wind-status">
+					<p>Wind Status</p>
+					<div className="value">
+						<strong>7 </strong>
+						<span> mph</span>
+					</div>
+					{/* <span className="direction">WSW</span> */}
+				</li>
+				<li className="humidity">
+					<p>Humidity</p>
+					<div className="value">
+						<strong>84 </strong>
+						<span> %</span>
+					</div>
+					{/* <div className="bar">
+						<div
+							className="inside-bar"
+							style={{ width: "84%" }}
+						></div>
+					</div> */}
+				</li>
+				<li className="visibility">
+					<p>Visibility</p>
+					<div className="value">
+						<strong>998 </strong>
+						<span> miles</span>
+					</div>
+				</li>
+				<li className="air-pressure">
+					<p>Air Pressure</p>
+					<div className="value">
+						<strong>6.4 </strong>
+						<span> mb</span>
+					</div>
+				</li>
+			</>
+		);
 	};
 
 	const [celcius, setCelcius] = useState(true);
@@ -230,6 +268,8 @@ function Main() {
 			</div>
 			<main>
 				<ul className="daily">{loaded ? <Days /> : ""}</ul>
+				<h1>Today's Highlights</h1>
+				<ul className="highlights">{loaded ? <Highlights /> : ""}</ul>
 			</main>
 		</>
 	);

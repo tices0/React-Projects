@@ -260,12 +260,12 @@ ul {
   width: 100%;
   background-color: #100e1d;
   position: relative;
-  padding: 6rem;
+  padding: 5rem;
 }
 .main .btns {
   position: absolute;
-  top: 2rem;
-  right: 6rem;
+  top: 1.5rem;
+  right: 5rem;
 }
 .main .btns button {
   border-radius: 50%;
@@ -279,17 +279,16 @@ ul {
 }
 
 main {
-  border: 1px solid red;
   width: 100%;
   height: 100%;
 }
-main ul {
+main .daily {
   display: grid;
   grid-template-columns: repeat(5, 110px);
   justify-content: space-between;
   align-items: center;
 }
-main ul li {
+main .daily li {
   background-color: #1e213a;
   width: 100%;
   display: flex;
@@ -301,43 +300,44 @@ main ul li {
   padding: 1rem;
   font-size: 13.5px;
 }
-main ul li img {
+main .daily li img {
   -o-object-fit: scale-down;
      object-fit: scale-down;
   width: calc(100px - 2rem);
   height: 50px;
 }
-main ul li .temp {
+main .daily li .temp {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   gap: 1rem;
   justify-content: space-between;
+  font-size: 14px;
 }
-main ul li .temp i {
+main .daily li .temp i {
   font-style: normal;
 }
-main ul li .temp .min,
-main ul li .temp .min i {
+main .daily li .temp .min,
+main .daily li .temp .min i {
   color: #a09fb1;
 }
 
 @media only screen and (max-width: 1135px) {
-  main ul {
+  main .daily {
     grid-template-columns: repeat(5, 100px);
   }
 }
 @media only screen and (max-width: 1065px) {
-  main ul {
+  main .daily {
     grid-template-columns: repeat(5, 90px);
   }
 }
 @media only screen and (max-width: 1005px) {
-  main ul {
+  main .daily {
     grid-template-columns: repeat(5, 80px);
   }
-  main ul li {
+  main .daily li {
     height: 140px;
   }
 }
@@ -345,11 +345,11 @@ main ul li .temp .min i {
   .main {
     padding: 5rem;
   }
-  main ul {
+  main .daily {
     grid-template-columns: repeat(5, 70px);
     gap: 10px;
   }
-  main ul li {
+  main .daily li {
     height: 130px;
   }
 }
@@ -360,12 +360,69 @@ main ul li .temp .min i {
   .main {
     padding: 4rem;
   }
-  main ul {
+  main .daily {
     grid-template-columns: repeat(2, 110px);
     justify-content: center;
     gap: 2rem;
   }
-  main ul li {
+  main .daily li {
     height: 150px;
   }
+}
+main h1 {
+  margin: 1.5rem 0 1rem 0;
+  font-size: 22px;
+}
+main .highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+main .highlights li {
+  background-color: #1e213a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+main .highlights li .value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+main .highlights li .value strong {
+  font-size: 40px;
+}
+main .highlights li .value span {
+  font-size: 25px;
+}
+main .highlights li.wind-status .direction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+main .highlights li.wind-status .direction .icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+main .highlights li.humidity .bar {
+  width: calc(100% - 2rem);
+  background-color: #e7e7eb;
+  border-radius: 50px;
+}
+main .highlights li.humidity .bar .inside-bar {
+  background-color: #ffec65;
+  height: 8px;
+  border-radius: 50px;
 }/*# sourceMappingURL=style.css.map */
