@@ -8,7 +8,7 @@ export { getData, weathercode, setGeo };
 let currentLon;
 let currentLat;
 
-// console.log(window.innerWidth, "window width");
+console.log(window.innerWidth, "window width");
 
 function setGeo() {
 	return new Promise((resolve, reject) => {
@@ -87,7 +87,7 @@ function weathercode(data, multiple, index) {
 	} else if (code === 77) {
 		img = "Hail";
 	} else if (code > 79 && code < 84) {
-		img = "Showers";
+		img = "Shower";
 	} else if (code === 95 || code === 96 || code === 99) {
 		img = "Thunderstorm";
 	} else {
@@ -178,12 +178,12 @@ function Main() {
 				<img src={require(`./media/${imgs[value]}.png`)} alt="" />
 				<div className="temp">
 					<span className="max">
-						{loaded ? maxTemps[value] : "not loaded"}
-						{celcius ? <i> &#176;C</i> : <i> &#176;F</i>}
-					</span>{" "}
+						{loaded ? maxTemps[value] : ""}
+						{celcius ? <i>&#176;C</i> : <i>&#176;F</i>}
+					</span>
 					<span className="min">
-						{loaded ? minTemps[value] : "not loaded"}
-						{celcius ? <i> &#176;C</i> : <i> &#176;F</i>}
+						{loaded ? minTemps[value] : ""}
+						{celcius ? <i>&#176;C</i> : <i>&#176;F</i>}
 					</span>
 				</div>
 			</li>

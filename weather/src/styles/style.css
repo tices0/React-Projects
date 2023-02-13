@@ -91,7 +91,7 @@ ul {
   align-items: center;
   flex-direction: row;
   position: absolute;
-  top: 280px;
+  top: 290px;
   left: 50%;
   transform: translate(-50%);
   font-size: 100px;
@@ -260,7 +260,7 @@ ul {
   width: 100%;
   background-color: #100e1d;
   position: relative;
-  padding: 5rem;
+  padding: 6rem;
 }
 .main .btns {
   position: absolute;
@@ -285,8 +285,9 @@ main {
 }
 main ul {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(5, 110px);
+  justify-content: space-between;
+  align-items: center;
 }
 main ul li {
   background-color: #1e213a;
@@ -295,10 +296,41 @@ main ul li {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100px;
+  justify-content: space-between;
   height: 150px;
+  padding: 1rem;
+  font-size: 13.5px;
 }
 main ul li img {
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+  width: calc(100px - 2rem);
+  height: 50px;
+}
+main ul li .temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+}
+main ul li .temp i {
+  font-style: normal;
+}
+main ul li .temp .min,
+main ul li .temp .min i {
+  color: #a09fb1;
+}
+
+@media only screen and (max-width: 1135px) {
+  main ul {
+    grid-template-columns: repeat(3, 110px);
+    gap: 2rem;
+  }
+}
+@media only screen and (max-width: 846px) {
+  main ul {
+    grid-template-columns: repeat(3, 110px);
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -119,7 +119,7 @@ ul {
 	.temp {
 		@include flexCenter(row);
 		position: absolute;
-		top: 280px;
+		top: 290px;
 		left: 50%;
 		transform: translate(-50%);
 		font-size: 100px;
@@ -302,7 +302,7 @@ ul {
 	width: 100%;
 	background-color: $dark;
 	position: relative;
-	padding: 5rem;
+	padding: 6rem;
 
 	.btns {
 		position: absolute;
@@ -330,19 +330,58 @@ main {
 
 	ul {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 2rem;
-		// width: 100%;
+		grid-template-columns: repeat(5, 110px);
+		justify-content: space-between;
+		align-items: center;
 
 		li {
 			background-color: $main;
 			width: 100%;
 			@include flexCenter(column);
-			width: 100px;
+			justify-content: space-between;
 			height: 150px;
+			padding: 1rem;
+			font-size: 13.5px;
+
 			img {
-				object-fit: contain;
+				object-fit: scale-down;
+				width: calc(100px - 2rem);
+				height: 50px;
+			}
+
+			.temp {
+				@include flexCenter(row);
+				gap: 1rem;
+				justify-content: space-between;
+				i {
+					font-style: normal;
+				}
+
+				.min,
+				.min i {
+					color: $light-grey;
+				}
 			}
 		}
 	}
+}
+
+@media only screen and (max-width: 1135px) {
+	main {
+		ul {
+			grid-template-columns: repeat(3, 110px);
+			gap: 2rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 846px) {
+	main {
+		ul {
+			grid-template-columns: repeat(3, 110px);
+		}
+	}
+}
+
+@media only screen and (max-width: 573px) {
 }
