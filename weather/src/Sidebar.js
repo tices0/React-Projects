@@ -22,7 +22,9 @@ export async function getLocation() {
 	return [currentLon, currentLat];
 }
 
-function Sidebar() {
+function Sidebar(props) {
+	const { newLon, setLon, newLat, setLat } = props;
+
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
 
@@ -33,9 +35,6 @@ function Sidebar() {
 
 	const [isCurrent, setIsCurrent] = useState(true);
 	const [onSearch, setOnSearch] = useState(false);
-
-	const [newLat, setLat] = useState();
-	const [newLon, setLon] = useState();
 
 	const [recent, setRecent] = useState([]);
 
@@ -269,7 +268,11 @@ function Sidebar() {
 		);
 	};
 
-	return <InsideSection />;
+	return (
+		<section className="sidebar">
+			<InsideSection />
+		</section>
+	);
 }
 
 async function locationToCity(lon, lat) {
