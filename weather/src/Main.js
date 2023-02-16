@@ -4,7 +4,7 @@ import { getData, weathercode } from "./index.js";
 import { getLocation } from "./Sidebar";
 
 function Main(props) {
-	const { newLon, newLat, isCurrent } = props;
+	const { newLon, newLat, isCurrent, celcius, setCelcius } = props;
 
 	const [loaded, setLoaded] = useState(false);
 	const [dates, setDates] = useState([]);
@@ -44,6 +44,7 @@ function Main(props) {
 			maxes = maxes.map(value => Math.round(value));
 			setMaxTemps(maxes);
 
+			setImgs([]);
 			for (let i = 0; i < 6; i++) {
 				let imgcode = weathercode(data, true, i);
 				if (imgcode) {
@@ -136,7 +137,6 @@ function Main(props) {
 		);
 	};
 
-	const [celcius, setCelcius] = useState(true);
 	const c_button = createRef();
 	const f_button = createRef();
 

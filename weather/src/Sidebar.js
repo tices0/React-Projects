@@ -28,8 +28,7 @@ export async function getLocation() {
 }
 
 function Sidebar(props) {
-	const { newLon, setLon, newLat, setLat, isCurrent, setIsCurrent } = props;
-	// is current
+	const { newLon, setLon, newLat, setLat, isCurrent, setIsCurrent, celcius } = props;
 
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);

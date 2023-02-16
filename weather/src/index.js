@@ -99,9 +99,9 @@ function Render() {
 	const [newLat, setLat] = useState();
 	const [newLon, setLon] = useState();
 	const [isCurrent, setIsCurrent] = useState(true);
+	const [celcius, setCelcius] = useState(true);
 
-	// fix - weathercodes not changes / images not changed
-	// do - move celcius use state the render + add into components using context
+	// do 
 
 	return (
 		<>
@@ -113,10 +113,17 @@ function Render() {
 					setLon={setLon}
 					isCurrent={isCurrent}
 					setIsCurrent={setIsCurrent}
+					celcius={celcius}
 				/>
 			</div>
 			<div id="main">
-				<Main newLat={newLat} newLon={newLon} isCurrent={isCurrent} />
+				<Main
+					newLat={newLat}
+					newLon={newLon}
+					isCurrent={isCurrent}
+					celcius={celcius}
+					setCelcius={setCelcius}
+				/>
 			</div>
 		</>
 	);
