@@ -2,15 +2,15 @@ import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
 import "./styles/style.css";
 import { getData, weathercode, setGeo } from "./index.js";
 
-let lon;
-let lat;
+let currentLon;
+let currentLat;
 
-export let currentLon;
-export let currentLat;
+let wait = false;
 
 function updateLocation(lon, lat) {
 	currentLon = lon;
 	currentLat = lat;
+	wait = false;
 	return [currentLon, currentLat];
 }
 
@@ -19,11 +19,17 @@ export async function getLocation() {
 		console.log("waiting...");
 		await new Promise(resolve => setTimeout(resolve, 250));
 	}
+	console.log(wait, "wait");
+	while (wait === true) {
+		console.log("waiting... for wait to be over");
+		await new Promise(resolve => setTimeout(resolve, 250));
+	}
 	return [currentLon, currentLat];
 }
 
 function Sidebar(props) {
-	const { newLon, setLon, newLat, setLat } = props;
+	const { newLon, setLon, newLat, setLat, isCurrent, setIsCurrent } = props;
+	// is current
 
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
@@ -33,12 +39,15 @@ function Sidebar(props) {
 	const [date, setDate] = useState();
 	const [location, setLocation] = useState();
 
-	const [isCurrent, setIsCurrent] = useState(true);
 	const [onSearch, setOnSearch] = useState(false);
 
 	const [recent, setRecent] = useState([]);
 
 	useEffect(() => {
+		wait = true;
+		let lon;
+		let lat;
+
 		async function setCurrent() {
 			if (isCurrent) {
 				const both = await setGeo();
@@ -48,6 +57,8 @@ function Sidebar(props) {
 				lon = newLon;
 				lat = newLat;
 			}
+			// console.log(lon, lat);
+			// console.log(isCurrent, "is current");
 			updateLocation(lon, lat);
 			const data = await getData(lon, lat);
 			return setUp(data);

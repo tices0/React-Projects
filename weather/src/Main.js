@@ -4,7 +4,7 @@ import { getData, weathercode } from "./index.js";
 import { getLocation } from "./Sidebar";
 
 function Main(props) {
-	const { newLon, newLat } = props;
+	const { newLon, newLat, isCurrent } = props;
 
 	const [loaded, setLoaded] = useState(false);
 	const [dates, setDates] = useState([]);
@@ -22,6 +22,7 @@ function Main(props) {
 			let both = await getLocation();
 			let lon = both[0];
 			let lat = both[1];
+			console.log(lon, lat);
 
 			const data = await getData(lon, lat);
 			console.log(data);
@@ -62,12 +63,11 @@ function Main(props) {
 			setPressure(Math.round(data.hourly.surface_pressure[12]));
 
 			setLoaded(true);
+			console.log("loaded");
 		}
 
-		console.log("loaded");
-
 		setCurrent();
-	}, [newLon, newLat]);
+	}, [newLon, newLat, isCurrent]);
 
 	let days = [];
 	for (let i = 0; i < 6; i++) {
