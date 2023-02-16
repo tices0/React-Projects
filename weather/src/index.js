@@ -31,10 +31,10 @@ async function getCountryCode(lon, lat) {
 	return data.features[0].properties.address.country_code;
 }
 
-export const getData = async (lon, lat, changeUnit) => {
+export const getData = async (lon, lat, celcius) => {
 	const timezone = await getTimezone(lon, lat);
 	let res;
-	if (!changeUnit) {
+	if (celcius) {
 		res = await fetch(
 			`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=relativehumidity_2m,surface_pressure,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&windspeed_unit=mph&timezone=${timezone}`,
 		);
@@ -100,8 +100,6 @@ function Render() {
 	const [newLon, setLon] = useState();
 	const [isCurrent, setIsCurrent] = useState(true);
 	const [celcius, setCelcius] = useState(true);
-
-	// do 
 
 	return (
 		<>

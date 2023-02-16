@@ -28,7 +28,8 @@ export async function getLocation() {
 }
 
 function Sidebar(props) {
-	const { newLon, setLon, newLat, setLat, isCurrent, setIsCurrent, celcius } = props;
+	const { newLon, setLon, newLat, setLat, isCurrent, setIsCurrent, celcius } =
+		props;
 
 	const [code, setCode] = useState("");
 	const [codeSet, setCodeSet] = useState(false);
@@ -59,7 +60,7 @@ function Sidebar(props) {
 			// console.log(lon, lat);
 			// console.log(isCurrent, "is current");
 			updateLocation(lon, lat);
-			const data = await getData(lon, lat);
+			const data = await getData(lon, lat, celcius);
 			return setUp(data);
 		}
 
@@ -95,7 +96,7 @@ function Sidebar(props) {
 		}
 
 		setCurrent();
-	}, [code, temp, label, date, location, isCurrent, newLat, newLon]);
+	}, [code, temp, label, date, location, isCurrent, newLat, newLon, celcius]);
 
 	const [reverse, setReverse] = useState(true);
 	const [list, setList] = useState();
@@ -261,7 +262,7 @@ function Sidebar(props) {
 				</div>
 				<div className="temp">
 					{codeSet ? <span>{temp}</span> : ""}
-					<i>&#176;C</i>
+					{celcius ? <i>&#176;C</i> : <i>&#176;F</i>}
 				</div>
 				<div className="label">
 					{codeSet ? <span>{label}</span> : ""}

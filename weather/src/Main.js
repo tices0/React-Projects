@@ -24,7 +24,7 @@ function Main(props) {
 			let lat = both[1];
 			console.log(lon, lat);
 
-			const data = await getData(lon, lat);
+			const data = await getData(lon, lat, celcius);
 			console.log(data);
 			return setUp(data);
 		}
@@ -68,7 +68,7 @@ function Main(props) {
 		}
 
 		setCurrent();
-	}, [newLon, newLat, isCurrent]);
+	}, [newLon, newLat, isCurrent, celcius]);
 
 	let days = [];
 	for (let i = 0; i < 6; i++) {
@@ -141,8 +141,6 @@ function Main(props) {
 	const f_button = createRef();
 
 	useEffect(() => {
-		c_button.current.style.fontWeight = "bold";
-		f_button.current.style.fontWeight = "bold";
 		if (celcius) {
 			c_button.current.style.backgroundColor = "#E7E7EB";
 			c_button.current.style.color = "#110E3C";
