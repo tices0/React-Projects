@@ -506,3 +506,20 @@ main {
 		}
 	}
 }
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%);
+	color: $light-grey;
+	margin: 1.25rem;
+	font-size: 14px;
+
+	i {
+		color: $light-grey;
+		font-weight: bold;
+		text-decoration: underline;
+		font-style: normal;
+	}
+}

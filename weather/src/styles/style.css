@@ -429,4 +429,19 @@ main .highlights li.humidity .bar .inside-bar {
   main .highlights li {
     padding: 2rem;
   }
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  color: #a09fb1;
+  margin: 1.25rem;
+  font-size: 14px;
+}
+footer i {
+  color: #a09fb1;
+  font-weight: bold;
+  text-decoration: underline;
+  font-style: normal;
 }/*# sourceMappingURL=style.css.map */
