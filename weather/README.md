@@ -8,14 +8,14 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <!-- <a href="https://{your-demo-link.your-domain}">
       Demo
     </a>
     <span> | </span>
     <a href="https://{your-url-to-the-solution}">
       Solution
-    </a>
-    <span> | </span>
+    </a> -->
+    <!-- <span> | </span> -->
     <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
       Challenge
     </a>
@@ -29,6 +29,9 @@
 -   [Overview](#overview)
     -   [Built With](#built-with)
 -   [Features](#features)
+    - [Current Location](#Getting-the-current-location-of-the-user)
+    - [Sharing Components](#Sharing-Components/Functions-between-Files)
+    - [Using async/await](#Using-async/await-instead-of-.then)
 -   [How to use](#how-to-use)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
@@ -37,7 +40,7 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](./src/media/Screenshot.png)
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
@@ -46,20 +49,59 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 -   What have you learned/improved?
 -   Your wisdom? :)
 
-https://mm.tt/map/2575601274?t=Nr2gU4FpWC (mindmap)
+[mindmap](https://mm.tt/map/2575601274?t=Nr2gU4FpWC)
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 -   [React](https://reactjs.org/)
--   [Bootstrap](https://getbootstrap.com/)
+-   [SCSS](https://sass-lang.com/)
 
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
+
+### Getting the Current Location of the User
+
+This is done be using the `navigator`. An alert is shown to the user requesting for permission to get their location. 
+```
+if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(position => {
+				const lon = position.coords.longitude;
+				const lat = position.coords.latitude;
+			});
+		} 
+```
+
+### Sharing Components/Functions between Files
+
+The component/function needs to exported from the file it is declared in after it is declared. 
+```
+export const getData = async (lon, lat, celcius) => {
+  ...
+};
+```
+
+It can then be used in other files by being imported.  
+```
+import Sidebar from "./Sidebar";
+import Main from "./Main";
+```
+
+### Using async/await instead of .then
+
+```
+async function getCountryCode(lon, lat) {
+	const res = await fetch(
+		`https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`,
+	);
+	const data = await res.json();
+	return data.features[0].properties.address.country_code;
+}
+```
 
 ## How To Use
 
@@ -69,7 +111,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/tices0/React-Projects
 
 # Install dependencies
 $ npm install
@@ -82,9 +124,8 @@ $ npm start
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
--   [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
--   [Node.js](https://nodejs.org/)
--   [Marked - a markdown parser](https://github.com/chjj/marked)
+-   [font awesome](https://fontawesome.com/)
+-   [countries and timezones](https://github.com/manuelmhtr/countries-and-timezones)
 
 ## Contact
 
