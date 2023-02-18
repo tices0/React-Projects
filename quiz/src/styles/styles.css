@@ -46,7 +46,7 @@ section.quiz {
   gap: 1rem;
   position: relative;
   border-radius: 24px;
-  width: 375px;
+  width: 360px;
 }
 section.quiz h1 {
   text-transform: uppercase;
@@ -55,18 +55,18 @@ section.quiz h1 {
   left: 0;
   color: #f2f2f2;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 28px;
 }
 section.quiz img {
   position: absolute;
-  top: -50px;
+  top: -60px;
   right: 0;
-  width: 100px;
+  width: 120px;
 }
 section.quiz h2 {
   color: #2f527b;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 900;
   align-self: flex-start;
 }
 section.quiz .options {

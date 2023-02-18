@@ -60,7 +60,7 @@ section.quiz {
 	gap: 1rem;
 	position: relative;
 	border-radius: 24px;
-	width: 375px;
+	width: 360px;
 
 	h1 {
 		text-transform: uppercase;
@@ -69,20 +69,21 @@ section.quiz {
 		left: 0;
 		color: $white-text;
 		font-weight: 700;
-		font-size: 30px;
+		font-size: 28px;
 	}
 
 	img {
 		position: absolute;
-		top: -50px;
+		top: -60px;
 		right: 0;
-		width: 100px;
+		width: 120px;
 	}
 
 	h2 {
 		color: $title;
-		font-size: 20px;
-		font-weight: 700;
+		font-size: 18px;
+		// font-weight: 700;
+		font-weight: 900;
 		align-self: flex-start;
 	}
 
