@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/styles.css";
 import question_svg from "./media/undraw_adventure_4hum 1.svg";
@@ -12,41 +12,76 @@ function App() {
 			C: "Sweden",
 			D: "Austria",
 		},
-		correct: function() {
+		correct: function () {
 			return this.options.B;
 		},
 	};
 
-	console.log(question.correct(), "correct answer");
+	const correctRef = useRef();
+	const incorrectRef = useRef([]);
 
 	const Options = () => {
 		let options = [];
-		for (const key in question) {
-            let option
-            if (question.correct() === question[key]) {
-                option = (
-                    <button type="submit" ref={correct} className="btn btn-outline-secondary">
-                     
-                        <span className="letter">{key}</span>
-                        <span className="answer">{question[key]}</span>
-                    </button>
-                );
-            } else {
-                option = (
-                    <button type="submit" ref={incorrect} className="btn btn-outline-secondary">
-                        <span className="letter">{key}</span>
-                        <span className="answer">{question[key]}</span>
-                    </button>
-                );
-
-            }
+		for (const key in question.options) {
+			let option;
+			if (question.correct() === question.options[key]) {
+				option = (
+					<button
+						onClick={() => setAnswer(question.options[key])}
+						type="submit"
+						ref={correctRef}
+						className="btn btn-outline-secondary"
+						key={key}
+					>
+						<span className="letter">{key}</span>
+						<span className="answer">{question.options[key]}</span>
+					</button>
+				);
+			} else {
+				option = (
+					<button
+						// onClick={() => console.log("clicked")}
+						onClick={() => {
+							setAnswer(question.options[key]);
+							// console.log("click incorrect");
+						}}
+						key={key}
+						type="submit"
+						ref={incorrectRef}
+						className="btn btn-outline-secondary"
+					>
+						<span className="letter">{key}</span>
+						<span className="answer">{question.options[key]}</span>
+					</button>
+				);
+			}
 			options.push(option);
 		}
 		return options;
 	};
 
+	const [answer, setAnswer] = useState();
+
+	useEffect(() => {
+		if (typeof answer !== "undefined") {
+			if (answer === question.correct()) {
+				console.log("correct");
+				correctRef.current.style.backgroundColor = "#60bf88";
+			} else {
+				console.log("incorrect");
+				incorrectRef.current.style.backgroundColor = "#ea8282";
+			}
+		}
+		// eslint-disable-next-line
+	}, [answer]);
+
+	// const [correctAnswer, setCorrectAnswer] = useState();
+	// const [correct, setCorrect] = useState();
+	// const [score, setScore] = useState(0);
+
 	const handleSubmit = event => {
 		event.preventDefault();
+		console.log("form submitted");
 	};
 
 	return (
@@ -54,24 +89,8 @@ function App() {
 			<h1>Country Quiz</h1>
 			<img src={question_svg} alt="" />
 			<h2>Kuala Lumpur is the capital of</h2>
-			<form onSubmit={handleSubmit} className="options">
-                <Options />
-				{/* <button type="submit" className="btn btn-outline-secondary">
-					<span className="letter">A</span>
-					<span className="answer">Vietnam</span>
-				</button>
-				<button type="submit" className="btn btn-outline-secondary">
-					<span className="letter">B</span>
-					<span className="answer">Malaysia</span>
-				</button>
-				<button type="submit" className="btn btn-outline-secondary">
-					<span className="letter">C</span>
-					<span className="answer">Sweden</span>
-				</button>
-				<button type="submit" className="btn btn-outline-secondary">
-					<span className="letter">D</span>
-					<span className="answer">Austria</span>
-				</button> */}
+			<form id="form" onSubmit={handleSubmit} className="options">
+				<Options />
 			</form>
 		</section>
 	);
