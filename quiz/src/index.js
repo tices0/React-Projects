@@ -18,7 +18,7 @@ function App() {
 	};
 
 	const correctRef = useRef();
-	const incorrectRef = useRef([]);
+	const incorrectRef = useRef({});
 
 	const Options = () => {
 		let options = [];
@@ -47,7 +47,10 @@ function App() {
 						}}
 						key={key}
 						type="submit"
-						ref={incorrectRef}
+						// ref={incorrectRef}
+						ref={ref =>
+							(incorrectRef.current[question.options[key]] = ref)
+						}
 						className="btn btn-outline-secondary"
 					>
 						<span className="letter">{key}</span>
@@ -57,6 +60,8 @@ function App() {
 			}
 			options.push(option);
 		}
+		// console.log(incorrectRef);
+		console.log(incorrectRef.current);
 		return options;
 	};
 
@@ -69,7 +74,7 @@ function App() {
 				correctRef.current.style.backgroundColor = "#60bf88";
 			} else {
 				console.log("incorrect");
-				incorrectRef.current.style.backgroundColor = "#ea8282";
+				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
 			}
 		}
 		// eslint-disable-next-line
