@@ -72,6 +72,8 @@ function App() {
 			if (answer === question.correct()) {
 				console.log("correct");
 				correctRef.current.style.backgroundColor = "#60bf88";
+				setScore(old => old + 1);
+				setCorrect(true);
 			} else {
 				console.log("incorrect");
 				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
@@ -81,8 +83,8 @@ function App() {
 	}, [answer]);
 
 	// const [correctAnswer, setCorrectAnswer] = useState();
-	// const [correct, setCorrect] = useState();
-	// const [score, setScore] = useState(0);
+	const [correct, setCorrect] = useState(false);
+	const [score, setScore] = useState(0);
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -96,6 +98,8 @@ function App() {
 			<h2>Kuala Lumpur is the capital of</h2>
 			<form id="form" onSubmit={handleSubmit} className="options">
 				<Options />
+				{/* {correct ? '' : ''} */}
+				<input type="submit" value="Next" className="next" />
 			</form>
 		</section>
 	);

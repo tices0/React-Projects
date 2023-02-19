@@ -101,6 +101,16 @@ section.quiz .options button .letter {
 section.quiz .options button .answer {
   font-size: 14px;
 }
+section.quiz .next {
+  align-self: flex-end;
+  background-color: #f9a826;
+  color: #fff;
+  border: 0;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  border-radius: 12px;
+  height: 2.5rem;
+  padding: 2rem;
+}
 
 footer {
   position: absolute;
