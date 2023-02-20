@@ -33,8 +33,13 @@ function App() {
 						className="btn btn-outline-secondary"
 						key={key}
 					>
-						<span className="letter">{key}</span>
-						<span className="answer">{question.options[key]}</span>
+						<div className="right">
+							<span className="letter">{key}</span>
+							<span className="answer">
+								{question.options[key]}
+							</span>
+						</div>
+						<i className="fa-regular fa-circle-check"></i>
 					</button>
 				);
 			} else {
@@ -53,14 +58,18 @@ function App() {
 						}
 						className="btn btn-outline-secondary"
 					>
-						<span className="letter">{key}</span>
-						<span className="answer">{question.options[key]}</span>
+						<div className="right">
+							<span className="letter">{key}</span>
+							<span className="answer">
+								{question.options[key]}
+							</span>
+						</div>
+						<i className="fa-regular fa-circle-xmark"></i>
 					</button>
 				);
 			}
 			options.push(option);
 		}
-		// console.log(incorrectRef);
 		console.log(incorrectRef.current);
 		return options;
 	};
@@ -68,23 +77,37 @@ function App() {
 	const [answer, setAnswer] = useState();
 
 	useEffect(() => {
-		if (typeof answer !== "undefined") {
+		if (typeof answer !== "undefined" && !moveOn) {
+			setAttempts(old => old + 1);
 			if (answer === question.correct()) {
 				console.log("correct");
 				correctRef.current.style.backgroundColor = "#60bf88";
+				// correctRef.current.style.borderColor = "#60bf88";
+				correctRef.current.style.borderColor = "red";
 				setScore(old => old + 1);
-				setCorrect(true);
+				setMoveOn(true);
 			} else {
 				console.log("incorrect");
+				// if (attempts > 0) {
+				// 	previousFail.style.backgroundColor = "#ea8282";
+				// 	previousFail.style.borderColor = "#ea8282";
+				// 	console.log("keeping old the same");
+				// }
 				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
+				incorrectRef.current[answer].style.borderColor = "#ea8282";
+				setPrevious(incorrectRef.current[answer]);
+				console.log(previousFail);
+				// if (attempts > 1) setMoveOn(true);
 			}
 		}
 		// eslint-disable-next-line
 	}, [answer]);
 
 	// const [correctAnswer, setCorrectAnswer] = useState();
-	const [correct, setCorrect] = useState(false);
+	const [moveOn, setMoveOn] = useState(false);
 	const [score, setScore] = useState(0);
+	const [attempts, setAttempts] = useState(0);
+	const [previousFail, setPrevious] = useState();
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -98,8 +121,11 @@ function App() {
 			<h2>Kuala Lumpur is the capital of</h2>
 			<form id="form" onSubmit={handleSubmit} className="options">
 				<Options />
-				{/* {correct ? '' : ''} */}
-				<input type="submit" value="Next" className="next" />
+				{moveOn ? (
+					<input type="submit" value="Next" className="next" />
+				) : (
+					""
+				)}
 			</form>
 		</section>
 	);

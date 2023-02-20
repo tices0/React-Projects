@@ -94,8 +94,8 @@ section.quiz {
 
 		button {
 			@include flexCenter(row);
-			justify-content: flex-start;
-			border-radius: 12px;
+			justify-content: space-between;
+			border-radius: 10px;
 			border: 1px solid $blue-text;
 			width: 100%;
 			height: 2.5rem;
@@ -124,9 +124,10 @@ section.quiz {
 		color: #fff;
 		border: 0;
 		box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
-		border-radius: 12px;
+		border-radius: 10px;
 		height: 2.5rem;
-		padding: 2rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 	}
 }
 
