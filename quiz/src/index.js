@@ -78,7 +78,6 @@ function App() {
 
 	useEffect(() => {
 		if (typeof answer !== "undefined" && !moveOn) {
-			setAttempts(old => old + 1);
 			if (answer === question.correct()) {
 				console.log("correct");
 				correctRef.current.style.backgroundColor = "#60bf88";
@@ -87,17 +86,20 @@ function App() {
 				setScore(old => old + 1);
 				setMoveOn(true);
 			} else {
-				console.log("incorrect");
-				// if (attempts > 0) {
-				// 	previousFail.style.backgroundColor = "#ea8282";
-				// 	previousFail.style.borderColor = "#ea8282";
-				// 	console.log("keeping old the same");
-				// }
-				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
-				incorrectRef.current[answer].style.borderColor = "#ea8282";
-				setPrevious(incorrectRef.current[answer]);
-				console.log(previousFail);
-				// if (attempts > 1) setMoveOn(true);
+				if (previousFail !== incorrectRef.current[answer]) {
+					console.log("incorrect");
+					// if (attempts > 0) {
+					// 	previousFail.style.backgroundColor = "#ea8282";
+					// 	previousFail.style.borderColor = "#ea8282";
+					// 	console.log("keeping old the same");
+					// }
+					incorrectRef.current[answer].style.backgroundColor =
+						"#ea8282";
+					incorrectRef.current[answer].style.borderColor = "#ea8282";
+					setPrevious(incorrectRef.current[answer]);
+					if (attempts > 1) setMoveOn(true);
+					setAttempts(old => old + 1);
+				}
 			}
 		}
 		// eslint-disable-next-line
@@ -106,7 +108,7 @@ function App() {
 	// const [correctAnswer, setCorrectAnswer] = useState();
 	const [moveOn, setMoveOn] = useState(false);
 	const [score, setScore] = useState(0);
-	const [attempts, setAttempts] = useState(0);
+	const [attempts, setAttempts] = useState(1);
 	const [previousFail, setPrevious] = useState();
 
 	const handleSubmit = event => {
