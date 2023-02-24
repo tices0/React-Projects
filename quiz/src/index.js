@@ -111,18 +111,11 @@ function App() {
 				correctRef.current.style.color = "#fff";
 				correctIcon.current.style.display = "block";
 			} else {
-				if (attempts > 1) console.log("more than 1 attempt");
 				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
 				incorrectRef.current[answer].style.borderColor = "#ea8282";
 				incorrectRef.current[answer].style.color = "#fff";
 				incorrectIcon.current[answer].style.display = "block";
 			}
-		}
-
-		if (typeof previousFail !== "undefined") {
-			console.log("attempts more than 1");
-			previousFail.style.backgroundColor = "#ea8282";
-			previousFail.style.borderColor = "#ea8282";
 		}
 
 		// eslint-disable-next-line
@@ -152,7 +145,3 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
