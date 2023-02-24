@@ -20,6 +20,8 @@ function App() {
 
 	const correctRef = useRef();
 	const incorrectRef = useRef({});
+	const correctIcon = useRef();
+	const incorrectIcon = useRef({});
 
 	const Options = () => {
 		let options = [];
@@ -40,7 +42,10 @@ function App() {
 								{question.options[key]}
 							</span>
 						</div>
-						<i className="fa-regular fa-circle-check"></i>
+						<i
+							ref={correctIcon}
+							className="fa-regular fa-circle-check"
+						></i>
 					</button>
 				);
 			} else {
@@ -62,13 +67,18 @@ function App() {
 								{question.options[key]}
 							</span>
 						</div>
-						<i className="fa-regular fa-circle-xmark"></i>
+						<i
+							ref={ref =>
+								(incorrectIcon.current[question.options[key]] =
+									ref)
+							}
+							className="fa-regular fa-circle-xmark"
+						></i>
 					</button>
 				);
 			}
 			options.push(option);
 		}
-		console.log(incorrectRef.current);
 		return options;
 	};
 
@@ -98,9 +108,14 @@ function App() {
 			if (answer === question.correct()) {
 				correctRef.current.style.backgroundColor = "#60bf88";
 				correctRef.current.style.borderColor = "#60bf88";
+				correctRef.current.style.color = "#fff";
+				correctIcon.current.style.display = "block";
 			} else {
+				if (attempts > 1) console.log("more than 1 attempt");
 				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
 				incorrectRef.current[answer].style.borderColor = "#ea8282";
+				incorrectRef.current[answer].style.color = "#fff";
+				incorrectIcon.current[answer].style.display = "block";
 			}
 		}
 

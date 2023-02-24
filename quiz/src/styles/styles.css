@@ -101,6 +101,9 @@ section.quiz .options button .letter {
 section.quiz .options button .answer {
   font-size: 14px;
 }
+section.quiz .options button i {
+  display: none;
+}
 section.quiz .next {
   align-self: flex-end;
   background-color: #f9a826;
