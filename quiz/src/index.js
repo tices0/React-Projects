@@ -6,6 +6,7 @@ import question_svg from "./media/undraw_adventure_4hum 1.svg";
 function App() {
 	const question = {
 		type: "capital",
+		place: "Kuala Lumpur",
 		options: {
 			A: "Vietnam",
 			B: "Malaysia",
@@ -46,10 +47,7 @@ function App() {
 				option = (
 					<button
 						// onClick={() => console.log("clicked")}
-						onClick={() => {
-							setAnswer(question.options[key]);
-							// console.log("click incorrect");
-						}}
+						onClick={() => setAnswer(question.options[key])}
 						key={key}
 						type="submit"
 						// ref={incorrectRef}
@@ -75,52 +73,56 @@ function App() {
 	};
 
 	const [answer, setAnswer] = useState();
+	const [moveOn, setMoveOn] = useState(false);
+	// const [score, setScore] = useState(0);
+	const [attempts, setAttempts] = useState(1);
+	const [previousFail, setPrevious] = useState();
 
 	useEffect(() => {
 		if (typeof answer !== "undefined" && !moveOn) {
 			if (answer === question.correct()) {
 				console.log("correct");
-				correctRef.current.style.backgroundColor = "#60bf88";
-				// correctRef.current.style.borderColor = "#60bf88";
-				correctRef.current.style.borderColor = "red";
-				setScore(old => old + 1);
+				// setScore(old => old + 1);
 				setMoveOn(true);
 			} else {
 				if (previousFail !== incorrectRef.current[answer]) {
 					console.log("incorrect");
-					// if (attempts > 0) {
-					// 	previousFail.style.backgroundColor = "#ea8282";
-					// 	previousFail.style.borderColor = "#ea8282";
-					// 	console.log("keeping old the same");
-					// }
-					incorrectRef.current[answer].style.backgroundColor =
-						"#ea8282";
-					incorrectRef.current[answer].style.borderColor = "#ea8282";
 					setPrevious(incorrectRef.current[answer]);
 					if (attempts > 1) setMoveOn(true);
 					setAttempts(old => old + 1);
 				}
 			}
 		}
-		// eslint-disable-next-line
-	}, [answer]);
 
-	// const [correctAnswer, setCorrectAnswer] = useState();
-	const [moveOn, setMoveOn] = useState(false);
-	const [score, setScore] = useState(0);
-	const [attempts, setAttempts] = useState(1);
-	const [previousFail, setPrevious] = useState();
+		if (moveOn) {
+			if (answer === question.correct()) {
+				correctRef.current.style.backgroundColor = "#60bf88";
+				correctRef.current.style.borderColor = "#60bf88";
+			} else {
+				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
+				incorrectRef.current[answer].style.borderColor = "#ea8282";
+			}
+		}
+
+		if (typeof previousFail !== "undefined") {
+			console.log("attempts more than 1");
+			previousFail.style.backgroundColor = "#ea8282";
+			previousFail.style.borderColor = "#ea8282";
+		}
+
+		// eslint-disable-next-line
+	}, [answer, moveOn]);
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		console.log("form submitted");
+		console.log("next question");
 	};
 
 	return (
 		<section className="quiz">
 			<h1>Country Quiz</h1>
 			<img src={question_svg} alt="" />
-			<h2>Kuala Lumpur is the capital of</h2>
+			<h2>{question.place} is the capital of</h2>
 			<form id="form" onSubmit={handleSubmit} className="options">
 				<Options />
 				{moveOn ? (
