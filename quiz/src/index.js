@@ -95,16 +95,16 @@ function App() {
 				// setScore(old => old + 1);
 				setMoveOn(true);
 			} else {
-				if (previousFail !== incorrectRef.current[answer]) {
+				if (previousFail !== answer) {
 					console.log("incorrect");
-					setPrevious(incorrectRef.current[answer]);
+					if (!previousFail) setPrevious(answer);
 					if (attempts > 1) setMoveOn(true);
 					setAttempts(old => old + 1);
 				}
 			}
 		}
 
-		if (moveOn) {
+		if (moveOn || typeof previousFail !== "undefined") {
 			if (answer === question.correct()) {
 				correctRef.current.style.backgroundColor = "#60bf88";
 				correctRef.current.style.borderColor = "#60bf88";
@@ -116,10 +116,19 @@ function App() {
 				incorrectRef.current[answer].style.color = "#fff";
 				incorrectIcon.current[answer].style.display = "block";
 			}
+
+			if (typeof previousFail !== "undefined") {
+				incorrectRef.current[previousFail].style.backgroundColor =
+					"#ea8282";
+				incorrectRef.current[previousFail].style.borderColor =
+					"#ea8282";
+				incorrectRef.current[previousFail].style.color = "#fff";
+				incorrectIcon.current[previousFail].style.display = "block";
+			}
 		}
 
 		// eslint-disable-next-line
-	}, [answer, moveOn]);
+	}, [answer, moveOn, previousFail]);
 
 	const handleSubmit = event => {
 		event.preventDefault();
