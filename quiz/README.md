@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://country-quiz-4d846.web.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/LOM8aPwn5VbrUBPMFIuX">
       Solution
     </a>
     <span> | </span>
@@ -27,7 +27,7 @@
 ## Table of Contents
 
 -   [Overview](#overview)
-    - [What I learned](#what-i-learned)
+    -   [What I learned](#what-i-learned)
     -   [Built With](#built-with)
 -   [Features](#features)
 -   [How to use](#how-to-use)
