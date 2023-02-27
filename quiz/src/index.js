@@ -165,11 +165,16 @@ function Questions(props) {
 		setMoveOn(false);
 		setQuestion(questions[questionIndex]);
 		setAnswer();
+		setAttempts(1);
+		setLastChoice();
+		setPrevious();
+		setScore(0);
 		// eslint-disable-next-line
 	}, [questionIndex]);
 
 	return (
 		<section className="quiz">
+			<h1>Country Quiz</h1>
 			<img className="svg" src={question_svg} alt="" />
 			{question.type === "flag" ? (
 				<img
@@ -202,13 +207,14 @@ function Results(props) {
 	const { score, setShowResults } = props;
 	return (
 		<section className="results">
+			<h1>Country Quiz</h1>
 			<img src={result_svg} alt="" />
 			<h2>Results</h2>
 			<p>
 				You got <i>{score}</i> correct answers
 			</p>
 			<button
-				onClick={() => console.log("back to quiz")}
+				onClick={() => setShowResults(false)}
 				className="btn btn-outline-dark"
 			>
 				Try Again
@@ -218,8 +224,8 @@ function Results(props) {
 }
 
 function App() {
-	const [showResults, setShowResults] = useState(true);
-	const [score, setScore] = useState(4);
+	const [showResults, setShowResults] = useState(false);
+	const [score, setScore] = useState(0);
 
 	if (!showResults)
 		return (

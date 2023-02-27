@@ -39,14 +39,9 @@ body {
 #root {
   background-color: #fff;
   padding: 3rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-  position: relative;
   border-radius: 24px;
   width: 360px;
+  position: relative;
 }
 #root h1 {
   text-transform: uppercase;
@@ -58,6 +53,13 @@ body {
   font-size: 28px;
 }
 
+.quiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
 .quiz img.svg {
   position: absolute;
   top: -60px;
@@ -74,7 +76,7 @@ body {
   align-self: flex-start;
   width: 60px;
   border-radius: 4px;
-  filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+  box-shadow: 4px 8px 24px rgba(0, 0, 0, 0.1);
 }
 .quiz .options {
   display: flex;
@@ -125,6 +127,38 @@ body {
 
 .results {
   color: #1d355d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+.results h2 {
+  font-weight: 900;
+  font-size: 35px;
+  padding-bottom: 0;
+}
+.results p i {
+  color: #60bf88;
+  font-size: 25px;
+  font-weight: bold;
+}
+.results img {
+  width: 175px;
+  margin-bottom: 2rem;
+}
+.results button {
+  margin-top: 1rem;
+  border: 1.5px solid #1d355d;
+  font-size: 13px;
+  font-weight: 600;
+  width: 150px;
+  height: 2.5rem;
+  color: #1d355d;
+}
+.results button:hover {
+  background-color: #f9a826;
+  border-color: #f9a826;
 }
 
 footer {
