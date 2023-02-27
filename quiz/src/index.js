@@ -31,7 +31,7 @@ function App() {
 				option = (
 					<button
 						onClick={() => setAnswer(question.options[key])}
-						type="submit"
+						type="button"
 						ref={correctRef}
 						className="btn btn-outline-secondary"
 						key={key}
@@ -54,7 +54,7 @@ function App() {
 						// onClick={() => console.log("clicked")}
 						onClick={() => setAnswer(question.options[key])}
 						key={key}
-						type="submit"
+						type="button"
 						// ref={incorrectRef}
 						ref={ref =>
 							(incorrectRef.current[question.options[key]] = ref)
@@ -87,16 +87,20 @@ function App() {
 	// const [score, setScore] = useState(0);
 	const [attempts, setAttempts] = useState(1);
 	const [previousFail, setPrevious] = useState();
+	const [lastChoice, setLastChoice] = useState();
 
 	useEffect(() => {
 		if (typeof answer !== "undefined" && !moveOn) {
 			if (answer === question.correct()) {
 				console.log("correct");
 				// setScore(old => old + 1);
+				setLastChoice("correct");
 				setMoveOn(true);
+				setAttempts(old => old + 1);
 			} else {
 				if (previousFail !== answer) {
 					console.log("incorrect");
+					setLastChoice(answer);
 					if (!previousFail) setPrevious(answer);
 					if (attempts > 1) setMoveOn(true);
 					setAttempts(old => old + 1);
@@ -104,17 +108,18 @@ function App() {
 			}
 		}
 
-		if (moveOn || typeof previousFail !== "undefined") {
-			if (answer === question.correct()) {
+		if (attempts > 1) {
+			if (lastChoice === "correct") {
 				correctRef.current.style.backgroundColor = "#60bf88";
 				correctRef.current.style.borderColor = "#60bf88";
 				correctRef.current.style.color = "#fff";
 				correctIcon.current.style.display = "block";
 			} else {
-				incorrectRef.current[answer].style.backgroundColor = "#ea8282";
-				incorrectRef.current[answer].style.borderColor = "#ea8282";
-				incorrectRef.current[answer].style.color = "#fff";
-				incorrectIcon.current[answer].style.display = "block";
+				incorrectRef.current[lastChoice].style.backgroundColor =
+					"#ea8282";
+				incorrectRef.current[lastChoice].style.borderColor = "#ea8282";
+				incorrectRef.current[lastChoice].style.color = "#fff";
+				incorrectIcon.current[lastChoice].style.display = "block";
 			}
 
 			if (typeof previousFail !== "undefined") {
