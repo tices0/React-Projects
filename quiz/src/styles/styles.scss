@@ -53,7 +53,7 @@ body {
 // quiz
 // ==============
 
-section.quiz {
+#root {
 	background-color: #fff;
 	padding: 3rem 2rem;
 	@include flexCenter(column);
@@ -71,7 +71,11 @@ section.quiz {
 		font-weight: 700;
 		font-size: 28px;
 	}
+}
 
+// QUESTIONS
+
+.quiz {
 	img.svg {
 		position: absolute;
 		top: -60px;
@@ -85,6 +89,14 @@ section.quiz {
 		// font-weight: 700;
 		font-weight: 900;
 		align-self: flex-start;
+	}
+
+	.flag {
+		align-self: flex-start;
+		width: 60px;
+		border-radius: 4px;
+		// box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
+		filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
 	}
 
 	.options {
@@ -133,6 +145,11 @@ section.quiz {
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
+}
+
+// RESULTS
+.results {
+	color: $results;
 }
 
 // ==============

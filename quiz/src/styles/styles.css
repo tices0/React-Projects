@@ -36,7 +36,7 @@ body {
   flex-direction: row;
 }
 
-section.quiz {
+#root {
   background-color: #fff;
   padding: 3rem 2rem;
   display: flex;
@@ -48,7 +48,7 @@ section.quiz {
   border-radius: 24px;
   width: 360px;
 }
-section.quiz h1 {
+#root h1 {
   text-transform: uppercase;
   position: absolute;
   top: -40px;
@@ -57,19 +57,26 @@ section.quiz h1 {
   font-weight: 700;
   font-size: 28px;
 }
-section.quiz img.svg {
+
+.quiz img.svg {
   position: absolute;
   top: -60px;
   right: 0;
   width: 120px;
 }
-section.quiz h2 {
+.quiz h2 {
   color: #2f527b;
   font-size: 18px;
   font-weight: 900;
   align-self: flex-start;
 }
-section.quiz .options {
+.quiz .flag {
+  align-self: flex-start;
+  width: 60px;
+  border-radius: 4px;
+  filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+}
+.quiz .options {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +84,7 @@ section.quiz .options {
   gap: 1rem;
   width: 100%;
 }
-section.quiz .options button {
+.quiz .options button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,22 +96,22 @@ section.quiz .options button {
   height: 2.5rem;
   color: #6066d0;
 }
-section.quiz .options button:hover {
+.quiz .options button:hover {
   background-color: #f9a826;
   border-color: #f9a826;
   color: #fff;
 }
-section.quiz .options button .letter {
+.quiz .options button .letter {
   margin-right: 2rem;
   font-size: 18px;
 }
-section.quiz .options button .answer {
+.quiz .options button .answer {
   font-size: 14px;
 }
-section.quiz .options button i {
+.quiz .options button i {
   display: none;
 }
-section.quiz .next {
+.quiz .next {
   align-self: flex-end;
   background-color: #f9a826;
   color: #fff;
@@ -114,6 +121,10 @@ section.quiz .next {
   height: 2.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.results {
+  color: #1d355d;
 }
 
 footer {

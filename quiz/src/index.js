@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/styles.css";
 import question_svg from "./media/undraw_adventure_4hum 1.svg";
+import result_svg from "./media/undraw_winners_ao2o 2.svg";
 
 const question0 = {
 	type: "capital",
@@ -31,10 +32,12 @@ const question1 = {
 	},
 };
 
-function App() {
+function Questions(props) {
+	const { setShowResults, setScore } = props;
+
 	const questions = [question0, question1];
 	const [questionIndex, setQuestionIndex] = useState(0);
-	const [question, setQuestion] = useState(question0);
+	const [question, setQuestion] = useState(question1);
 
 	const correctRef = useRef();
 	const incorrectRef = useRef({});
@@ -100,7 +103,6 @@ function App() {
 
 	const [answer, setAnswer] = useState();
 	const [moveOn, setMoveOn] = useState(false);
-	// const [score, setScore] = useState(0);
 	const [attempts, setAttempts] = useState(1);
 	const [previousFail, setPrevious] = useState();
 	const [lastChoice, setLastChoice] = useState();
@@ -109,7 +111,7 @@ function App() {
 		if (typeof answer !== "undefined" && !moveOn) {
 			if (answer === question.correct()) {
 				console.log("correct");
-				// setScore(old => old + 1);
+				setScore(old => old + 1);
 				setLastChoice("correct");
 				setMoveOn(true);
 				setAttempts(old => old + 1);
@@ -124,7 +126,7 @@ function App() {
 			}
 		}
 
-		if (attempts > 1) {
+		if (moveOn && attempts > 1) {
 			if (lastChoice === "correct") {
 				correctRef.current.style.backgroundColor = "#60bf88";
 				correctRef.current.style.borderColor = "#60bf88";
@@ -154,21 +156,28 @@ function App() {
 	const handleSubmit = event => {
 		event.preventDefault();
 		console.log("next question");
-		setQuestionIndex(old => old + 1);
+		if (questionIndex + 1 !== questions.length)
+			setQuestionIndex(old => old + 1);
+		else setShowResults(true);
 	};
 
 	useEffect(() => {
 		setMoveOn(false);
 		setQuestion(questions[questionIndex]);
+		setAnswer();
 		// eslint-disable-next-line
 	}, [questionIndex]);
 
 	return (
 		<section className="quiz">
-			<h1>Country Quiz</h1>
 			<img className="svg" src={question_svg} alt="" />
 			{question.type === "flag" ? (
-				<img src={require(`./media/${question.flag}.png`)} alt="" />
+				<img
+					className="flag"
+					crossOrigin="anonymous"
+					src={`https://countryflagsapi.com/png/${question.flag}`}
+					alt=""
+				/>
 			) : (
 				""
 			)}
@@ -187,6 +196,36 @@ function App() {
 			</form>
 		</section>
 	);
+}
+
+function Results(props) {
+	const { score, setShowResults } = props;
+	return (
+		<section className="results">
+			<img src={result_svg} alt="" />
+			<h2>Results</h2>
+			<p>
+				You got <i>{score}</i> correct answers
+			</p>
+			<button
+				onClick={() => console.log("back to quiz")}
+				className="btn btn-outline-dark"
+			>
+				Try Again
+			</button>
+		</section>
+	);
+}
+
+function App() {
+	const [showResults, setShowResults] = useState(true);
+	const [score, setScore] = useState(4);
+
+	if (!showResults)
+		return (
+			<Questions setShowResults={setShowResults} setScore={setScore} />
+		);
+	else return <Results score={score} setShowResults={setShowResults} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
