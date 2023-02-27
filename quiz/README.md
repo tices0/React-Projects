@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">Country Quiz</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -26,33 +26,43 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+-   [Overview](#overview)
+    - [What I learned](#what-i-learned)
+    -   [Built With](#built-with)
+-   [Features](#features)
+-   [How to use](#how-to-use)
+-   [Contact](#contact)
+-   [Acknowledgements](#acknowledgements)
 
 <!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](./src/media/screenshot.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
+<!-- Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+-   Where can I see your demo?
+-   What was your experience?
+-   What have you learned/improved?
+-   Your wisdom? :) -->
+
+### What I learned
+
+-   How to use one `ref` for multiple elements by using an **object**
+
+```
+const incorrectRef = useRef({});
+<button ref={ref => (incorrectRef.current[question.options[key]] = ref)}></button>
+```
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
-- [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+-   [React](https://reactjs.org/)
+-   [Bootstap](https://getbootstrap.com/)
+-   [SCSS](https://sass-lang.com/)
 
 ## Features
 
@@ -77,16 +87,24 @@ $ npm install
 $ npm start
 ```
 
+To start the quiz, simply choose one of the four options. The option clicked will turn either **green** or **red** to indicate whether you were correct or not. If you picked the wrong answer, you will have another chance to select the correct answer.
+
+You can move on to the next question using the `Next` button.
+
+-   If the correct answer is selected, you may move on to the next question.
+-   After two attempts, you must move on to the next question.
+
+At the end of the quiz, you will be shown your _score_. Click the `Try again` button to start the quiz over from the start.
+
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
+-   [Font Awesome](https://fontawesome.com/)
+-   [Firebase Hosting](https://firebase.google.com/)
 
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+<!-- -   Website [your-website.com](https://{your-web-site-link}) -->
+
+-   GitHub [@tices0](https://{github.com/tices0})
