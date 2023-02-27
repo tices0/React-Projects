@@ -37,7 +37,7 @@ function Questions(props) {
 
 	const questions = [question0, question1];
 	const [questionIndex, setQuestionIndex] = useState(0);
-	const [question, setQuestion] = useState(question1);
+	const [question, setQuestion] = useState(question0);
 
 	const correctRef = useRef();
 	const incorrectRef = useRef({});
@@ -168,7 +168,6 @@ function Questions(props) {
 		setAttempts(1);
 		setLastChoice();
 		setPrevious();
-		setScore(0);
 		// eslint-disable-next-line
 	}, [questionIndex]);
 
@@ -204,7 +203,7 @@ function Questions(props) {
 }
 
 function Results(props) {
-	const { score, setShowResults } = props;
+	const { score, setShowResults, setScore } = props;
 	return (
 		<section className="results">
 			<h1>Country Quiz</h1>
@@ -214,7 +213,10 @@ function Results(props) {
 				You got <i>{score}</i> correct answers
 			</p>
 			<button
-				onClick={() => setShowResults(false)}
+				onClick={() => {
+					setShowResults(false);
+					setScore(0);
+				}}
 				className="btn btn-outline-dark"
 			>
 				Try Again
@@ -231,7 +233,14 @@ function App() {
 		return (
 			<Questions setShowResults={setShowResults} setScore={setScore} />
 		);
-	else return <Results score={score} setShowResults={setShowResults} />;
+	else
+		return (
+			<Results
+				score={score}
+				setShowResults={setShowResults}
+				setScore={setScore}
+			/>
+		);
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
