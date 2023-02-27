@@ -126,7 +126,7 @@ function Questions(props) {
 			}
 		}
 
-		if (moveOn && attempts > 1) {
+		if (moveOn || attempts > 1) {
 			if (lastChoice === "correct") {
 				correctRef.current.style.backgroundColor = "#60bf88";
 				correctRef.current.style.borderColor = "#60bf88";
@@ -162,6 +162,7 @@ function Questions(props) {
 	};
 
 	useEffect(() => {
+		console.log("useeffect ran");
 		setMoveOn(false);
 		setQuestion(questions[questionIndex]);
 		setAnswer();
