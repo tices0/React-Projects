@@ -57,7 +57,7 @@ section.quiz h1 {
   font-weight: 700;
   font-size: 28px;
 }
-section.quiz img {
+section.quiz img.svg {
   position: absolute;
   top: -60px;
   right: 0;

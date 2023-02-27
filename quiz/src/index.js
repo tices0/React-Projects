@@ -3,20 +3,38 @@ import ReactDOM from "react-dom/client";
 import "./styles/styles.css";
 import question_svg from "./media/undraw_adventure_4hum 1.svg";
 
+const question0 = {
+	type: "capital",
+	place: "Kuala Lumpur",
+	options: {
+		A: "Vietnam",
+		B: "Malaysia",
+		C: "Sweden",
+		D: "Austria",
+	},
+	correct: function () {
+		return this.options.B;
+	},
+};
+
+const question1 = {
+	type: "flag",
+	flag: "finland",
+	options: {
+		A: "Vietnam",
+		B: "Finland",
+		C: "Sweden",
+		D: "Austria",
+	},
+	correct: function () {
+		return this.options.B;
+	},
+};
+
 function App() {
-	const question = {
-		type: "capital",
-		place: "Kuala Lumpur",
-		options: {
-			A: "Vietnam",
-			B: "Malaysia",
-			C: "Sweden",
-			D: "Austria",
-		},
-		correct: function () {
-			return this.options.B;
-		},
-	};
+	const questions = [question0, question1];
+	const [questionIndex, setQuestionIndex] = useState(0);
+	const [question, setQuestion] = useState(question0);
 
 	const correctRef = useRef();
 	const incorrectRef = useRef({});
@@ -51,11 +69,9 @@ function App() {
 			} else {
 				option = (
 					<button
-						// onClick={() => console.log("clicked")}
 						onClick={() => setAnswer(question.options[key])}
 						key={key}
 						type="button"
-						// ref={incorrectRef}
 						ref={ref =>
 							(incorrectRef.current[question.options[key]] = ref)
 						}
@@ -138,13 +154,29 @@ function App() {
 	const handleSubmit = event => {
 		event.preventDefault();
 		console.log("next question");
+		setQuestionIndex(old => old + 1);
 	};
+
+	useEffect(() => {
+		setMoveOn(false);
+		setQuestion(questions[questionIndex]);
+		// eslint-disable-next-line
+	}, [questionIndex]);
 
 	return (
 		<section className="quiz">
 			<h1>Country Quiz</h1>
-			<img src={question_svg} alt="" />
-			<h2>{question.place} is the capital of</h2>
+			<img className="svg" src={question_svg} alt="" />
+			{question.type === "flag" ? (
+				<img src={require(`./media/${question.flag}.png`)} alt="" />
+			) : (
+				""
+			)}
+			{question.type === "capital" ? (
+				<h2>{question.place} is the capital of</h2>
+			) : (
+				<h2>Which country does this flag belong to?</h2>
+			)}
 			<form id="form" onSubmit={handleSubmit} className="options">
 				<Options />
 				{moveOn ? (
