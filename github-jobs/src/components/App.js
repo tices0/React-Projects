@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/style.css";
 import Search from "./Search";
 import Sidebar from "./Sidebar";
+import Jobs from "./Jobs";
 
 function App() {
 	return (
@@ -9,6 +10,7 @@ function App() {
 			<Search />
 			<main>
 				<Sidebar />
+				<Jobs />
 			</main>
 		</>
 	);
