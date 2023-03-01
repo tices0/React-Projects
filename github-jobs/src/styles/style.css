@@ -167,6 +167,11 @@ main {
 
 section.jobs-container {
   font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 section.jobs-container .jobs {
   display: flex;
@@ -255,4 +260,42 @@ section.jobs-container .jobs li .info .right .location i {
 section.jobs-container .jobs li .info .right .time,
 section.jobs-container .jobs li .info .right .time i {
   color: #b7bcce;
+}
+section.jobs-container nav {
+  align-self: flex-end;
+}
+section.jobs-container nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+section.jobs-container nav ul li {
+  border: 1.5px solid #e3eafd;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+section.jobs-container nav ul li:hover {
+  border-color: #1e86ff;
+}
+section.jobs-container nav ul li:hover a {
+  color: #1e86ff;
+}
+section.jobs-container nav ul li.selected {
+  background-color: #1e86ff;
+  border-color: #1e86ff;
+}
+section.jobs-container nav ul li.selected a {
+  color: #fff;
+}
+section.jobs-container nav ul li.break {
+  border: none;
 }/*# sourceMappingURL=style.css.map */

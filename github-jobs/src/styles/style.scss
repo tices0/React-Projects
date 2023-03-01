@@ -3,7 +3,7 @@ $text: #334680;
 $button: #1e86ff;
 $main-grey: #b9bdcf;
 $light-grey: #b7bcce;
-$light-blue:  #e3eafd;
+$light-blue: #e3eafd;
 
 @mixin flexCenter($direction) {
 	display: flex;
@@ -201,6 +201,8 @@ main {
 
 section.jobs-container {
 	font-family: "Roboto", sans-serif;
+	@include flexCenter(column);
+	justify-content: space-between;
 
 	.jobs {
 		@include flexCenter(column);
@@ -219,7 +221,7 @@ section.jobs-container {
 			cursor: pointer;
 
 			&:hover {
-				background-color:  $light-blue;
+				background-color: $light-blue;
 			}
 
 			.img-container {
@@ -281,6 +283,46 @@ section.jobs-container {
 					.time i {
 						color: $light-grey;
 					}
+				}
+			}
+		}
+	}
+
+	nav {
+		align-self: flex-end;
+
+		ul {
+			@include flexCenter(row);
+			gap: 0.5rem;
+
+			li {
+				border: 1.5px solid $light-blue;
+				height: 36px;
+				width: 36px;
+				cursor: pointer;
+				border-radius: 4px;
+				font-size: 12px;
+				@include flexCenter(row);
+
+				&:hover {
+					border-color: $button;
+
+					a {
+						color: $button;
+					}
+				}
+
+				&.selected {
+					background-color: $button;
+					border-color: $button;
+
+					a {
+						color: #fff;
+					}
+				}
+
+				&.break {
+					border: none;
 				}
 			}
 		}
