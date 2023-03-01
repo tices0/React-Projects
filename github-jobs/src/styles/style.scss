@@ -15,7 +15,6 @@ $light-grey: #b7bcce;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: "Roboto", sans-serif;
 }
 
 button {
@@ -23,10 +22,21 @@ button {
 	box-sizing: border-box;
 }
 
+i {
+	font-style: normal;
+}
+
+// general
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins", sans-serif;
+}
+
+#root {
+	padding: 4rem;
+	width: 100%;
 }
 
 // ===============
@@ -35,18 +45,20 @@ body {
 
 .title {
 	position: absolute;
-	left: 5rem;
+	left: 4rem;
+	top: calc(2rem - 18px);
 	font-weight: normal;
+	color: $title;
+	font-size: 24px;
 
 	i {
 		font-weight: bold;
 	}
 }
 
-#root {
-	padding: 5rem;
-	width: 100%;
-}
+// ===============
+// Search
+// ===============
 
 .search-container {
 	@include flexCenter(row);
@@ -54,15 +66,18 @@ body {
 	background: url(../media/backgroundImg.png);
 	padding: 2.5rem;
 	border-radius: 10px;
+	font-family: "Roboto", sans-serif;
 
 	.search-bar {
-		height: 2.5rem;
+		height: 3rem;
 		width: calc(100% - 300px);
 		@include flexCenter(row);
 		justify-content: space-between;
 		gap: 1rem;
 		background-color: #fff;
-		padding: 0.5rem;
+		padding: 0.25rem;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
 
 		::placeholder {
 			color: $main-grey;
@@ -70,13 +85,14 @@ body {
 
 		i {
 			color: $main-grey;
+			padding-left: 0.75rem;
 		}
 
 		.search {
-			height: 2rem;
+			height: 2.5rem;
 			width: 100%;
 			border: none;
-			font-size: 14px;
+			font-size: 14.5px;
 
 			&:focus {
 				outline: none;
@@ -87,12 +103,16 @@ body {
 		input[type="submit"] {
 			background-color: $button;
 			color: #fff;
-			height: 2rem;
+			height: 2.5rem;
 			width: 150px;
-			font-size: 14px;
+			font-size: 15px;
 			border: none;
 			border-radius: 4px;
 			cursor: pointer;
 		}
 	}
 }
+
+// ===============
+// Title
+// ===============

@@ -4,8 +4,11 @@ import "../styles/style.css";
 function App() {
 	const [search, setSearch] = useState();
 
-	const handleSumbit = event => {
+	const handleSumbit = async event => {
 		event.preventDefault();
+
+		const data = await getData();
+		console.log(data);
 	};
 
 	const getData = async () => {
@@ -16,8 +19,6 @@ function App() {
 		console.log(data);
 		return data;
 	};
-
-	getData();
 
 	// console.log(getData());
 

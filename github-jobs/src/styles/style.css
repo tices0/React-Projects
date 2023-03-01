@@ -2,12 +2,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
 }
 
 button {
   all: unset;
   box-sizing: border-box;
+}
+
+i {
+  font-style: normal;
 }
 
 body {
@@ -16,18 +19,21 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+#root {
+  padding: 4rem;
+  width: 100%;
+}
+
 .title {
   position: absolute;
-  left: 5rem;
+  left: 4rem;
+  top: calc(2rem - 18px);
   font-weight: normal;
+  color: #282538;
+  font-size: 24px;
 }
 .title i {
   font-weight: bold;
-}
-
-#root {
-  padding: 5rem;
-  width: 100%;
 }
 
 .search-container {
@@ -39,9 +45,10 @@ body {
   background: url(../media/backgroundImg.png);
   padding: 2.5rem;
   border-radius: 10px;
+  font-family: "Roboto", sans-serif;
 }
 .search-container .search-bar {
-  height: 2.5rem;
+  height: 3rem;
   width: calc(100% - 300px);
   display: flex;
   justify-content: center;
@@ -50,7 +57,9 @@ body {
   justify-content: space-between;
   gap: 1rem;
   background-color: #fff;
-  padding: 0.5rem;
+  padding: 0.25rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 .search-container .search-bar ::-moz-placeholder {
   color: #b9bdcf;
@@ -60,12 +69,13 @@ body {
 }
 .search-container .search-bar i {
   color: #b9bdcf;
+  padding-left: 0.75rem;
 }
 .search-container .search-bar .search {
-  height: 2rem;
+  height: 2.5rem;
   width: 100%;
   border: none;
-  font-size: 14px;
+  font-size: 14.5px;
 }
 .search-container .search-bar .search:focus {
   outline: none;
@@ -74,9 +84,9 @@ body {
 .search-container .search-bar input[type=submit] {
   background-color: #1e86ff;
   color: #fff;
-  height: 2rem;
+  height: 2.5rem;
   width: 150px;
-  font-size: 14px;
+  font-size: 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
