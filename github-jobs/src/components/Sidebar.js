@@ -3,7 +3,7 @@ import "../styles/style.css";
 
 function Sidebar() {
 	return (
-		<div className="sidebar">
+		<section className="sidebar">
 			<div className="full-time">
 				<input type="checkbox" name="full-time" id="full-time" />
 				<label htmlFor="full-time">Full Time</label>
@@ -54,7 +54,7 @@ function Sidebar() {
 					</li>
 				</section>
 			</div>
-		</div>
+		</section>
 	);
 }
 

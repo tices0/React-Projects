@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import "../styles/style.css";
 import ReactPaginate from "react-paginate";
 
@@ -8,8 +8,15 @@ for (let i = 0; i < 15; i++) {
 }
 
 function SingleJob({ currentItems }) {
+	const ref = createRef();
+	useEffect(() => {
+		console.log(ref.current.clientHeight);
+	});
+	// 147px
+	// 155px
+
 	return (
-		<ul className="jobs">
+		<ul ref={ref} className="jobs">
 			{currentItems &&
 				currentItems.map(item => (
 					<li key={item}>
@@ -38,6 +45,8 @@ function SingleJob({ currentItems }) {
 		</ul>
 	);
 }
+
+// let maxPerPage = 0;
 
 function Jobs({ itemsPerPage }) {
 	const [itemOffset, setItemOffset] = useState(0);
