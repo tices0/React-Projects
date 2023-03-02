@@ -203,6 +203,7 @@ section.jobs-container {
 	font-family: "Roboto", sans-serif;
 	@include flexCenter(column);
 	justify-content: space-between;
+	border-bottom: 1px solid red;
 
 	.jobs {
 		@include flexCenter(column);
@@ -303,6 +304,12 @@ section.jobs-container {
 				border-radius: 4px;
 				font-size: 12px;
 				@include flexCenter(row);
+
+				a {
+					width: 100%;
+					height: 100%;
+					@include flexCenter(row);
+				}
 
 				&:hover {
 					border-color: $button;

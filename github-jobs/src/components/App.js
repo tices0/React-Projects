@@ -10,7 +10,7 @@ function App() {
 			<Search />
 			<main>
 				<Sidebar />
-				<Jobs />
+				<Jobs itemsPerPage={2} />
 			</main>
 		</>
 	);

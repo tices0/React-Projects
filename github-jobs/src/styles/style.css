@@ -172,6 +172,7 @@ section.jobs-container {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  border-bottom: 1px solid red;
 }
 section.jobs-container .jobs {
   display: flex;
@@ -278,6 +279,14 @@ section.jobs-container nav ul li {
   cursor: pointer;
   border-radius: 4px;
   font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+section.jobs-container nav ul li a {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
