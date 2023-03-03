@@ -14,7 +14,7 @@ function App() {
 			<Search />
 			<main>
 				<Sidebar />
-				<Jobs itemsPerPage={0} />
+				<Jobs itemsPerPage={2} setJobView={setJobView} />
 			</main>
 		</>
 	);

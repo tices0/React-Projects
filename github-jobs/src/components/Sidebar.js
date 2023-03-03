@@ -11,9 +11,7 @@ function Sidebar() {
 			<div className="location-container">
 				<h2>Location</h2>
 				<div className="search">
-					{/* change this */}
-					<i className="fa-solid fa-briefcase"></i>
-					{/* change this */}
+					<i className='fa-solid fa-globe-americas'></i>
 					<input
 						type="text"
 						placeholder="City, state, zip code or country"

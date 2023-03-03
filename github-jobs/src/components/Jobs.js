@@ -7,7 +7,8 @@ for (let i = 0; i < 15; i++) {
 	items.push(i);
 }
 
-function SingleJob({ currentItems }) {
+function SingleJob(props) {
+	const { currentItems, setJobView } = props;
 	const ref = createRef();
 	useEffect(() => {
 		console.log(ref.current.clientHeight);
@@ -19,7 +20,7 @@ function SingleJob({ currentItems }) {
 		<ul ref={ref} className="jobs">
 			{currentItems &&
 				currentItems.map(item => (
-					<li key={item}>
+					<li key={item} onClick={() => setJobView(true)}>
 						<div className="img-container">
 							<p>not found {item}</p>
 						</div>
@@ -31,12 +32,12 @@ function SingleJob({ currentItems }) {
 							</div>
 							<div className="right">
 								<div className="location">
-									<i className="fa-solid fa-briefcase"></i>
+									<i className="fa-solid fa-globe-americas"></i>
 									New York
 								</div>
 								<div className="time">
-									<i className="fa-solid fa-briefcase"></i>5
-									days ago
+									<i className="fa-solid fa-clock"></i>5 days
+									ago
 								</div>
 							</div>
 						</div>
@@ -48,7 +49,8 @@ function SingleJob({ currentItems }) {
 
 // let maxPerPage = 0;
 
-function Jobs({ itemsPerPage }) {
+function Jobs(props) {
+	const { itemsPerPage, setJobView } = props;
 	const [itemOffset, setItemOffset] = useState(0);
 
 	// Simulate fetching items from another resources.
@@ -70,7 +72,7 @@ function Jobs({ itemsPerPage }) {
 
 	return (
 		<section className="jobs-container">
-			<SingleJob currentItems={currentItems} />
+			<SingleJob setJobView={setJobView} currentItems={currentItems} />
 			<nav>
 				<ReactPaginate
 					breakLabel="..." // turn this into font awesome ... icon

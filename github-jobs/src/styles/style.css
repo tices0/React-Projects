@@ -149,6 +149,9 @@ section.sidebar .search {
   height: 2.5rem;
   font-family: "Roboto", sans-serif;
 }
+section.sidebar .search i {
+  color: #b9bdcf;
+}
 section.sidebar .search input {
   font-size: 14.5px;
   height: 2rem;
