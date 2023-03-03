@@ -519,6 +519,12 @@ section.job-view {
 			}
 		}
 	}
+
+	main {
+		@include flexCenter(column);
+		align-items: flex-start;
+        justify-content: flex-start;
+	}
 }
 
 // ===============

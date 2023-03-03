@@ -442,4 +442,12 @@ section.job-view .sidebar li {
 }
 section.job-view .sidebar li a {
   padding-left: 0.5rem;
+}
+section.job-view main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }/*# sourceMappingURL=style.css.map */
