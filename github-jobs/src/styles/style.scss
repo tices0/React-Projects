@@ -58,7 +58,6 @@ body {
 main {
 	display: grid;
 	grid-template-columns: 380px 1fr;
-	grid-template-rows: 1fr;
 	gap: 2rem;
 	margin-top: 2rem;
 }
@@ -235,7 +234,7 @@ section.jobs-container {
 
 			.img-container {
 				background: #f2f2f2;
-				width: 100px;
+				min-width: 90px;
 				height: 90px;
 				border-radius: 4px;
 				@include flexCenter(row);
@@ -340,11 +339,134 @@ section.jobs-container {
 				&.break {
 					border: none;
 
-                    &:hover {
-                        border: 1.5px solid $button;
-                    }
+					&:hover {
+						border: 1.5px solid $button;
+					}
 				}
 			}
+		}
+	}
+}
+
+// MEDIA QUERIES
+
+@media only screen and (max-width: 1020px) {
+	// change position of location and time of each job
+	section.jobs-container {
+		.jobs li .info .right {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 920px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 200px);
+	}
+}
+
+@media only screen and (max-width: 890px) {
+	// change grid size to halves
+	main {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media only screen and (max-width: 840px) {
+	// move right info to under the left info
+	section.jobs-container .jobs li .info {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-start;
+			flex-direction: row;
+			gap: 1.5rem;
+		}
+	}
+
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 150px);
+	}
+}
+
+@media only screen and (max-width: 785px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 100px);
+	}
+}
+
+@media only screen and (max-width: 740px) {
+	// change to phone/ipad view
+	main {
+		grid-template-columns: 1fr;
+	}
+
+	// change job card design back to original
+	section.jobs-container .jobs li .info {
+		flex-direction: row;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-end;
+			flex-direction: row;
+			gap: 2rem;
+		}
+	}
+
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 50px);
+	}
+}
+
+@media only screen and (max-width: 680px) {
+    // make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 25px);
+	}
+}
+
+@media only screen and (max-width: 655px) {
+    // make search bar longer
+	.search-container .search-bar {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 630px) {
+    // make search bar longer
+	.search-container {
+		padding: 2.5rem 1rem;
+	}
+}
+
+@media only screen and (max-width: 620px) {
+	// change position of location and time of each job
+	section.jobs-container {
+		.jobs li .info .right {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 620px) {
+    // move right info to under the left info
+	section.jobs-container .jobs li .info {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-start;
+			flex-direction: row;
+			gap: 1.5rem;
 		}
 	}
 }

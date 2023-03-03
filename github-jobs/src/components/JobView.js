@@ -7,7 +7,8 @@ function JobView(props) {
 		<section className="job-view">
 			<div className="sidebar">
 				<button onClick={() => setJobView(false)}>
-					--- Back to search
+					<i className="fa-solid fa-long-arrow-alt-left"></i>
+					Back to search
 				</button>
 				<h2>How to apply</h2>
 				<p>

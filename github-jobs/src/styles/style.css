@@ -44,7 +44,6 @@ body {
 main {
   display: grid;
   grid-template-columns: 380px 1fr;
-  grid-template-rows: 1fr;
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -208,7 +207,7 @@ section.jobs-container .jobs li:hover {
 }
 section.jobs-container .jobs li .img-container {
   background: #f2f2f2;
-  width: 100px;
+  min-width: 90px;
   height: 90px;
   border-radius: 4px;
   display: flex;
@@ -318,4 +317,91 @@ section.jobs-container nav ul li.break {
 }
 section.jobs-container nav ul li.break:hover {
   border: 1.5px solid #1e86ff;
+}
+
+@media only screen and (max-width: 1020px) {
+  section.jobs-container .jobs li .info .right {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media only screen and (max-width: 920px) {
+  .search-container .search-bar {
+    width: calc(100% - 200px);
+  }
+}
+@media only screen and (max-width: 890px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 840px) {
+  section.jobs-container .jobs li .info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  section.jobs-container .jobs li .info .right {
+    align-self: flex-start;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+  .search-container .search-bar {
+    width: calc(100% - 150px);
+  }
+}
+@media only screen and (max-width: 785px) {
+  .search-container .search-bar {
+    width: calc(100% - 100px);
+  }
+}
+@media only screen and (max-width: 740px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+  section.jobs-container .jobs li .info {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  section.jobs-container .jobs li .info .right {
+    align-self: flex-end;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  .search-container .search-bar {
+    width: calc(100% - 50px);
+  }
+}
+@media only screen and (max-width: 680px) {
+  .search-container .search-bar {
+    width: calc(100% - 25px);
+  }
+}
+@media only screen and (max-width: 655px) {
+  .search-container .search-bar {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .search-container {
+    padding: 2.5rem 1rem;
+  }
+}
+@media only screen and (max-width: 620px) {
+  section.jobs-container .jobs li .info .right {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media only screen and (max-width: 620px) {
+  section.jobs-container .jobs li .info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  section.jobs-container .jobs li .info .right {
+    align-self: flex-start;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
 }/*# sourceMappingURL=style.css.map */
