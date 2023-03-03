@@ -11,10 +11,18 @@ function JobView(props) {
 					Back to search
 				</button>
 				<h2>How to apply</h2>
-				<p>
-					Please email a copy of your resume and online portfolio to
-					wes@kasisto.com & CC eric@kasisto.com
-				</p>
+				<p>Apply via Indeed</p>
+				<h2>Related links</h2>
+				<ul>
+					<li>
+						<a href="https://www.barclays.com/">barcleys.com</a>
+					</li>
+					<li>
+						<a href="https://www.google.com/search?ucbcb=1&q=Barclays&sa=X&ved=0ahUKEwikncn75cD9AhX3cWwGHZMYC9gQmJACCL0J">
+							See web results for Barclays
+						</a>
+					</li>
+				</ul>
 			</div>
 			<main></main>
 		</section>
