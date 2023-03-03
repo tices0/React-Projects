@@ -315,4 +315,7 @@ section.jobs-container nav ul li.selected a {
 }
 section.jobs-container nav ul li.break {
   border: none;
+}
+section.jobs-container nav ul li.break:hover {
+  border: 1.5px solid #1e86ff;
 }/*# sourceMappingURL=style.css.map */

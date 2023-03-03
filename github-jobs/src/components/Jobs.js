@@ -75,12 +75,12 @@ function Jobs(props) {
 			<SingleJob setJobView={setJobView} currentItems={currentItems} />
 			<nav>
 				<ReactPaginate
-					breakLabel="..." // turn this into font awesome ... icon
-					nextLabel=">" // change into icon
+					breakLabel={<i className="fa-solid fa-ellipsis"></i>} // turn this into font awesome ... icon
+					nextLabel={<i className="fa-solid fa-chevron-right"></i>}
 					onPageChange={handlePageClick}
 					pageRangeDisplayed={3}
 					pageCount={pageCount}
-					previousLabel="<" // change into icon
+					previousLabel={<i className="fa-solid fa-chevron-left"></i>}
 					renderOnZeroPageCount={null}
 					marginPagesDisplayed={1}
 				/>

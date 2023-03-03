@@ -339,6 +339,10 @@ section.jobs-container {
 
 				&.break {
 					border: none;
+
+                    &:hover {
+                        border: 1.5px solid $button;
+                    }
 				}
 			}
 		}
