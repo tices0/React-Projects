@@ -27,7 +27,7 @@ function JobView(props) {
 			<main>
 				<div className="top">
 					<h1>Front-End Software Engineer</h1>
-					<button>Full time</button>
+					<button className="full-time">Full time</button>
 				</div>
 				<div className="time">
 					<i className="fa-solid fa-clock"></i>5 days ago

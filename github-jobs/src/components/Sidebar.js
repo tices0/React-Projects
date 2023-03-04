@@ -5,8 +5,8 @@ function Sidebar() {
 	return (
 		<section className="sidebar">
 			<div className="full-time">
-				<input type="checkbox" name="full-time" id="full-time" />
-				<label htmlFor="full-time">Full Time</label>
+				<input type="checkbox" name="full-time-toggle" id="full-time-toggle" />
+				<label htmlFor="full-time-toggle">Full Time</label>
 			</div>
 			<div className="location-container">
 				<h2>Location</h2>

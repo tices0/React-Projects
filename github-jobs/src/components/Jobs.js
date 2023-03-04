@@ -28,7 +28,7 @@ function SingleJob(props) {
 							<div className="left">
 								<h6>New York University</h6>
 								<p>Senior Engineer</p>
-								<button>Full time</button>
+								<button className="full-time">Full time</button>
 							</div>
 							<div className="right">
 								<div className="location">
