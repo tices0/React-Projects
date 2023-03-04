@@ -183,4 +183,4 @@ const data = {
 const root = createRoot(document.getElementById("root"));
 root.render(<App data={data} />);
 
-console.log(window.innerWidth);
+console.log("width:", window.innerWidth);

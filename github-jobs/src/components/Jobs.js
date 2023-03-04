@@ -1,23 +1,12 @@
-import React, { createRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/style.css";
 import ReactPaginate from "react-paginate";
 
-// let items = [];
-// for (let i = 0; i < 15; i++) {
-// 	items.push(i);
-// }
-
 function SingleJob(props) {
 	const { currentItems, setJobView, setCurrentJob } = props;
-	const ref = createRef();
-	// useEffect(() => {
-	// 	console.log(ref.current.clientHeight);
-	// });
-	// 147px
-	// 155px
 
 	return (
-		<ul ref={ref} className="jobs">
+		<ul className="jobs">
 			{currentItems &&
 				currentItems.map((item, index) => (
 					<li
@@ -69,8 +58,6 @@ function SingleJob(props) {
 	);
 }
 
-// let maxPerPage = 0;
-
 function Jobs(props) {
 	const { itemsPerPage, setJobView, items, setCurrentJob } = props;
 	const [itemOffset, setItemOffset] = useState(0);
@@ -103,7 +90,7 @@ function Jobs(props) {
 			/>
 			<nav>
 				<ReactPaginate
-					breakLabel={<i className="fa-solid fa-ellipsis"></i>} // turn this into font awesome ... icon
+					breakLabel={<i className="fa-solid fa-ellipsis"></i>} 
 					nextLabel={<i className="fa-solid fa-chevron-right"></i>}
 					onPageChange={handlePageClick}
 					pageRangeDisplayed={3}

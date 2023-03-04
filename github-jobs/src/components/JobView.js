@@ -15,11 +15,12 @@ function JobView(props) {
 				<p>Apply {currentJob.via}</p>
 				{currentJob.related_links ? <h2>Related links</h2> : ""}
 				<ul>
-					{currentJob.related_links.map((link, index) => (
-						<li key={index}>
-							<a href={link.link}>{link.text}</a>
-						</li>
-					))}
+					{currentJob.related_links &&
+						currentJob.related_links.map((link, index) => (
+							<li key={index}>
+								<a href={link.link}>{link.text}</a>
+							</li>
+						))}
 				</ul>
 			</div>
 			<main>
