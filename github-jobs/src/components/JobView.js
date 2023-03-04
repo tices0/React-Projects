@@ -3,6 +3,7 @@ import "../styles/style.css";
 
 function JobView(props) {
 	const { setJobView, currentJob } = props;
+	const description = addParagraphs(currentJob.description);
 	return (
 		<section className="job-view">
 			<div className="sidebar">
@@ -56,10 +57,22 @@ function JobView(props) {
 						</div>
 					</div>
 				</div>
-				<p className="description">{currentJob.description}</p>
+				<div className="description">{description}</div>
 			</main>
 		</section>
 	);
 }
+
+const addParagraphs = text => {
+	const numberOfLineBreaks = (text.match(/\n/g) || []).length;
+	console.log(numberOfLineBreaks, "number of line breaks");
+	const list = text.split(/\n/g);
+	if (list) {
+		return (
+			<>{list && list.map((para, index) => <p key={index}>{para}</p>)}</>
+		);
+	}
+	return text;
+};
 
 export default JobView;

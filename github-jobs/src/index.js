@@ -58,7 +58,7 @@ const data = {
 			location: "London, UK",
 			via: "via Accor Careers",
 			description:
-				"Job Description\r\n\r\nWe treat our people like family and our guest like royalty!\r\n\r\nWe are looking for a Luggage Porter who will represent our brand by delivering and exceeding our guest expectations.\r\n\r\nWork Experience\r\n\r\nWhat we are looking for:\r\n• Previous experience as a Luggage Porter in a hotel would be beneficial but not essential\r\n• A smart and professional appearance\r\n• A positive attitude and good communication skills\r\n• A willingness to take on physically demanding job\r\n\r\nBenefits\r\n\r\nWhat do we offer:\r\n\r\nOur Luggage Porter receive some excellent Company benefits:\r\n• A very competitive salary\r\n• 28 days paid holiday with an extra 5 days, following 5 years’ service\r\n• Discounted hotel room rates across our hotels, for you and friends and family\r\n• Fantastic Training and Development opportunities\r\n• Uniform and Complimentary Dry Cleaning\r\n• Free Meals on shift\r\n• Unrivalled Career Progression prospects\r\n\r\nApply now to be our new Luggage Porter!",
+				"Job Description\nWe treat our people like family and our guest like royalty!\r\n\r\nWe are looking for a Luggage Porter who will represent our brand by delivering and exceeding our guest expectations.\r\n\r\nWork Experience\r\n\r\nWhat we are looking for:\r\n• Previous experience as a Luggage Porter in a hotel would be beneficial but not essential\r\n• A smart and professional appearance\r\n• A positive attitude and good communication skills\r\n• A willingness to take on physically demanding job\r\n\r\nBenefits\r\n\r\nWhat do we offer:\r\n\r\nOur Luggage Porter receive some excellent Company benefits:\r\n• A very competitive salary\r\n• 28 days paid holiday with an extra 5 days, following 5 years’ service\r\n• Discounted hotel room rates across our hotels, for you and friends and family\r\n• Fantastic Training and Development opportunities\r\n• Uniform and Complimentary Dry Cleaning\r\n• Free Meals on shift\r\n• Unrivalled Career Progression prospects\r\n\r\nApply now to be our new Luggage Porter!",
 			job_highlights: [
 				{
 					items: [
@@ -121,7 +121,7 @@ const data = {
 			location: "London, UK",
 			via: "via Uber",
 			description:
-				"Whether you're looking for part-time weekend jobs, Saturday jobs near you or Sunday jobs in London, consider making money flexibly with Uber instead. As an independent driver or courier, you're empowered to make money if and when you want, including on weekends.",
+				"Whether you're looking for part-time weekend jobs, Saturday jobs near you or Sunday jobs in London, consider making money flexibly with Uber instead. As an independent driver or courier, you're empowered to make money if and when you want, including on weekends.\nThis is a new line\nThis is another line\n- bullet point\n-another bullet point\n- another one",
 			job_highlights: [
 				{
 					items: [],

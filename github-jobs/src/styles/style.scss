@@ -584,6 +584,10 @@ section.job-view {
 		.description {
 			font-size: 16px;
 			line-height: 150%;
+
+            p {
+                margin-bottom: 1rem;
+            }
 		}
 	}
 }

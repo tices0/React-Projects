@@ -514,4 +514,7 @@ section.job-view main .company-info .info h2 {
 section.job-view main .description {
   font-size: 16px;
   line-height: 150%;
+}
+section.job-view main .description p {
+  margin-bottom: 1rem;
 }/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useState } from "react";
 import "../styles/style.css";
 import ReactPaginate from "react-paginate";
 
@@ -10,9 +10,9 @@ import ReactPaginate from "react-paginate";
 function SingleJob(props) {
 	const { currentItems, setJobView, setCurrentJob } = props;
 	const ref = createRef();
-	useEffect(() => {
-		console.log(ref.current.clientHeight);
-	});
+	// useEffect(() => {
+	// 	console.log(ref.current.clientHeight);
+	// });
 	// 147px
 	// 155px
 
@@ -25,7 +25,6 @@ function SingleJob(props) {
 						onClick={() => {
 							setJobView(true);
 							setCurrentJob(item);
-							console.log(item, "item");
 						}}
 					>
 						{"thumbnail" in item ? (
