@@ -3,7 +3,6 @@ import "../styles/style.css";
 
 function JobView(props) {
 	const { setJobView, currentJob } = props;
-	console.log(currentJob);
 	return (
 		<section className="job-view">
 			<div className="sidebar">
@@ -12,40 +11,50 @@ function JobView(props) {
 					Back to search
 				</button>
 				<h2>How to apply</h2>
-				<p>Apply </p>
-				<h2>Related links</h2>
+				<p>Apply {currentJob.via}</p>
+				{currentJob.related_links ? <h2>Related links</h2> : ""}
 				<ul>
-					<li>
-						<a href="https://www.barclays.com/">barcleys.com</a>
-					</li>
-					<li>
-						<a href="https://www.google.com/search?ucbcb=1&q=Barclays&sa=X&ved=0ahUKEwikncn75cD9AhX3cWwGHZMYC9gQmJACCL0J">
-							See web results for Barclays
-						</a>
-					</li>
+					{currentJob.related_links.map((link, index) => (
+						<li key={index}>
+							<a href={link.link}>{link.text}</a>
+						</li>
+					))}
 				</ul>
 			</div>
 			<main>
 				<div className="top">
-					<h1>Front-End Software Engineer</h1>
-					<button className="full-time">Full time</button>
+					<h1>{currentJob.title}</h1>
+					{currentJob.extensions.includes("Full-time") ? (
+						<button className="full-time">Full time</button>
+					) : (
+						""
+					)}
 				</div>
-				<div className="time">
-					<i className="fa-solid fa-clock"></i>5 days ago
-				</div>
+				{"posted_at" in currentJob.detected_extensions ? (
+					<div className="time">
+						<i className="fa-solid fa-clock"></i>
+						{currentJob.detected_extensions.posted_at}
+					</div>
+				) : (
+					""
+				)}
 				<div className="company-info">
 					<div className="img-container">
-						<p>not found</p>
+						{"thumbnail" in currentJob ? (
+							<img src={currentJob.thumbnail} alt="" />
+						) : (
+							<p>not found</p>
+						)}
 					</div>
 					<div className="info">
-						<h2>Kasisto</h2>
+						<h2>{currentJob.company_name}</h2>
 						<div className="location">
 							<i className="fa-solid fa-globe-americas"></i>
-							New York
+							{currentJob.location}
 						</div>
 					</div>
 				</div>
-				<p className="description">(description)</p>
+				<p className="description">{currentJob.description}</p>
 			</main>
 		</section>
 	);

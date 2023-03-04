@@ -25,6 +25,7 @@ function SingleJob(props) {
 						onClick={() => {
 							setJobView(true);
 							setCurrentJob(item);
+							console.log(item, "item");
 						}}
 					>
 						<div className="img-container">
@@ -70,7 +71,7 @@ function SingleJob(props) {
 // let maxPerPage = 0;
 
 function Jobs(props) {
-	const { itemsPerPage, setJobView, items } = props;
+	const { itemsPerPage, setJobView, items, setCurrentJob } = props;
 	const [itemOffset, setItemOffset] = useState(0);
 
 	console.log(items);
@@ -94,7 +95,11 @@ function Jobs(props) {
 
 	return (
 		<section className="jobs-container">
-			<SingleJob setJobView={setJobView} currentItems={currentItems} />
+			<SingleJob
+				setJobView={setJobView}
+				currentItems={currentItems}
+				setCurrentJob={setCurrentJob}
+			/>
 			<nav>
 				<ReactPaginate
 					breakLabel={<i className="fa-solid fa-ellipsis"></i>} // turn this into font awesome ... icon
