@@ -115,6 +115,37 @@ const data = {
 			},
 			job_id: "eyJqb2JfdGl0bGUiOiJCYWdnYWdlIEFnZW50IFNlcnZpY2UsIFVuaXRlZCBLaW5nZG9tIC0gTEhSIiwiaHRpZG9jaWQiOiIzbEoxb1NxdUY1QUFBQUFBQUFBQUFBPT0iLCJmYyI6IkVxSUNDdUlCUVVOUWQycHFVVjlaUmpKc1RsaG9SamhVTW04ek1WbHhlVXBNVGxaeGFrVjBibnBXUzBNMWVVSklNVWsyY0ZOU1IwaDJZa3hKVTFveVIzUTRia2syTW1SRlgyZ3pTVUZUVkhVdFZHcFBVRmhHZERsSE5XOVFPQzFXYTFsbmVUTlRiMjFRYTNCd2VWSlRZVWwwVjFOZldrbExObFozYlMxS1UzSktjbFYxTldWMk1HODRiMUJLUzBWbWFsWTFhV2hFVG1rMWMzQmlkMEUzZWtOTlpTMTZka3hCVVhSak5HRnViMDFRYzNGNU4ycDZORFpTZW5sVlZHVnpOemxPVEhrNFQzSXRlV0p0YnpBeVdIcERUbWRyUVd0SlFWOHdiVzAzTm5veGFFeExRV0YyUVJJWFFUTk5RMXBQVTFCQ1gyWnFjMlZOVUdzM1IzTjNRVEFhSWtGR1h6Wk5RVTl0VEY5Zk1XaGFRVmwzZVhwSGVFOXBZMDU0TFZNM2VUUlVOVkUiLCJmY3YiOiIzIiwiZmNfaWQiOiJmY181IiwiYXBwbHlfbGluayI6eyJ0aXRsZSI6IkFwcGx5IG9uIEpvYnMgQXQgQW1lcmljYW4gQWlybGluZXMiLCJsaW5rIjoiaHR0cHM6Ly9qb2JzLmFhLmNvbS9qb2IvTG9uZG9uLUZsZWV0LVNlcnZpY2UtQ2xlcmslMkMtVW5pdGVkLUtpbmdkb20tTEhSLUhOUy85MTg2MTYzMDAvP3V0bV9jYW1wYWlnbj1nb29nbGVfam9ic19hcHBseVx1MDAyNnV0bV9zb3VyY2U9Z29vZ2xlX2pvYnNfYXBwbHlcdTAwMjZ1dG1fbWVkaXVtPW9yZ2FuaWMifX0=",
 		},
+		{
+			title: "Research Assistant",
+			company_name: "London School of Hygiene & Tropical Medicine",
+			location: "London, UK",
+			via: "via Job Vacancies On Jobs.ac.uk",
+			description:
+				"The London School of Hygiene & Tropical Medicine (LSHTM) is a world-leading centre for research and postgraduate education in public and global health. Our mission is to improve health and health equity in the UK and worldwide; working in partnership to achieve excellence in public and global health research, education and translation of knowledge into policy and practice. \r\n\r\n An exciting opportunity has arisen for an early career researcher to join a rapidly growing and world-renowned research team - the Environmental Health Group at LSHTM. We are looking for a full-time Research Assistant for a fixed-term post, with opportunity to extend subject to funding.\r\n\r\nThe post holder will be based at LSHTM but will work closely with international partners and will be expected to maintain effective collaborations with research teams. The post holder will support ongoing public health research projects focused on understanding the impact of water, sanitation, and hygiene services on child health... This will involve data management and statistical analysis.\r\n\r\nThe successful applicant will have qualifications in public health, epidemiology, or a related field and experience in managing and analysing large datasets (R or Stata). Prior experience of working in large interdisciplinary teams is desirable. Further particulars are included in the attached job description.\r\n\r\nThe post is full-time and fixed-term for 3 months. Salary is on the Academic Grade 5 scale in the range £36,438 - £41,829 per annum (inclusive of London Weighting). The salary will be on the Academic scale, Grade 5 scale in the range £36,438 - £41,829 per annum (inclusive of London Weighting). The post will be subject to the LSHTM terms and conditions of service. Annual leave entitlement is 30 working days per year, pro rata for part time staff. In addition to this there are discretionary “Wellbeing Days”. Membership of the Pension Scheme is available.\r\n\r\nApplications should be made online via our website, which can be accessed by clicking 'Apply' above. Online applications will be accepted by the automated system until 10pm GMT on the closing date. Any queries regarding the application process may be addressed to jobs@lshtm.ac.uk.\r\n\r\nThe supporting statement section should set out how your qualifications, experience and training meet each of the selection criteria. Please provide one or more paragraphs addressing each criterion. The supporting statement is an essential part of the selection process and thus a failure to provide this information will mean that the application will not be considered. An answer to any of the criteria such as 'Please see attached CV' will not be considered acceptable.\r\n\r\nPlease note that if you are shortlisted and are unable to attend on the interview date it may not be possible to offer you an alternative date.\r\n\r\nFurther details:\r\n\r\nJob Description\r\n\r\nEmail details to a friend\r\n\r\nThe London School of Hygiene & Tropical Medicine is committed to being an equal opportunities employer. We believe that when people feel respected and included, they can be more creative, successful, and happier at work. While we have more work to do, we are committed to building an inclusive workplace, a community that everyone feels a part of, which is safe, respectful, supportive and enables all to reach their full potential.\r\n\r\n£36,438 to £41,829 per annum, inclusive of London Weighting (Grade 5",
+			job_highlights: [
+				{
+					items: [],
+				},
+			],
+			related_links: [
+				{
+					link: "https://www.lshtm.ac.uk/",
+					text: "lshtm.ac.uk",
+				},
+				{
+					link: "https://www.google.com/search?ucbcb=1&q=London+School+of+Hygiene+%26+Tropical+Medicine&sa=X&ved=0ahUKEwikncn75cD9AhX3cWwGHZMYC9gQmJACCNYM",
+					text: "See web results for London School of Hygiene & Tropical Medicine",
+				},
+			],
+			thumbnail:
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTakFwA1CDS7WKv22nwgLt4AQ8oKr7yXMqjGCpy&s=0",
+			extensions: ["4 days ago", "£36,438–£41,829 a year", "Full-time"],
+			detected_extensions: {
+				posted_at: "4 days ago",
+				schedule_type: "Full-time",
+			},
+			job_id: "eyJqb2JfdGl0bGUiOiJSZXNlYXJjaCBBc3Npc3RhbnQiLCJodGlkb2NpZCI6ImZTVXFtRzVwY3U0QUFBQUFBQUFBQUE9PSIsImZjIjoiRXFJQ0N1SUJRVU5RZDJwcVZHRk5XbkJhWDFWWGQwbFZaSFpJWlhoYVMySkJUVTlUUW1OVFVWTmllVVUwVlVod04wSXpRekpoT1RscGVVTnBRazlMYXpoclNXbElNMkpzZDAxWlJFVXpWRTlHVUMxRVNHWnFTRUZtTlVWclRXc3lTSFZPV0VaaVZVUTJYMGt3ZGs0MFlrNXBXbTVRUTNOU0xXOURlbU5DTWpJME5TMU9kSE16UzFSTWVrbEVTRWhFYzAxelNuQldOVFZuU21kRVRUTlhSblZCYjFOcFRGRjRValJGTW1Nd2VFMURUMnR4TjNCbE5IWlJOMWQzVnprd1dsQm5hV1l6WDFkT01uVlhhbEpITFVkd2MxTllXRmxaZGxwQmVXSlNhMHN3Y0RKTVUzTjVVUklYUVROTlExcFBVMUJDWDJacWMyVk5VR3MzUjNOM1FUQWFJa0ZHWHpaTlFWQlVTa1Y0V1ZCaGIwb3lkVGxyT1ZGS1dERnBNRlpLTkhkcFpWRSIsImZjdiI6IjMiLCJmY19pZCI6ImZjXzE3IiwiYXBwbHlfbGluayI6eyJ0aXRsZSI6IkFwcGx5IG9uIEpvYiBWYWNhbmNpZXMgT24gSm9icy5hYy51ayIsImxpbmsiOiJodHRwczovL3d3dy5qb2JzLmFjLnVrL2pvYi9DWFU5MDUvcmVzZWFyY2gtYXNzaXN0YW50P3V0bV9jYW1wYWlnbj1nb29nbGVfam9ic19hcHBseVx1MDAyNnV0bV9zb3VyY2U9Z29vZ2xlX2pvYnNfYXBwbHlcdTAwMjZ1dG1fbWVkaXVtPW9yZ2FuaWMifX0=",
+		},
 	],
 };
 

@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 // }
 
 function SingleJob(props) {
-	const { currentItems, setJobView } = props;
+	const { currentItems, setJobView, setCurrentJob } = props;
 	const ref = createRef();
 	useEffect(() => {
 		console.log(ref.current.clientHeight);
@@ -20,9 +20,19 @@ function SingleJob(props) {
 		<ul ref={ref} className="jobs">
 			{currentItems &&
 				currentItems.map((item, index) => (
-					<li key={index} onClick={() => setJobView(true)}>
+					<li
+						key={index}
+						onClick={() => {
+							setJobView(true);
+							setCurrentJob(item);
+						}}
+					>
 						<div className="img-container">
-							<p>not found {index}</p>
+							{"thumbnail" in item ? (
+								<img src={item.thumbnail} alt="" />
+							) : (
+								<p>not found</p>
+							)}
 						</div>
 						<div className="info">
 							<div className="left">
@@ -41,13 +51,14 @@ function SingleJob(props) {
 									<i className="fa-solid fa-globe-americas"></i>
 									{item.location}
 								</div>
-								<div className="time">
-									<i className="fa-solid fa-clock"></i>5 days
-									ago
-									{"posted_at" in item.detected_extensions
-										? "  yes"
-										: "  no"}
-								</div>
+								{"posted_at" in item.detected_extensions ? (
+									<div className="time">
+										<i className="fa-solid fa-clock"></i>
+										{item.detected_extensions.posted_at}
+									</div>
+								) : (
+									""
+								)}
 							</div>
 						</div>
 					</li>

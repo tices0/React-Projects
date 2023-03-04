@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/style.css";
 
 function JobView(props) {
-	const { setJobView } = props;
+	const { setJobView, currentJob } = props;
+	console.log(currentJob);
 	return (
 		<section className="job-view">
 			<div className="sidebar">
@@ -11,7 +12,7 @@ function JobView(props) {
 					Back to search
 				</button>
 				<h2>How to apply</h2>
-				<p>Apply via Indeed</p>
+				<p>Apply </p>
 				<h2>Related links</h2>
 				<ul>
 					<li>

@@ -84,6 +84,11 @@ main {
   font-size: 12px;
   color: #bdbdbd;
 }
+.img-container img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 
 .title {
   position: absolute;
