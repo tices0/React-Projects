@@ -90,7 +90,7 @@ main {
 .img-container {
 	background: #f2f2f2;
 	min-width: 90px;
-	height: 90px;
+	min-height: 90px;
 	border-radius: 4px;
 	@include flexCenter(row);
 
@@ -542,6 +542,37 @@ section.job-view {
 
 		.time {
 			font-size: 13px;
+		}
+
+		.company-info {
+			@include flexCenter(row);
+			gap: 1rem;
+			margin: 1.5rem 0;
+
+			.img-container {
+				min-width: 60px;
+				min-height: 60px;
+
+				p {
+					font-size: 11.5px;
+				}
+			}
+
+			.info {
+				@include flexCenter(column);
+				height: 100%;
+				justify-content: space-around;
+				align-items: flex-start;
+
+				h2 {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.description {
+			font-size: 16px;
+			line-height: 150%;
 		}
 	}
 }

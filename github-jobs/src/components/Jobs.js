@@ -2,10 +2,10 @@ import React, { createRef, useEffect, useState } from "react";
 import "../styles/style.css";
 import ReactPaginate from "react-paginate";
 
-let items = [];
-for (let i = 0; i < 15; i++) {
-	items.push(i);
-}
+// let items = [];
+// for (let i = 0; i < 15; i++) {
+// 	items.push(i);
+// }
 
 function SingleJob(props) {
 	const { currentItems, setJobView } = props;
@@ -19,25 +19,34 @@ function SingleJob(props) {
 	return (
 		<ul ref={ref} className="jobs">
 			{currentItems &&
-				currentItems.map(item => (
-					<li key={item} onClick={() => setJobView(true)}>
+				currentItems.map((item, index) => (
+					<li key={index} onClick={() => setJobView(true)}>
 						<div className="img-container">
-							<p>not found {item}</p>
+							<p>not found {index}</p>
 						</div>
 						<div className="info">
 							<div className="left">
-								<h6>New York University</h6>
-								<p>Senior Engineer</p>
-								<button className="full-time">Full time</button>
+								<h6>{item.company_name}</h6>
+								<p>{item.title}</p>
+								{item.extensions.includes("Full-time") ? (
+									<button className="full-time">
+										Full time
+									</button>
+								) : (
+									""
+								)}
 							</div>
 							<div className="right">
 								<div className="location">
 									<i className="fa-solid fa-globe-americas"></i>
-									New York
+									{item.location}
 								</div>
 								<div className="time">
 									<i className="fa-solid fa-clock"></i>5 days
 									ago
+									{"posted_at" in item.detected_extensions
+										? "  yes"
+										: "  no"}
 								</div>
 							</div>
 						</div>
@@ -50,8 +59,10 @@ function SingleJob(props) {
 // let maxPerPage = 0;
 
 function Jobs(props) {
-	const { itemsPerPage, setJobView } = props;
+	const { itemsPerPage, setJobView, items } = props;
 	const [itemOffset, setItemOffset] = useState(0);
+
+	console.log(items);
 
 	// Simulate fetching items from another resources.
 	// (This could be items from props; or items loaded in a local state

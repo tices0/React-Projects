@@ -4,7 +4,7 @@ import "../styles/style.css";
 function Sidebar() {
 	return (
 		<section className="sidebar">
-			<div className="full-time">
+			<div className="full-time-toggle">
 				<input type="checkbox" name="full-time-toggle" id="full-time-toggle" />
 				<label htmlFor="full-time-toggle">Full Time</label>
 			</div>
