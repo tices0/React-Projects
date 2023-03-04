@@ -28,13 +28,15 @@ function SingleJob(props) {
 							console.log(item, "item");
 						}}
 					>
-						<div className="img-container">
-							{"thumbnail" in item ? (
+						{"thumbnail" in item ? (
+							<div className="img-container">
 								<img src={item.thumbnail} alt="" />
-							) : (
+							</div>
+						) : (
+							<div className="not-found">
 								<p>not found</p>
-							)}
-						</div>
+							</div>
+						)}
 						<div className="info">
 							<div className="left">
 								<h6>{item.company_name}</h6>

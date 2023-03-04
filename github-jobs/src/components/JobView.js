@@ -39,13 +39,15 @@ function JobView(props) {
 					""
 				)}
 				<div className="company-info">
-					<div className="img-container">
-						{"thumbnail" in currentJob ? (
+					{"thumbnail" in currentJob ? (
+						<div className="img-container">
 							<img src={currentJob.thumbnail} alt="" />
-						) : (
+						</div>
+					) : (
+						<div className="not-found">
 							<p>not found</p>
-						)}
-					</div>
+						</div>
+					)}
 					<div className="info">
 						<h2>{currentJob.company_name}</h2>
 						<div className="location">

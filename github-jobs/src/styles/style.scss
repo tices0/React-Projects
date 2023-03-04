@@ -87,6 +87,7 @@ main {
 	margin-right: 0.35rem;
 }
 
+.not-found,
 .img-container {
 	background: #f2f2f2;
 	min-width: 90px;
@@ -101,9 +102,12 @@ main {
 	}
 
 	img {
-		width: 100%;
 		object-fit: contain;
 	}
+}
+
+.img-container {
+	background-color: #fff;
 }
 
 // ===============
@@ -555,6 +559,7 @@ section.job-view {
 			gap: 1rem;
 			margin: 1.5rem 0;
 
+			.not-found,
 			.img-container {
 				min-width: 60px;
 				min-height: 60px;
