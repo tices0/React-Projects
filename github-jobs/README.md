@@ -82,6 +82,7 @@ $ npm start
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
 - [React Paginate](https://www.npmjs.com/package/react-paginate)
+- [Nominatim Reverse Geolocation](https://nominatim.org/release-docs/latest/api/Reverse/)
 
 ## Contact
 

@@ -18,7 +18,7 @@ function App(props) {
 			<main>
 				<Sidebar />
 				<Jobs
-					itemsPerPage={3}
+					itemsPerPage={5}
 					setJobView={setJobView}
 					items={data.jobs_results}
                     setCurrentJob={setCurrentJob}

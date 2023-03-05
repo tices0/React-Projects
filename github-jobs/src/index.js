@@ -180,6 +180,51 @@ const data = {
 	],
 };
 
+const getPosition = async () => {
+	if (navigator.geolocation) {
+		// get location of user
+		navigator.geolocation.getCurrentPosition(async position => {
+			const lon = position.coords.longitude;
+			const lat = position.coords.latitude;
+			console.log(lon, lat);
+			const res = await fetch(
+				`https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`,
+			);
+			const json = await res.json();
+
+			// get city closest to user
+			let rtn;
+			if (json.features[0].properties.address.city)
+				rtn = json.features[0].properties.address.city;
+			else if (json.features[0].properties.address.town)
+				rtn = json.features[0].properties.address.town;
+			else if (json.features[0].properties.address.county)
+				rtn = json.features[0].properties.address.county;
+			else if (json.features[0].properties.address.state)
+				rtn = json.features[0].properties.address.state;
+			else return null;
+			console.log(rtn, "rtn");
+			return rtn;
+		});
+	}
+	console.log("return null");
+	return null;
+};
+
+const trial = async () => {
+	const test = await getPosition();
+	console.log("test:", test);
+};
+
+trial();
+
+const getIntial = async () => {
+	const res = await fetch();
+	const json = await res.json();
+	console.log(json);
+	return json;
+};
+
 const root = createRoot(document.getElementById("root"));
 root.render(<App data={data} />);
 
