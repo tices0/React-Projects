@@ -173,7 +173,7 @@ section.sidebar h2 {
   margin: 1rem 0;
   font-size: 16px;
 }
-section.sidebar .full-time-checkbox,
+section.sidebar .from-home-checkbox,
 section.sidebar li {
   display: flex;
   justify-content: center;

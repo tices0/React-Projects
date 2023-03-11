@@ -4,9 +4,9 @@ import "../styles/style.css";
 function Sidebar() {
 	return (
 		<section className="sidebar">
-			<div className="full-time-toggle">
-				<input type="checkbox" name="full-time-toggle" id="full-time-toggle" />
-				<label htmlFor="full-time-toggle">Full Time</label>
+			<div className="from-home-toggle">
+				<input type="checkbox" name="from-home-toggle" id="from-home-toggle" />
+				<label htmlFor="from-home-toggle">Full Time</label>
 			</div>
 			<div className="location-container">
 				<h2>Location</h2>
