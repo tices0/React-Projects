@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./components/App";
+import App from "./App";
 
 const data = {
 	search_metadata: {
@@ -180,13 +180,14 @@ const data = {
 	],
 };
 
+let test;
+
 const getPosition = async () => {
 	if (navigator.geolocation) {
 		// get location of user
 		navigator.geolocation.getCurrentPosition(async position => {
 			const lon = position.coords.longitude;
 			const lat = position.coords.latitude;
-			console.log(lon, lat);
 			const res = await fetch(
 				`https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}`,
 			);
@@ -203,29 +204,55 @@ const getPosition = async () => {
 			else if (json.features[0].properties.address.state)
 				rtn = json.features[0].properties.address.state;
 			else return null;
-			console.log(rtn, "rtn");
+			console.log("city:", rtn);
+			test = rtn;
 			return rtn;
 		});
 	}
-	console.log("return null");
-	return null;
+	return "outside the if statement";
 };
 
-const trial = async () => {
-	const test = await getPosition();
+console.log(getPosition());
+
+const getCity = async () => {
+	// const test = await getPosition();
+	try {
+		const test2 = await getPosition();
+		console.log("test 2:", test2);
+	} catch (error) {
+		console.error(error);
+	}
+	// while (typeof test === "undefined") {
+	// console.log("waiting...");
+	// await new Promise(resolve => setTimeout(, 250));
+	// setTimeout(trial, 250);
+	// }
 	console.log("test:", test);
+	// console.log("test:", test);
 };
 
-trial();
+getCity();
 
-const getIntial = async () => {
-	const res = await fetch();
-	const json = await res.json();
-	console.log(json);
-	return json;
-};
+// const getIntial = async () => {
+// 	const res = await fetch();
+// 	const json = await res.json();
+// 	console.log(json);
+// 	return json;
+// };
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App data={data} />);
 
 console.log("width:", window.innerWidth);
+
+// get current location of user to find closest city
+// use closest city to find all jobs in that city (jobs in [City])
+// set intial data to city to render all jobs
+
+// -- check whether description paragraphing works
+
+// add search value to job query (can include location in query)
+// add location info from sidebar into job query
+// 	- search bar overides any radio clicked
+//  - radio value added to query
+// add full time toggle to job query
