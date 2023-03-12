@@ -7,7 +7,7 @@ import JobView from "./components/JobView";
 import { getIntial, getData } from ".";
 import { Loading } from "react-loading-dot";
 
-function App(props) {
+function App() {
 	const [jobView, setJobView] = useState(false);
 	const [currentJob, setCurrentJob] = useState();
 	const [data, setData] = useState();
