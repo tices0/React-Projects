@@ -65,8 +65,6 @@ function JobView(props) {
 }
 
 const addParagraphs = text => {
-	const numberOfLineBreaks = (text.match(/\n/g) || []).length;
-	console.log(numberOfLineBreaks, "number of line breaks");
 	const list = text.split(/\n/g);
 	if (list) {
 		return (

@@ -83,6 +83,8 @@ $ npm start
 
 - [React Paginate](https://www.npmjs.com/package/react-paginate)
 - [Nominatim Reverse Geolocation](https://nominatim.org/release-docs/latest/api/Reverse/)
+- [Google Jobs API](https://serpapi.com/google-jobs-api)
+- [React Loading Dot](https://www.npmjs.com/package/react-loading-dot)
 
 ## Contact
 

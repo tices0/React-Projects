@@ -1,26 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/style.css";
 
-function Search() {
-	const [search, setSearch] = useState();
+function Search(props) {
+	const { search, setSearch, setUpdate } = props;
 
 	const handleSumbit = async event => {
 		event.preventDefault();
-
-		// const data = await getData();
-		// console.log(data);
+		setUpdate(true);
 	};
-
-	// const getData = async () => {
-	// 	const res = await fetch(
-	// 		`https://serpapi.com/search.json?engine=google_jobs&q=barista&hl=en`,
-	// 	);
-	// 	const data = await res.json();
-	// 	console.log(data);
-	// 	return data;
-	// };
-
-	// console.log(getData());
 
 	return (
 		<div className="search-container">
@@ -31,7 +18,9 @@ function Search() {
 					placeholder="Title, companies, expertise or benefits"
 					className="search"
 					value={search}
+					// set search varaible to search value
 					onChange={event => setSearch(event.target.value)}
+					required
 				/>
 				<input type="submit" value="Search" />
 			</form>
