@@ -2,6 +2,13 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 import App from "./App";
+// import "../data.json";
+import data from "./data.json";
+
+console.log(data);
+
+// const data = fetch('./data.json')
+// console.log(data)
 
 const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<App comments={data.comments} user={data.currentUser} />);
