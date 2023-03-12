@@ -4,7 +4,7 @@ import Search from './components/Search';
 import Sidebar from './components/Sidebar';
 import Jobs from './components/Jobs';
 import JobView from './components/JobView';
-import Loaded from './components/Loading';
+import { Loading } from 'react-loading-dot';
 
 function App(props) {
 	const { data, loaded } = props;
@@ -28,7 +28,7 @@ function App(props) {
 					/>
 				) : (
 					<div className="loading">
-						<Loaded />
+						<Loading background="#334680" margin="0.5rem" size="2.5rem" />
 					</div>
 				)}
 			</main>
