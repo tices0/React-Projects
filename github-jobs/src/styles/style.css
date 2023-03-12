@@ -218,6 +218,14 @@ section.sidebar .options li {
   margin-bottom: 0.5rem;
 }
 
+.loading {
+  width: 100%;
+  position: relative;
+}
+.loadingdiv:only-child {
+  position: absolute;
+}
+
 section.jobs-container {
   font-family: "Roboto", sans-serif;
   display: flex;
