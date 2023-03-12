@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">Github Jobs</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -26,33 +26,25 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+-   [Overview](#overview)
+    -   [Built With](#built-with)
+-   [Features](#features)
+-   [How to use](#how-to-use)
+-   [Contact](#contact)
+-   [Acknowledgements](#acknowledgements)
 
 <!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+![screenshot](./src/media/screenshot.png)
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
-- [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+-   [React](https://reactjs.org/)
+-   [SCSS](https://sass-lang.com/)
 
 ## Features
 
@@ -68,7 +60,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/tices0/React-Projects/github-jobs
 
 # Install dependencies
 $ npm install
@@ -77,17 +69,41 @@ $ npm install
 $ npm start
 ```
 
+After the page has loaded, you will see a list of jobs near the _city closest you_. Only 5 cities are shown at once, to see more use the **navigation** at the bottom.
+
+Each job shows:
+
+-   the company logo
+-   the company name
+-   the job title
+-   the job's location
+-   the job's posted time
+
+There is also a `Full Time` tag added to jobs that offer full time positions.
+
+To see a _job's description_, click on the job and you will be shown a sidebar with **how to apply** and the job's **related links**, and on the right there will be the job's **description**. Click on the `Back to search` button on the top left to go back to the previous page.
+
+You can search for jobs using:
+
+-   **keywords** in the search bar at the top
+-   the **location** search bar to specify a location
+-   one of the options under the location search bar
+
+Use the `From Home` checkbox to only see _jobs that can be done remotely_.
+
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
 
-- [React Paginate](https://www.npmjs.com/package/react-paginate)
-- [Nominatim Reverse Geolocation](https://nominatim.org/release-docs/latest/api/Reverse/)
-- [Google Jobs API](https://serpapi.com/google-jobs-api)
-- [React Loading Dot](https://www.npmjs.com/package/react-loading-dot)
+-   [Font Awesome](https://fontawesome.com/)
+-   [React Paginate](https://www.npmjs.com/package/react-paginate)
+-   [Nominatim Reverse Geolocation](https://nominatim.org/release-docs/latest/api/Reverse/)
+-   [Google Jobs API](https://serpapi.com/google-jobs-api)
+-   [React Loading Dot](https://www.npmjs.com/package/react-loading-dot)
+-   [Firebase Hosting](https://firebase.google.com/)
 
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+<!-- -   Website [your-website.com](https://{your-web-site-link}) -->
+
+-   GitHub [@tices0](https://{github.com/ytices0})
