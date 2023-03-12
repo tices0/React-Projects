@@ -1,1 +1,10 @@
-/*# sourceMappingURL=style.css.map */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+}/*# sourceMappingURL=style.css.map */
