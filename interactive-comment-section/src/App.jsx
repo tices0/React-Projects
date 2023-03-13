@@ -16,7 +16,7 @@ function App({ comments, user }) {
 								<div className="top">
 									<div className="left">
 										<img
-											src={comment.user.image.png}
+											src={require(`${comment.user.image.png}`)}
 											alt=""
 										/>
 										<h6 className="username">

@@ -33,6 +33,10 @@ body {
 	padding: 3rem;
 }
 
+img {
+	width: 100%;
+}
+
 // =============
 // Comment
 // =============
@@ -53,19 +57,21 @@ ul.comments {
 
 		.score {
 			background-color: $light-grey;
-			padding-top: 0.75rem;
-			padding-bottom: 0.75rem;
+			// padding-top: 0.75rem;
+			// padding-bottom: 0.75rem;
 			width: 100px;
 			border-radius: 10px;
 			@include flexCenter(column);
-			gap: 0.75rem;
-			font-weight: 500;
+			gap: 0.25rem;
 
 			i {
 				color: $greyish-blue;
 				font-size: 12px;
+				font-weight: 900;
 				width: 100%;
+				height: 2rem;
 				text-align: center;
+				@include flexCenter(row);
 
 				&:hover {
 					color: $moderate-blue;
@@ -75,6 +81,16 @@ ul.comments {
 
 			.value {
 				color: $moderate-blue;
+				font-weight: 500;
+			}
+		}
+
+		section {
+			@include flexCenter(column);
+			align-items: flex-start;
+
+			.top {
+				@include flexCenter(row);
 			}
 		}
 	}
