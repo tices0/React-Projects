@@ -27,10 +27,10 @@ function App({ comments, user }) {
 										</p>
 									</div>
 									<div className="right">
-										<div className="reply">
+										<button className="reply">
 											<i className="fas fa-reply"></i>
 											Reply
-										</div>
+										</button>
 									</div>
 								</div>
 								<p className="content">{comment.content}</p>

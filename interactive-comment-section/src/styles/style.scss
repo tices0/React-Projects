@@ -18,6 +18,10 @@ $white: hsl(0, 0%, 100%);
 	flex-direction: $direction;
 }
 
+button {
+	all: unset;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -88,9 +92,43 @@ ul.comments {
 		section {
 			@include flexCenter(column);
 			align-items: flex-start;
+			gap: 1rem;
 
 			.top {
 				@include flexCenter(row);
+				justify-content: space-between;
+				width: 100%;
+
+				img {
+					width: 2rem;
+				}
+
+				.left,
+				.right {
+					@include flexCenter(row);
+					gap: 1rem;
+				}
+
+				.time {
+					color: $greyish-blue;
+				}
+
+				.reply {
+					color: $moderate-blue;
+					cursor: pointer;
+
+					i {
+						margin-right: 0.5rem;
+					}
+				}
+
+				.delete {
+					color: $soft-red;
+				}
+			}
+
+			.content {
+				color: $greyish-blue;
 			}
 		}
 	}
