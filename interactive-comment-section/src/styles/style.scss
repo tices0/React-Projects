@@ -45,6 +45,7 @@ img {
 
 #root {
 	@include flexCenter(column);
+	gap: 2rem;
 	padding: 0 calc(300px - 4rem);
 }
 
@@ -277,7 +278,7 @@ form {
 	border-radius: 6px;
 	padding: 1.25rem;
 	width: 100%;
-	margin-top: 1.25rem;
+	margin-top: -0.75rem;
 
 	img {
 		width: 2.5rem;

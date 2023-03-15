@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Replies from "./Replies";
+import AddComment from "./AddComment";
 import { user } from "..";
 
 function Comments({ comment, index }) {
+	const [showReplyForm, setShowReplyForm] = useState({});
+
+	const replyButtonClicked = key => {
+		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
+	};
+
 	return (
 		<>
 			<li className="comment" key={index}>
@@ -42,7 +49,10 @@ function Comments({ comment, index }) {
 									</button>
 								</>
 							) : (
-								<button className="reply">
+								<button
+									className="reply"
+									onClick={() => replyButtonClicked(index)}
+								>
 									<i className="fas fa-reply"></i>
 									Reply
 								</button>
@@ -61,6 +71,7 @@ function Comments({ comment, index }) {
 					</p>
 				</section>
 			</li>
+			{showReplyForm[index] ? <AddComment /> : ""}
 			{comment.replies && comment.replies.length > 0 ? (
 				<Replies comment={comment} />
 			) : (
