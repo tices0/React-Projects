@@ -16,6 +16,7 @@ body {
   font-size: 16px;
   background-color: hsl(228, 33%, 97%);
   padding: 3rem;
+  overflow-x: hidden;
 }
 
 img {
@@ -30,6 +31,11 @@ img {
   padding: 0 calc(300px - 4rem);
 }
 
+@media screen and (min-width: 570px) {
+  #root {
+    padding: 0;
+  }
+}
 ul.comments {
   display: flex;
   justify-content: center;
@@ -38,6 +44,7 @@ ul.comments {
   gap: 1.25rem;
 }
 ul.comments .comment {
+  position: relative;
   background-color: hsl(0, 0%, 100%);
   border-radius: 6px;
   display: flex;
@@ -92,7 +99,7 @@ ul.comments .comment section .top {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
 }
 ul.comments .comment section .top img {
@@ -135,6 +142,9 @@ ul.comments .comment section .top .time {
 ul.comments .comment section .top .right {
   font-weight: 500;
   gap: 1.5rem;
+  position: absolute;
+  top: 1.7rem;
+  right: 1.5rem;
 }
 ul.comments .comment section .top .right button {
   color: hsl(238, 40%, 52%);
@@ -161,6 +171,28 @@ ul.comments .comment section .content .replying-to {
   cursor: pointer;
 }
 
+@media screen and (max-width: 570px) {
+  ul.comments .comment {
+    flex-direction: column-reverse;
+  }
+  ul.comments .comment .score {
+    flex-direction: row;
+    gap: 0.5rem;
+    max-width: unset;
+    min-width: unset;
+    min-height: 40px;
+    max-height: 40px;
+    align-self: flex-start;
+  }
+  ul.comments .comment .score i {
+    width: 2rem;
+    height: auto;
+  }
+  ul.comments .comment section .top .right {
+    top: unset;
+    bottom: 2rem;
+  }
+}
 ul.replies {
   display: flex;
   justify-content: center;

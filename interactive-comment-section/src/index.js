@@ -5,6 +5,7 @@ import App from "./App";
 import data from "./data.json";
 
 console.log(data);
+console.log(window.innerWidth);
 
 export const user = data.currentUser;
 
