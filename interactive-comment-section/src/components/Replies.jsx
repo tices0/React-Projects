@@ -1,8 +1,6 @@
 import React from "react";
 import Comments from "./Comment";
 
-// fix reply section design
-
 function Replies({ comment }) {
 	return (
 		<ul className="replies">

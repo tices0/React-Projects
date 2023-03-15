@@ -104,6 +104,7 @@ ul.comments {
 
 				img {
 					width: 2rem;
+					cursor: pointer;
 				}
 
 				.left,
@@ -117,6 +118,7 @@ ul.comments {
 					color: $dark-blue;
 					@include flexCenter(row);
 					gap: 0.5rem;
+					cursor: pointer;
 
 					.you-tag {
 						color: $white;
@@ -182,18 +184,13 @@ ul.replies {
 	height: 100%;
 
 	.line {
-		width: 50px;
-		height: 100%;
-		background-color: $light-greyish-blue;
-		border: 1px solid red;
-		margin: 0 2rem;
-	}
-
-	.comment {
-		width: 100%;
+		width: 5px;
+		background-color: $light-grey;
+		margin: 0 2.5rem;
+		align-self: stretch;
 	}
 }
 
 // =============
-//
+//	
 // =============
