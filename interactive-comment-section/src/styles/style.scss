@@ -116,6 +116,18 @@ ul.comments {
 				.username {
 					font-weight: 500;
 					color: $dark-blue;
+					@include flexCenter(row);
+					gap: 0.5rem;
+
+					.you-tag {
+						color: $white;
+						background-color: $moderate-blue;
+						border-radius: 2px;
+						padding: 0.2rem 0.3rem;
+						padding-top: 0.1rem;
+						font-size: 14px;
+						@include flexCenter(row);
+					}
 				}
 
 				.time {
