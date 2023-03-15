@@ -1,5 +1,13 @@
 import React from "react";
 import Replies from "./Replies";
+import { user } from "..";
+
+// add extra designs for user
+// - you tag //
+// - edit instead of reply
+// - delete button
+
+// add user tag to replies //
 
 function Comments({ comment, index }) {
 	return (
@@ -19,6 +27,12 @@ function Comments({ comment, index }) {
 							/>
 							<h6 className="username">
 								{comment.user.username}
+								<br />
+								{user.username === comment.user.username ? (
+									<div className="you-tag">you</div>
+								) : (
+									""
+								)}
 							</h6>
 							<p className="time">{comment.createdAt}</p>
 						</div>
@@ -29,7 +43,16 @@ function Comments({ comment, index }) {
 							</button>
 						</div>
 					</div>
-					<p className="content">{comment.content}</p>
+					<div className="content">
+						{comment.replyingTo ? (
+							<i className="replying-to">
+								@{comment.replyingTo}{" "}
+							</i>
+						) : (
+							""
+						)}
+						<p>{comment.content}</p>
+					</div>
 				</section>
 			</li>
 			{comment.replies && comment.replies.length > 0 ? (

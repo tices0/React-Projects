@@ -21,6 +21,10 @@ img {
   width: 100%;
 }
 
+#root {
+  text-align: center;
+}
+
 ul.comments {
   width: 100%;
   display: flex;

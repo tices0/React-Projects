@@ -1,7 +1,12 @@
 import React from "react";
 import Comments from "./components/Comment";
+// import { user } from ".";
 
-function App({ comments, user }) {
+// add textarea section at the bottom
+// add functionality to button clicks
+// - reply button causes text area to show
+
+function App({ comments }) {
 	return (
 		<>
 			<ul className="comments">

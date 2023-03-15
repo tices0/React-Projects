@@ -6,5 +6,7 @@ import data from "./data.json";
 
 console.log(data);
 
+export const user = data.currentUser;
+
 const root = createRoot(document.getElementById("root"));
-root.render(<App comments={data.comments} user={data.currentUser} />);
+root.render(<App comments={data.comments} />);
