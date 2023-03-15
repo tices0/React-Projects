@@ -9,11 +9,11 @@ button {
   list-style-type: none;
   font-size: 16px;
   font-style: normal;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
   font-size: 16px;
-  font-family: "Rubik", sans-serif;
   background-color: hsl(228, 33%, 97%);
   padding: 3rem;
 }
@@ -26,7 +26,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   padding: 0 calc(300px - 4rem);
 }
 
@@ -39,7 +39,7 @@ ul.comments {
 }
 ul.comments .comment {
   background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -173,4 +173,50 @@ ul.replies .line {
   background-color: hsl(223, 19%, 93%);
   margin: 0 2.5rem;
   align-self: stretch;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 6px;
+  padding: 1.25rem;
+  width: 100%;
+  margin-top: 1.25rem;
+}
+form img {
+  width: 2.5rem;
+}
+form .textarea {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1.5px solid hsl(223, 19%, 93%);
+  outline: none;
+  width: 100%;
+  min-height: 80px;
+  overflow: auto;
+}
+form .textarea:focus {
+  border-color: hsl(211, 10%, 45%);
+}
+form .textarea:empty:not(:focus):before {
+  content: "Add a comment...";
+  color: hsl(211, 10%, 45%);
+}
+form .submit {
+  border: none;
+  background-color: hsl(238, 40%, 52%);
+  color: hsl(0, 0%, 100%);
+  border-radius: 7px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+form .submit:hover {
+  background-color: hsl(239, 57%, 85%);
 }/*# sourceMappingURL=style.css.map */

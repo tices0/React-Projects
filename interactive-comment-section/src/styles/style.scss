@@ -29,11 +29,11 @@ button {
 	list-style-type: none;
 	font-size: 16px;
 	font-style: normal;
+	font-family: "Rubik", sans-serif;
 }
 
 body {
 	font-size: 16px;
-	font-family: "Rubik", sans-serif;
 	background-color: $very-light-grey;
 	padding: 3rem;
 }
@@ -43,7 +43,7 @@ img {
 }
 
 #root {
-	@include flexCenter(row);
+	@include flexCenter(column);
 	padding: 0 calc(300px - 4rem);
 }
 
@@ -57,7 +57,7 @@ ul.comments {
 
 	.comment {
 		background-color: $white;
-		border-radius: 5px;
+		border-radius: 6px;
 		@include flexCenter(row);
 		justify-content: flex-start;
 		gap: 1.25rem;
@@ -192,5 +192,58 @@ ul.replies {
 }
 
 // =============
-//	
+// Add Comment
+// =============
+
+form {
+	@include flexCenter(row);
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+	background-color: $white;
+	border-radius: 6px;
+	padding: 1.25rem;
+	width: 100%;
+	margin-top: 1.25rem;
+
+	img {
+		width: 2.5rem;
+	}
+
+	.textarea {
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		border: 1.5px solid $light-grey;
+		outline: none;
+		width: 100%;
+		min-height: 80px;
+		overflow: auto;
+
+		&:focus {
+			border-color: $greyish-blue;
+		}
+
+		&:empty:not(:focus):before {
+			content: "Add a comment...";
+			color: $greyish-blue;
+		}
+	}
+
+	.submit {
+		border: none;
+		background-color: $moderate-blue;
+		color: $white;
+		border-radius: 7px;
+		padding: 0.7rem 1.5rem;
+		cursor: pointer;
+		font-weight: 500;
+
+		&:hover {
+			background-color: $light-greyish-blue;
+		}
+	}
+}
+
+// =============
+//
 // =============
