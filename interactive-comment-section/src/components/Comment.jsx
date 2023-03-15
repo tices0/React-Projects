@@ -2,13 +2,6 @@ import React from "react";
 import Replies from "./Replies";
 import { user } from "..";
 
-// add extra designs for user
-// - you tag //
-// - edit instead of reply
-// - delete button
-
-// add user tag to replies //
-
 function Comments({ comment, index }) {
 	return (
 		<>
@@ -37,10 +30,23 @@ function Comments({ comment, index }) {
 							<p className="time">{comment.createdAt}</p>
 						</div>
 						<div className="right">
-							<button className="reply">
-								<i className="fas fa-reply"></i>
-								Reply
-							</button>
+							{user.username === comment.user.username ? (
+								<>
+									<button className="delete">
+										<i className="fas fa-trash"></i>
+										Delete
+									</button>
+									<button className="edit">
+										<i className="fas fa-pen"></i>
+										Edit
+									</button>
+								</>
+							) : (
+								<button className="reply">
+									<i className="fas fa-reply"></i>
+									Reply
+								</button>
+							)}
 						</div>
 					</div>
 					<p className="content">

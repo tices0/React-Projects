@@ -136,8 +136,9 @@ ul.comments {
 
 				.right {
 					font-weight: 500;
+					gap: 1.5rem;
 
-					.reply {
+					button {
 						color: $moderate-blue;
 						cursor: pointer;
 
@@ -152,6 +153,10 @@ ul.comments {
 
 					.delete {
 						color: $soft-red;
+
+						&:hover {
+							color: $pale-red;
+						}
 					}
 				}
 			}
