@@ -22,8 +22,15 @@ img {
   width: 100%;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 calc(300px - 4rem);
+}
+
 ul.comments {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +39,6 @@ ul.comments {
 }
 ul.comments .comment {
   background-color: hsl(0, 0%, 100%);
-  width: calc(100% - 500px);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -151,4 +157,22 @@ ul.comments .comment section .content .replying-to {
   font-weight: 500;
   color: hsl(238, 40%, 52%);
   cursor: pointer;
+}
+
+ul.replies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+}
+ul.replies .line {
+  width: 50px;
+  height: 100%;
+  background-color: hsl(239, 57%, 85%);
+  border: 1px solid red;
+  margin: 0 2rem;
+}
+ul.replies .comment {
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */

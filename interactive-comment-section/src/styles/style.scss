@@ -42,22 +42,21 @@ img {
 	width: 100%;
 }
 
-// #root {
-// 	text-align: center;
-// }
+#root {
+	@include flexCenter(row);
+	padding: 0 calc(300px - 4rem);
+}
 
 // =============
 // Comment
 // =============
 
 ul.comments {
-	width: 100%;
 	@include flexCenter(column);
 	gap: 1.25rem;
 
 	.comment {
 		background-color: $white;
-		width: calc(100% - 500px);
 		border-radius: 5px;
 		@include flexCenter(row);
 		justify-content: flex-start;
@@ -177,6 +176,23 @@ ul.comments {
 // =============
 // Replies
 // =============
+
+ul.replies {
+	@include flexCenter(row);
+	height: 100%;
+
+	.line {
+		width: 50px;
+		height: 100%;
+		background-color: $light-greyish-blue;
+		border: 1px solid red;
+		margin: 0 2rem;
+	}
+
+	.comment {
+		width: 100%;
+	}
+}
 
 // =============
 //
