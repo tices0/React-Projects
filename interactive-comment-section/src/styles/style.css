@@ -8,6 +8,7 @@ button {
   padding: 0;
   list-style-type: none;
   font-size: 16px;
+  font-style: normal;
 }
 
 body {
@@ -19,10 +20,6 @@ body {
 
 img {
   width: 100%;
-}
-
-#root {
-  text-align: center;
 }
 
 ul.comments {
@@ -103,6 +100,10 @@ ul.comments .comment section .top .right {
   flex-direction: row;
   gap: 1rem;
 }
+ul.comments .comment section .top .username {
+  font-weight: 500;
+  color: hsl(212, 24%, 26%);
+}
 ul.comments .comment section .top .time {
   color: hsl(211, 10%, 45%);
 }
@@ -124,4 +125,9 @@ ul.comments .comment section .top .right .delete {
 }
 ul.comments .comment section .content {
   color: hsl(211, 10%, 45%);
+}
+ul.comments .comment section .content .replying-to {
+  font-weight: 500;
+  color: hsl(238, 40%, 52%);
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

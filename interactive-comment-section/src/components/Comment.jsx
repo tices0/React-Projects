@@ -43,7 +43,7 @@ function Comments({ comment, index }) {
 							</button>
 						</div>
 					</div>
-					<div className="content">
+					<p className="content">
 						{comment.replyingTo ? (
 							<i className="replying-to">
 								@{comment.replyingTo}{" "}
@@ -51,8 +51,8 @@ function Comments({ comment, index }) {
 						) : (
 							""
 						)}
-						<p>{comment.content}</p>
-					</div>
+						{comment.content}
+					</p>
 				</section>
 			</li>
 			{comment.replies && comment.replies.length > 0 ? (
