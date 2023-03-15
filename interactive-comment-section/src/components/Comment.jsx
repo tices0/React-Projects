@@ -10,6 +10,10 @@ function Comments({ comment, index }) {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
 	};
 
+	const editButtonClicked = key => {
+		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
+	};
+
 	return (
 		<>
 			<li className="comment" key={index}>
@@ -43,7 +47,10 @@ function Comments({ comment, index }) {
 										<i className="fas fa-trash"></i>
 										Delete
 									</button>
-									<button className="edit">
+									<button
+										className="edit"
+										onClick={() => editButtonClicked(index)}
+									>
 										<i className="fas fa-pen"></i>
 										Edit
 									</button>
