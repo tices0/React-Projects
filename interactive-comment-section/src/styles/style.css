@@ -262,6 +262,7 @@ form .textarea {
   width: 100%;
   min-height: 80px;
   overflow: auto;
+  cursor: text;
 }
 form .textarea:focus {
   border-color: hsl(211, 10%, 45%);
@@ -275,10 +276,29 @@ form .submit {
   background-color: hsl(238, 40%, 52%);
   color: hsl(0, 0%, 100%);
   border-radius: 7px;
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem 1.75rem;
   cursor: pointer;
   font-weight: 500;
 }
 form .submit:hover {
   background-color: hsl(239, 57%, 85%);
+}
+
+@media screen and (max-width: 575px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "textarea textarea" "img submit";
+  }
+  form img {
+    grid-area: img;
+    width: 2rem;
+  }
+  form .textarea {
+    grid-area: textarea;
+  }
+  form .submit {
+    grid-area: submit;
+  }
 }/*# sourceMappingURL=style.css.map */

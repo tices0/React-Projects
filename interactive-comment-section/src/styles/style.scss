@@ -291,6 +291,7 @@ form {
 		width: 100%;
 		min-height: 80px;
 		overflow: auto;
+		cursor: text;
 
 		&:focus {
 			border-color: $greyish-blue;
@@ -307,13 +308,37 @@ form {
 		background-color: $moderate-blue;
 		color: $white;
 		border-radius: 7px;
-		padding: 0.7rem 1.5rem;
+		padding: 0.7rem 1.75rem;
 		cursor: pointer;
 		font-weight: 500;
 
 		&:hover {
 			background-color: $light-greyish-blue;
 		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	form {
+		img {
+			grid-area: img;
+			width: 2rem;
+		}
+
+		.textarea {
+			grid-area: textarea;
+		}
+
+		.submit {
+			grid-area: submit;
+		}
+
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			"textarea textarea"
+			"img submit";
 	}
 }
 
