@@ -3,15 +3,17 @@ import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
 
+// add functionality to button clicks
+// - delete button causes warning window to show
+// - edit button causes form to show with the content of the comment already inside the textbox
+
 function Comments({ comment, index }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
+	const [isEditButton, setIsEditButton] = useState({});
 
-	const replyButtonClicked = key => {
+	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
-	};
-
-	const editButtonClicked = key => {
-		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
+		if (editButton) setIsEditButton(old => ({ ...old, [key]: true }));
 	};
 
 	return (
@@ -49,7 +51,9 @@ function Comments({ comment, index }) {
 									</button>
 									<button
 										className="edit"
-										onClick={() => editButtonClicked(index)}
+										onClick={() =>
+											replyButtonClicked(index, true)
+										}
 									>
 										<i className="fas fa-pen"></i>
 										Edit
@@ -78,7 +82,19 @@ function Comments({ comment, index }) {
 					</p>
 				</section>
 			</li>
-			{showReplyForm[index] ? <AddComment /> : ""}
+
+			{showReplyForm[index] ? (
+				<AddComment
+					commentValue={
+						isEditButton[index]
+							? [comment.replyingTo, comment.content]
+							: ""
+					}
+				/>
+			) : (
+				""
+			)}
+
 			{comment.replies && comment.replies.length > 0 ? (
 				<Replies comment={comment} />
 			) : (
