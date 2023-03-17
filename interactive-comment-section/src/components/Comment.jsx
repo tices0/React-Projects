@@ -6,7 +6,7 @@ import { addToCommentScore, substractFromCommentScore } from "..";
 
 // add confirmation to screen when reply button clicked
 
-function Comments({ comment, index, reload, setReload }) {
+function Comments({ comment, index, setReload }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
 

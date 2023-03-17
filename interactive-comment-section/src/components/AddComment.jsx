@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
 import { user } from "..";
+import { addTopLevelComment } from "..";
 
 function AddComment({ commentValue }) {
+	const textareaRef = useRef();
+
+	const handleSubmit = event => {
+		event.preventDefault();
+		addTopLevelComment(textareaRef.current.innerHTML);
+		textareaRef.current.innerHTML = "";
+	};
+
 	return (
-		<form className="text-box" onSubmit={event => event.preventDefault()}>
+		<form className="text-box" onSubmit={handleSubmit}>
 			<img src={require(`../images/avatars/${user.image.png}`)} alt="" />
 			<div
 				className="textarea"
+				ref={textareaRef}
 				contentEditable
 				suppressContentEditableWarning
 			>
 				{commentValue ? (
-					<p className="content">
+					<>
 						{commentValue[0] !== undefined ? (
 							<>@{commentValue.map(value => value + " ")}</>
 						) : (
 							commentValue
 						)}
-					</p>
+					</>
 				) : (
 					""
 				)}

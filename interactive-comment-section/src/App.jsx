@@ -17,7 +17,6 @@ function App({ comments }) {
 						<Comments
 							comment={comment}
 							index={index}
-							reload={reload}
 							setReload={setReload}
 						/>
 					))}
