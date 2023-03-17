@@ -22,6 +22,7 @@ export const addToCommentScore = comment => {
 			}
 		});
 	});
+	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
 export const substractFromCommentScore = comment => {
@@ -35,6 +36,7 @@ export const substractFromCommentScore = comment => {
 			}
 		});
 	});
+	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
 const root = createRoot(document.getElementById("root"));
