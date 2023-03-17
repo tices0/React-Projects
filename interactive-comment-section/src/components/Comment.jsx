@@ -1,24 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
+import { addToCommentScore, substractFromCommentScore } from "..";
 
 function Comments({ comment, index }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
+	const [reload, setReload] = useState(false);
 
 	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
 		if (editButton) setIsEditButton(old => ({ ...old, [key]: true }));
 	};
 
+	useEffect(() => {
+		console.log("reload");
+		if (reload) setReload(false);
+	}, [reload]);
+
 	return (
 		<>
 			<li className="comment" key={index}>
 				<div className="score">
-					<i className="fas fa-plus"></i>
+					<i
+						className="fas fa-plus"
+						onClick={() => {
+							addToCommentScore(comment);
+							setReload(true);
+						}}
+					></i>
 					<div className="value">{comment.score}</div>
-					<i className="fas fa-minus"></i>
+					<i
+						className="fas fa-minus"
+						onClick={() => {
+							substractFromCommentScore(comment);
+							setReload(true);
+						}}
+					></i>
 				</div>
 				<section>
 					<div className="top">

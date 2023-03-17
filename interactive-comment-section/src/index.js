@@ -2,25 +2,42 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 import App from "./App";
-import data from "./data.json";
+import jsonData from "./data.json";
 
-// console.log(data);
-// console.log(window.innerWidth);
+// localStorage.removeItem("data");
 
-export const user = data.currentUser;
+if (!localStorage.getItem("data"))
+	localStorage.setItem("data", JSON.stringify(jsonData));
 
-// const trial = async () => {
-// 	const res = await fetch(require("./data.json"), {
-// 		method: "POST",
-// 		body: JSON.stringify({ a: 1, b: "Textual content" }),
-// 	});
-// 	console.log(res);
-// 	const json = await res.json();
-// 	console.log("json:", json);
-// };
+let parsedJsonData = JSON.parse(localStorage.data);
 
-// trial();
-// console.log(data);
+export const addToCommentScore = comment => {
+	parsedJsonData.comments.forEach(element => {
+		if (element.id === comment.id) {
+			element.score++;
+		}
+		element.replies.forEach(reply => {
+			if (reply.id === comment.id) {
+				reply.score++;
+			}
+		});
+	});
+};
+
+export const substractFromCommentScore = comment => {
+	parsedJsonData.comments.forEach(element => {
+		if (element.id === comment.id) {
+			element.score--;
+		}
+		element.replies.forEach(reply => {
+			if (reply.id === comment.id) {
+				reply.score--;
+			}
+		});
+	});
+};
 
 const root = createRoot(document.getElementById("root"));
-root.render(<App comments={data.comments} />);
+root.render(<App comments={parsedJsonData.comments} />);
+
+export const user = parsedJsonData.currentUser;
