@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
 import { addToCommentScore, substractFromCommentScore } from "..";
 
-function Comments({ comment, index }) {
+// add confirmation to screen when reply button clicked
+
+function Comments({ comment, index, reload, setReload }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
-	const [reload, setReload] = useState(false);
 
 	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
 		if (editButton) setIsEditButton(old => ({ ...old, [key]: true }));
 	};
-
-	useEffect(() => {
-		console.log("reload");
-		if (reload) setReload(false);
-	}, [reload]);
 
 	return (
 		<>

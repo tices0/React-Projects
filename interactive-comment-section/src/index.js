@@ -4,12 +4,20 @@ import "./styles/style.css";
 import App from "./App";
 import jsonData from "./data.json";
 
+// order top level comments by score
+// order replies by data added
+
 // localStorage.removeItem("data");
 
 if (!localStorage.getItem("data"))
 	localStorage.setItem("data", JSON.stringify(jsonData));
 
 let parsedJsonData = JSON.parse(localStorage.data);
+parsedJsonData.comments.sort((a, b) => b.score - a.score);
+console.log(parsedJsonData);
+
+// console.log(parsedJsonData.comments.sort((a, b) => a.score - b.score));
+// console.log("after", parsedJsonData);
 
 export const addToCommentScore = comment => {
 	parsedJsonData.comments.forEach(element => {
@@ -22,6 +30,7 @@ export const addToCommentScore = comment => {
 			}
 		});
 	});
+	parsedJsonData.comments.sort((a, b) => b.score - a.score);
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
@@ -36,6 +45,7 @@ export const substractFromCommentScore = comment => {
 			}
 		});
 	});
+	parsedJsonData.comments.sort((a, b) => b.score - a.score);
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
