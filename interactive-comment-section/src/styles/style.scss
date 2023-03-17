@@ -293,6 +293,7 @@ form {
 		min-height: 80px;
 		overflow: auto;
 		cursor: text;
+		color: $dark-blue;
 
 		&:focus {
 			border-color: $greyish-blue;

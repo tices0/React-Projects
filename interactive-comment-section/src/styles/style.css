@@ -264,6 +264,7 @@ form .textarea {
   min-height: 80px;
   overflow: auto;
   cursor: text;
+  color: hsl(212, 24%, 26%);
 }
 form .textarea:focus {
   border-color: hsl(211, 10%, 45%);

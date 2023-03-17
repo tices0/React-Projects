@@ -3,10 +3,6 @@ import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
 
-// add functionality to button clicks
-// - delete button causes warning window to show
-// - edit button causes form to show with the content of the comment already inside the textbox
-
 function Comments({ comment, index }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
