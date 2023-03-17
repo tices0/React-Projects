@@ -7,7 +7,6 @@ function App({ comments }) {
 
 	useEffect(() => {
 		if (reload) setReload(false);
-		if (reload) console.log("reload");
 	}, [reload]);
 
 	return (
