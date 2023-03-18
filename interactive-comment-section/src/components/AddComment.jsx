@@ -2,13 +2,14 @@ import React, { useRef } from "react";
 import { user } from "..";
 import { addTopLevelComment } from "..";
 
-function AddComment({ commentValue }) {
+function AddComment({ commentValue, setReload }) {
 	const textareaRef = useRef();
 
 	const handleSubmit = event => {
 		event.preventDefault();
 		addTopLevelComment(textareaRef.current.innerHTML);
 		textareaRef.current.innerHTML = "";
+		setReload(true)
 	};
 
 	return (

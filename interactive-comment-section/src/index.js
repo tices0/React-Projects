@@ -49,12 +49,27 @@ export const substractFromCommentScore = comment => {
 
 export const addTopLevelComment = commentContent => {
 	console.log("comment added");
+	let highestId = Math.max(
+		...parsedJsonData.comments.map(comment => comment.id),
+	);
+	console.log(highestId);
+	let replyIds = [];
+	parsedJsonData.comments.forEach(comment => {
+		if (comment.replies.length > 0) {
+			replyIds = [
+				...replyIds,
+				Math.max(...comment.replies.map(reply => reply.id)),
+			];
+		}
+	});
+	if (Math.max(...replyIds) > highestId) highestId = Math.max(...replyIds);
+
 	const currentDate = new Date().toISOString().slice(0, 10);
 	const newComment = {
-		id: 1,
+		id: highestId + 1,
 		content: commentContent,
 		dateCreated: currentDate,
-		createdAt: moment(this.dateCreated, "YYYY-MM-DD").fromNow(),
+		createdAt: moment(currentDate, "YYYY-MM-DD").startOf("hour").fromNow(),
 		score: 0,
 		user: user,
 		replies: [],
