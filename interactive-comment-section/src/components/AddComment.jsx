@@ -1,21 +1,21 @@
 import React, { useRef } from "react";
 import { user } from "..";
-import { addTopLevelComment } from "..";
+import { addTopLevelComment, addReply } from "..";
 
-function AddComment({ commentValue, setReload }) {
+function AddComment({ comment, commentIndex, isReply, isEdit }) {
 	const textareaRef = useRef();
-	let isReply = false;
-	let isEdit = false;
-	if (commentValue !== undefined) {
-		if (commentValue[0] !== undefined) isReply = true;
-		if (commentValue[1] !== "") isEdit = true;
-	}
+	console.log(comment);
 
 	const handleSubmit = event => {
-		// event.preventDefault();
-		if (!isReply) addTopLevelComment(textareaRef.current.innerHTML);
-		textareaRef.current.innerHTML = "";
-		setReload(true);
+		event.preventDefault();
+		if (textareaRef.current.innerHTML === "") return null;
+		if (!isReply) {
+			addTopLevelComment(textareaRef.current.innerHTML);
+			textareaRef.current.innerHTML = "";
+		} else if (!isEdit) {
+			addReply(commentIndex, textareaRef.current.innerHTML);
+			textareaRef.current.innerHTML = `@${comment.user.username}`;
+		}
 	};
 
 	return (
@@ -28,13 +28,13 @@ function AddComment({ commentValue, setReload }) {
 				suppressContentEditableWarning
 			>
 				{isEdit ? (
-					isReply ? (
-						<>@{commentValue.map(value => value + " ")}</>
+					comment.replyingTo ? (
+						<>@{comment.user.username + " " + comment.content}</>
 					) : (
-						commentValue
+						comment.content
 					)
 				) : isReply ? (
-					<>@{commentValue[0]}</>
+					<>@{comment.user.username}</>
 				) : (
 					""
 				)}

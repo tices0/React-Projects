@@ -13,6 +13,8 @@ if (!localStorage.getItem("data"))
 let parsedJsonData = JSON.parse(localStorage.data);
 parsedJsonData.comments.sort((a, b) => b.score - a.score);
 
+// change score
+
 export const addToCommentScore = comment => {
 	parsedJsonData.comments.forEach(element => {
 		if (element.id === comment.id) {
@@ -43,8 +45,39 @@ export const substractFromCommentScore = comment => {
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
+// add new comment
+
 export const addTopLevelComment = commentContent => {
 	console.log("comment added");
+	const newComment = getNewComment(commentContent);
+	console.log(newComment);
+	parsedJsonData.comments = [...parsedJsonData.comments, newComment];
+	localStorage.data = JSON.stringify(parsedJsonData);
+};
+
+export const addReply = (commentIndex, replyContent) => {
+	console.log("reply added");
+	const newReply = getNewComment(replyContent, true);
+	console.log(newReply);
+	parsedJsonData.comments[commentIndex].replies = [
+		...parsedJsonData.comments[commentIndex].replies,
+		newReply,
+	];
+	localStorage.data = JSON.stringify(parsedJsonData);
+};
+
+// for new comment
+
+const getNewComment = (commentContent, isReply) => {
+	let replyingTo;
+	if (isReply) {
+		replyingTo = commentContent.substring(0, commentContent.indexOf(" "));
+		replyingTo = replyingTo.split("@")[1];
+		commentContent = commentContent.substring(
+			commentContent.indexOf(" ") + 1,
+		);
+	}
+
 	const highestId = getHighestId();
 	const newComment = {
 		id: highestId + 1,
@@ -54,9 +87,8 @@ export const addTopLevelComment = commentContent => {
 		user: user,
 		replies: [],
 	};
-	console.log(newComment);
-	parsedJsonData.comments = [...parsedJsonData.comments, newComment];
-	localStorage.data = JSON.stringify(parsedJsonData);
+	if (isReply) newComment.replyingTo = replyingTo;
+	return newComment;
 };
 
 const getHighestId = () => {

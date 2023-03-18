@@ -22,7 +22,7 @@ function App({ comments }) {
 						/>
 					))}
 			</ul>
-			<AddComment setReload={setReload} />
+			<AddComment />
 		</>
 	);
 }

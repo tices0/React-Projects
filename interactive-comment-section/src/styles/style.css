@@ -63,6 +63,7 @@ ul.comments {
   align-items: center;
   flex-direction: column;
   gap: 1.25rem;
+  width: 100%;
 }
 ul.comments .comment {
   position: relative;
@@ -223,6 +224,7 @@ ul.replies {
   align-items: center;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 }
 ul.replies .line {
   width: 5px;

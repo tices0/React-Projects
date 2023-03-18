@@ -98,11 +98,10 @@ function Comments({ comment, index, setReload }) {
 
 			{showReplyForm[index] ? (
 				<AddComment
-					commentValue={
-						isEditButton[index]
-							? [comment.replyingTo, comment.content]
-							: [comment.replyingTo, ""]
-					}
+					comment={comment}
+					commentIndex={index}
+					isReply={true}
+					isEdit={isEditButton[index] ? true : false}
 				/>
 			) : (
 				""
