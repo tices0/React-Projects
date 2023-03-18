@@ -4,12 +4,18 @@ import { addTopLevelComment } from "..";
 
 function AddComment({ commentValue, setReload }) {
 	const textareaRef = useRef();
+	let isReply = false;
+	let isEdit = false;
+	if (commentValue !== undefined) {
+		if (commentValue[0] !== undefined) isReply = true;
+		if (commentValue[1] !== "") isEdit = true;
+	}
 
 	const handleSubmit = event => {
-		event.preventDefault();
-		addTopLevelComment(textareaRef.current.innerHTML);
+		// event.preventDefault();
+		if (!isReply) addTopLevelComment(textareaRef.current.innerHTML);
 		textareaRef.current.innerHTML = "";
-		setReload(true)
+		setReload(true);
 	};
 
 	return (
@@ -21,14 +27,14 @@ function AddComment({ commentValue, setReload }) {
 				contentEditable
 				suppressContentEditableWarning
 			>
-				{commentValue ? (
-					<>
-						{commentValue[0] !== undefined ? (
-							<>@{commentValue.map(value => value + " ")}</>
-						) : (
-							commentValue
-						)}
-					</>
+				{isEdit ? (
+					isReply ? (
+						<>@{commentValue.map(value => value + " ")}</>
+					) : (
+						commentValue
+					)
+				) : isReply ? (
+					<>@{commentValue[0]}</>
 				) : (
 					""
 				)}

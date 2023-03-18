@@ -131,6 +131,7 @@ ul.comments {
 			align-items: flex-start;
 			justify-content: space-between;
 			gap: 1rem;
+			width: 100%;
 
 			.top {
 				@include flexCenter(row);

@@ -16,8 +16,6 @@ function Comments({ comment, index, setReload }) {
 	};
 
 	const relativeTimeCreated = getTimeAgo(comment.createdAt);
-	console.log(relativeTimeCreated);
-	console.log(comment);
 
 	return (
 		<>
@@ -103,7 +101,7 @@ function Comments({ comment, index, setReload }) {
 					commentValue={
 						isEditButton[index]
 							? [comment.replyingTo, comment.content]
-							: ""
+							: [comment.replyingTo, ""]
 					}
 				/>
 			) : (

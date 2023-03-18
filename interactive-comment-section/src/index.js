@@ -57,7 +57,6 @@ export const addTopLevelComment = commentContent => {
 	console.log(newComment);
 	parsedJsonData.comments = [...parsedJsonData.comments, newComment];
 	localStorage.data = JSON.stringify(parsedJsonData);
-	console.log(parsedJsonData.comments);
 };
 
 const getHighestId = () => {

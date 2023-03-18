@@ -116,6 +116,7 @@ ul.comments .comment section {
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
 }
 ul.comments .comment section .top {
   display: flex;
