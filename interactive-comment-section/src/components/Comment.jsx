@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
-import { addToCommentScore, substractFromCommentScore } from "..";
+import { addToCommentScore, substractFromCommentScore, getTimeAgo } from "..";
 
 // add confirmation to screen when reply button clicked
 
@@ -14,6 +14,10 @@ function Comments({ comment, index, setReload }) {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
 		if (editButton) setIsEditButton(old => ({ ...old, [key]: true }));
 	};
+
+	const relativeTimeCreated = getTimeAgo(comment.createdAt);
+	console.log(relativeTimeCreated);
+	console.log(comment);
 
 	return (
 		<>
@@ -51,7 +55,7 @@ function Comments({ comment, index, setReload }) {
 									""
 								)}
 							</h6>
-							<p className="time">{comment.createdAt}</p>
+							<p className="time">{relativeTimeCreated}</p>
 						</div>
 						<div className="right">
 							{user.username === comment.user.username ? (

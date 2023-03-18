@@ -5,10 +5,6 @@ import App from "./App";
 import jsonData from "./data.json";
 const moment = require("moment");
 
-// order replies by data added
-// - get relative time and time created of comment
-// - sort replies list
-
 // localStorage.removeItem("data");
 
 if (!localStorage.getItem("data"))
@@ -49,10 +45,25 @@ export const substractFromCommentScore = comment => {
 
 export const addTopLevelComment = commentContent => {
 	console.log("comment added");
+	const highestId = getHighestId();
+	const newComment = {
+		id: highestId + 1,
+		content: commentContent,
+		createdAt: moment().format("DD-MM-YYYY, HH:mm:ss"),
+		score: 0,
+		user: user,
+		replies: [],
+	};
+	console.log(newComment);
+	parsedJsonData.comments = [...parsedJsonData.comments, newComment];
+	localStorage.data = JSON.stringify(parsedJsonData);
+	console.log(parsedJsonData.comments);
+};
+
+const getHighestId = () => {
 	let highestId = Math.max(
 		...parsedJsonData.comments.map(comment => comment.id),
 	);
-	console.log(highestId);
 	let replyIds = [];
 	parsedJsonData.comments.forEach(comment => {
 		if (comment.replies.length > 0) {
@@ -63,18 +74,13 @@ export const addTopLevelComment = commentContent => {
 		}
 	});
 	if (Math.max(...replyIds) > highestId) highestId = Math.max(...replyIds);
+	return highestId;
+};
 
-	const currentDate = new Date().toISOString().slice(0, 10);
-	const newComment = {
-		id: highestId + 1,
-		content: commentContent,
-		dateCreated: currentDate,
-		createdAt: moment(currentDate, "YYYY-MM-DD").startOf("hour").fromNow(),
-		score: 0,
-		user: user,
-		replies: [],
-	};
-	console.log(newComment);
+export const getTimeAgo = timeCommentCreated => {
+	return moment(timeCommentCreated, "DD-MM-YYYY, HH:mm:ss")
+		.startOf("minute")
+		.fromNow();
 };
 
 const root = createRoot(document.getElementById("root"));
