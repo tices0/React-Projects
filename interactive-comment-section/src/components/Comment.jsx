@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
-import { addToCommentScore, substractFromCommentScore, getTimeAgo } from "..";
-
-// add confirmation to screen when reply button clicked
+import {
+	addToCommentScore,
+	substractFromCommentScore,
+	getTimeAgo,
+	deleteComment,
+} from "..";
 
 function Comments({ comment, index, setReload }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
@@ -58,7 +61,15 @@ function Comments({ comment, index, setReload }) {
 						<div className="right">
 							{user.username === comment.user.username ? (
 								<>
-									<button className="delete">
+									<button
+										className="delete"
+										onClick={() => {
+											console.log(
+												"delete button pressed",
+											);
+											deleteComment(comment.id);
+										}}
+									>
 										<i className="fas fa-trash"></i>
 										Delete
 									</button>
@@ -102,6 +113,7 @@ function Comments({ comment, index, setReload }) {
 					commentIndex={index}
 					isReply={true}
 					isEdit={isEditButton[index] ? true : false}
+					// commentisReply={'replyingTo' in comment ? true : false}
 				/>
 			) : (
 				""

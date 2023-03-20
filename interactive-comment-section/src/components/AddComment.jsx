@@ -1,6 +1,11 @@
 import React, { useRef } from "react";
-import { user } from "..";
-import { addTopLevelComment, addReply } from "..";
+import {
+	user,
+	addTopLevelComment,
+	addReplyToTopLevelComment,
+	addReplyToReply,
+	editComment,
+} from "..";
 
 function AddComment({ comment, commentIndex, isReply, isEdit }) {
 	const textareaRef = useRef();
@@ -13,9 +18,15 @@ function AddComment({ comment, commentIndex, isReply, isEdit }) {
 			addTopLevelComment(textareaRef.current.innerHTML);
 			textareaRef.current.innerHTML = "";
 		} else if (!isEdit) {
-			addReply(commentIndex, textareaRef.current.innerHTML);
+			if ("replyingTo" in comment) console.log("already a reply");
+			if ("replyingTo" in comment) addReplyToReply("toplevelcomment");
+			else
+				addReplyToTopLevelComment(
+					commentIndex,
+					textareaRef.current.innerHTML,
+				);
 			textareaRef.current.innerHTML = `@${comment.user.username}`;
-		}
+		} else editComment();
 	};
 
 	return (
@@ -39,7 +50,11 @@ function AddComment({ comment, commentIndex, isReply, isEdit }) {
 					""
 				)}
 			</div>
-			<input type="submit" value="SEND" className="submit" />
+			{isEdit ? (
+				<input type="submit" value="UPDATE" className="submit" />
+			) : (
+				<input type="submit" value="SEND" className="submit" />
+			)}
 		</form>
 	);
 }

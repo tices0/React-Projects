@@ -12,11 +12,12 @@ if (!localStorage.getItem("data"))
 
 let parsedJsonData = JSON.parse(localStorage.data);
 parsedJsonData.comments.sort((a, b) => b.score - a.score);
+let comments = parsedJsonData.comments;
 
-// change score
+// ==================
 
 export const addToCommentScore = comment => {
-	parsedJsonData.comments.forEach(element => {
+	comments.forEach(element => {
 		if (element.id === comment.id) {
 			element.score++;
 		}
@@ -26,12 +27,12 @@ export const addToCommentScore = comment => {
 			}
 		});
 	});
-	parsedJsonData.comments.sort((a, b) => b.score - a.score);
+	comments.sort((a, b) => b.score - a.score);
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
 export const substractFromCommentScore = comment => {
-	parsedJsonData.comments.forEach(element => {
+	comments.forEach(element => {
 		if (element.id === comment.id) {
 			element.score--;
 		}
@@ -41,11 +42,11 @@ export const substractFromCommentScore = comment => {
 			}
 		});
 	});
-	parsedJsonData.comments.sort((a, b) => b.score - a.score);
+	comments.sort((a, b) => b.score - a.score);
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
-// add new comment
+// ==================
 
 export const addTopLevelComment = commentContent => {
 	console.log("comment added");
@@ -55,23 +56,67 @@ export const addTopLevelComment = commentContent => {
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
-export const addReply = (commentIndex, replyContent) => {
+export const addReplyToTopLevelComment = (commentIndex, replyContent) => {
 	console.log("reply added");
 	const newReply = getNewComment(replyContent, true);
 	console.log(newReply);
-	parsedJsonData.comments[commentIndex].replies = [
-		...parsedJsonData.comments[commentIndex].replies,
+	comments[commentIndex].replies = [
+		...comments[commentIndex].replies,
 		newReply,
 	];
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
-// for new comment
+export const addReplyToReply = (commentId, replyContent) => {
+	console.log("reply added");
+	const newReply = getNewComment(replyContent, true);
+	console.log(newReply);
+	getReplyingTo(commentId);
+};
+
+export const editComment = () => {
+	console.log("comment edited");
+};
+
+export const deleteComment = commentId => {
+	console.log("comment deleted");
+	let found = false;
+	let commentToDelete;
+	let isReply = false;
+	let topLevelReplyIsFrom;
+
+	comments.forEach((comment, commentIndex) => {
+		if (!found) {
+			console.log("checking...", commentIndex);
+			if (comment.id === commentId) {
+				console.log("found:", comment);
+				found = true;
+				commentToDelete = commentIndex;
+			} else {
+				comment.replies.forEach((reply, replyIndex) => {
+					if (reply.id === commentId) {
+						found = true;
+						commentToDelete = replyIndex;
+						isReply = true;
+						topLevelReplyIsFrom = commentIndex;
+					}
+				});
+			}
+		}
+	});
+
+	if (isReply) comments[topLevelReplyIsFrom].replies.splice(commentToDelete);
+	else parsedJsonData.comments.splice(commentToDelete);
+	localStorage.data = JSON.stringify(parsedJsonData);
+};
+
+// ==================
 
 const getNewComment = (commentContent, isReply) => {
 	let replyingTo;
 	if (isReply) {
 		replyingTo = commentContent.substring(0, commentContent.indexOf(" "));
+		console.log("get new reply comment");
 		replyingTo = replyingTo.split("@")[1];
 		commentContent = commentContent.substring(
 			commentContent.indexOf(" ") + 1,
@@ -85,9 +130,9 @@ const getNewComment = (commentContent, isReply) => {
 		createdAt: moment().format("DD-MM-YYYY, HH:mm:ss"),
 		score: 0,
 		user: user,
-		replies: [],
 	};
 	if (isReply) newComment.replyingTo = replyingTo;
+	else newComment.replies = [];
 	return newComment;
 };
 
@@ -108,11 +153,23 @@ const getHighestId = () => {
 	return highestId;
 };
 
+const getReplyingTo = commentId => {
+	parsedJsonData.comments.forEach(comment => {
+		comment.replies.forEach(reply => {
+			if (reply.id === commentId) console.log(commentId, "found");
+		});
+	});
+};
+
+// ==================
+
 export const getTimeAgo = timeCommentCreated => {
 	return moment(timeCommentCreated, "DD-MM-YYYY, HH:mm:ss")
 		.startOf("minute")
 		.fromNow();
 };
+
+// ==================
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App comments={parsedJsonData.comments} />);
