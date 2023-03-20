@@ -6,12 +6,13 @@ import {
 	addToCommentScore,
 	substractFromCommentScore,
 	getTimeAgo,
-	deleteComment,
 } from "..";
+import DeleteScreen from "./DeleteScreen";
 
 function Comments({ comment, index, setReload }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
+	const [onDeleteScreen, setOnDeleteScreen] = useState(false)
 
 	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
@@ -63,12 +64,7 @@ function Comments({ comment, index, setReload }) {
 								<>
 									<button
 										className="delete"
-										onClick={() => {
-											console.log(
-												"delete button pressed",
-											);
-											deleteComment(comment.id);
-										}}
+										onClick={() => setOnDeleteScreen(true)}
 									>
 										<i className="fas fa-trash"></i>
 										Delete
@@ -124,6 +120,8 @@ function Comments({ comment, index, setReload }) {
 			) : (
 				""
 			)}
+
+			{onDeleteScreen? <DeleteScreen /> : ''}
 		</>
 	);
 }

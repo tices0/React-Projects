@@ -1,6 +1,7 @@
 import React from "react";
+import { deleteComment } from "..";
 
-function DeleteScreen() {
+function DeleteScreen({ commentId, setOnDeleteScreen }) {
 	return (
 		<div className="big-delete-container">
 			<div className="delete-container">
@@ -10,8 +11,18 @@ function DeleteScreen() {
 					remove the comment and this can't be undone.
 				</p>
 				<div className="btns">
-					<button className="cancel">No, cancel</button>
-					<button className="delete">Yes, delete</button>
+					<button
+						className="cancel"
+						onClick={() => setOnDeleteScreen(false)}
+					>
+						No, cancel
+					</button>
+					<button
+						className="delete"
+						onClick={() => deleteComment(commentId)}
+					>
+						Yes, delete
+					</button>
 				</div>
 			</div>
 		</div>

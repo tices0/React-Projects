@@ -86,27 +86,27 @@ export const deleteComment = commentId => {
 	let topLevelReplyIsFrom;
 
 	comments.forEach((comment, commentIndex) => {
-		if (!found) {
-			console.log("checking...", commentIndex);
-			if (comment.id === commentId) {
-				console.log("found:", comment);
-				found = true;
-				commentToDelete = commentIndex;
-			} else {
-				comment.replies.forEach((reply, replyIndex) => {
-					if (reply.id === commentId) {
-						found = true;
-						commentToDelete = replyIndex;
-						isReply = true;
-						topLevelReplyIsFrom = commentIndex;
-					}
-				});
-			}
+		if (!found && comment.id === commentId) {
+			console.log("checking comments...", commentIndex);
+			console.log("found:", comment);
+			found = true;
+			commentToDelete = commentIndex;
+		} else {
+			comment.replies.forEach((reply, replyIndex) => {
+				if (!found && reply.id === commentId) {
+					console.log("checking replies...", commentIndex);
+					found = true;
+					commentToDelete = replyIndex;
+					isReply = true;
+					topLevelReplyIsFrom = commentIndex;
+				}
+			});
 		}
 	});
 
-	if (isReply) comments[topLevelReplyIsFrom].replies.splice(commentToDelete);
-	else parsedJsonData.comments.splice(commentToDelete);
+	if (isReply)
+		comments[topLevelReplyIsFrom].replies.splice(commentToDelete, 1);
+	else parsedJsonData.comments.splice(commentToDelete, 1);
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
@@ -116,7 +116,6 @@ const getNewComment = (commentContent, isReply) => {
 	let replyingTo;
 	if (isReply) {
 		replyingTo = commentContent.substring(0, commentContent.indexOf(" "));
-		console.log("get new reply comment");
 		replyingTo = replyingTo.split("@")[1];
 		commentContent = commentContent.substring(
 			commentContent.indexOf(" ") + 1,
