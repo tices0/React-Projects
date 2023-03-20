@@ -309,11 +309,12 @@ form .submit:hover {
     grid-area: submit;
   }
 }
-section.delete {
+form.delete {
   position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 1;
+  background-color: transparent;
 }
 
 .delete-container {

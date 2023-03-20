@@ -5,7 +5,7 @@ import App from "./App";
 import jsonData from "./data.json";
 const moment = require("moment");
 
-localStorage.removeItem("data");
+// localStorage.removeItem("data");
 
 if (!localStorage.getItem("data"))
 	localStorage.setItem("data", JSON.stringify(jsonData));

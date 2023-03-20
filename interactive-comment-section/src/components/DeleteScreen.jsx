@@ -2,8 +2,14 @@ import React from "react";
 import { deleteComment } from "..";
 
 function DeleteScreen({ commentId, setOnDeleteScreen }) {
+	const handleSubmit = () => {
+		console.log("form submitted");
+		deleteComment(commentId);
+		setOnDeleteScreen(false);
+	};
+
 	return (
-		<section className="delete">
+		<form className="delete" id="delete" onSubmit={handleSubmit}>
 			<div className="delete-container">
 				<h1>Delete comment</h1>
 				<p>
@@ -12,6 +18,7 @@ function DeleteScreen({ commentId, setOnDeleteScreen }) {
 				</p>
 				<div className="btns">
 					<button
+						type="button"
 						className="cancel"
 						onClick={() => setOnDeleteScreen(false)}
 					>
@@ -20,13 +27,16 @@ function DeleteScreen({ commentId, setOnDeleteScreen }) {
 					<button
 						type="submit"
 						className="delete"
-						onClick={() => deleteComment(commentId)}
+						// onClick={() => {
+						// 	// deleteComment(commentId);
+						// 	// setOnDeleteScreen(false);
+						// }}
 					>
 						Yes, delete
 					</button>
 				</div>
 			</div>
-		</section>
+		</form>
 	);
 }
 
