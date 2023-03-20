@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Comments from "./components/Comment";
 import AddComment from "./components/AddComment";
 
 function App({ comments }) {
-	const [reload, setReload] = useState(false);
-
-	useEffect(() => {
-		setReload(false);
-		if (reload) console.log("reload");
-	}, [reload]);
-
 	return (
 		<>
 			<ul className="comments">
 				{comments &&
 					comments.map((comment, index) => (
-						<Comments
-							comment={comment}
-							index={index}
-							setReload={setReload}
-						/>
+						<Comments comment={comment} index={index} />
 					))}
 			</ul>
-			<AddComment setReload={setReload} />
+			<AddComment />
 		</>
 	);
 }

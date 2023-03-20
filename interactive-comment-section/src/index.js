@@ -68,46 +68,54 @@ export const addReplyToTopLevelComment = (commentIndex, replyContent) => {
 };
 
 export const addReplyToReply = (commentId, replyContent) => {
-	console.log("reply added");
+	console.log("reply added to reply");
 	const newReply = getNewComment(replyContent, true);
 	console.log(newReply);
 	getReplyingTo(commentId);
 };
 
-export const editComment = () => {
+export const editComment = (comment, isReply, newContent) => {
 	console.log("comment edited");
+	let commentToUpdate = findComment(comment.id, isReply)[0];
+	let topLevelReplyIsFrom = findComment(comment.id, isReply)[1];
+	if (isReply)
+		comments[topLevelReplyIsFrom].replies[commentToUpdate].content =
+			newContent;
+	else parsedJsonData.comments[commentToUpdate].content = newContent;
+	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
-export const deleteComment = commentId => {
+export const deleteComment = (commentId, isReply) => {
 	console.log("comment deleted");
-	let found = false;
-	let commentToDelete;
-	let isReply = false;
-	let topLevelReplyIsFrom;
+	let commentToDelete = findComment(commentId, isReply)[0];
+	let topLevelReplyIsFrom = findComment(commentId, isReply)[1];
 
-	comments.forEach((comment, commentIndex) => {
-		if (!found && comment.id === commentId) {
-			console.log("checking comments...", commentIndex);
-			console.log("found:", comment);
+	if (isReply)
+		comments[topLevelReplyIsFrom].replies.splice(commentToDelete, 1);
+	else parsedJsonData.comments.splice(commentToDelete, 1);
+	localStorage.data = JSON.stringify(parsedJsonData);
+};
+
+const findComment = (commentId, isReply) => {
+	let found = false;
+	let commentIndex;
+	let topLevelReplyIsFrom;
+	comments.forEach((comment, commentIndexInComments) => {
+		if (!found && comment.id === commentId && !isReply) {
 			found = true;
-			commentToDelete = commentIndex;
+			commentIndex = commentIndexInComments;
 		} else {
 			comment.replies.forEach((reply, replyIndex) => {
 				if (!found && reply.id === commentId) {
-					console.log("checking replies...", commentIndex);
 					found = true;
-					commentToDelete = replyIndex;
+					commentIndex = replyIndex;
 					isReply = true;
 					topLevelReplyIsFrom = commentIndex;
 				}
 			});
 		}
 	});
-
-	if (isReply)
-		comments[topLevelReplyIsFrom].replies.splice(commentToDelete, 1);
-	else parsedJsonData.comments.splice(commentToDelete, 1);
-	localStorage.data = JSON.stringify(parsedJsonData);
+	return [commentIndex, topLevelReplyIsFrom];
 };
 
 // ==================
@@ -122,8 +130,7 @@ const getNewComment = (commentContent, isReply) => {
 		);
 	}
 
-	console.log(addParagraphsToContent(commentContent));
-
+	commentContent = addParagraphsToContent(commentContent);
 	const highestId = getHighestId();
 	const newComment = {
 		id: highestId + 1,
@@ -156,11 +163,9 @@ const getHighestId = () => {
 
 function addParagraphsToContent(content) {
 	const text = content
-		.html()
 		.replace(/<div>/g, "\n")
 		.replace(/<\/div>/g, "")
 		.replace(/<br>/g, "\n");
-	console.log("with paragraphs:", text);
 	return text;
 }
 

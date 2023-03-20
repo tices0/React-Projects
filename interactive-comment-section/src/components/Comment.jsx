@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
-import { user } from "..";
-import { addToCommentScore, substractFromCommentScore, getTimeAgo } from "..";
 import DeleteScreen from "./DeleteScreen";
+import {
+	user,
+	addToCommentScore,
+	substractFromCommentScore,
+	getTimeAgo,
+} from "..";
 
 // const root = document.querySelector("#root");
 
-function Comments({ comment, index, setReload }) {
+function Comments({ comment, index }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
 	const [onDeleteScreen, setOnDeleteScreen] = useState(false);
+
+	const [reload, setReload] = useState(false);
+
+	useEffect(() => {
+		if (reload) setReload(false);
+	}, [reload]);
 
 	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
@@ -123,7 +133,7 @@ function Comments({ comment, index, setReload }) {
 
 			{onDeleteScreen ? (
 				<DeleteScreen
-					commentId={comment.id}
+					comment={comment}
 					setOnDeleteScreen={setOnDeleteScreen}
 				/>
 			) : (

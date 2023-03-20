@@ -7,9 +7,8 @@ import {
 	editComment,
 } from "..";
 
-function AddComment({ comment, commentIndex, isReply, isEdit, setReload }) {
+function AddComment({ comment, commentIndex, isReply, isEdit }) {
 	const textareaRef = useRef();
-	console.log(comment);
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -19,7 +18,6 @@ function AddComment({ comment, commentIndex, isReply, isEdit, setReload }) {
 			addTopLevelComment(textareaRef.current.innerHTML);
 			textareaRef.current.innerHTML = "";
 		} else if (!isEdit) {
-			if ("replyingTo" in comment) console.log("already a reply");
 			if ("replyingTo" in comment) addReplyToReply("toplevelcomment");
 			else
 				addReplyToTopLevelComment(
@@ -27,8 +25,12 @@ function AddComment({ comment, commentIndex, isReply, isEdit, setReload }) {
 					textareaRef.current.innerHTML,
 				);
 			textareaRef.current.innerHTML = `@${comment.user.username}`;
-		} else editComment();
-		setReload(true);
+		} else
+			editComment(
+				comment,
+				"replyingTo" in comment ? true : false,
+				textareaRef.current.innerHTML,
+			);
 	};
 
 	return (

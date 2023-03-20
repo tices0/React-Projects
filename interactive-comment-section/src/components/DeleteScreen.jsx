@@ -1,10 +1,11 @@
 import React from "react";
 import { deleteComment } from "..";
 
-function DeleteScreen({ commentId, setOnDeleteScreen }) {
-	const handleSubmit = () => {
+function DeleteScreen({ comment, setOnDeleteScreen }) {
+	const handleSubmit = event => {
+		event.preventDefault();
 		window.location.reload();
-		deleteComment(commentId);
+		deleteComment(comment.id, "replyingTo" in comment ? true : false);
 		setOnDeleteScreen(false);
 	};
 
