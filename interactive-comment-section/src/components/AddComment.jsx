@@ -7,12 +7,13 @@ import {
 	editComment,
 } from "..";
 
-function AddComment({ comment, commentIndex, isReply, isEdit }) {
+function AddComment({ comment, commentIndex, isReply, isEdit, setReload }) {
 	const textareaRef = useRef();
 	console.log(comment);
 
 	const handleSubmit = event => {
 		event.preventDefault();
+		window.location.reload();
 		if (textareaRef.current.innerHTML === "") return null;
 		if (!isReply) {
 			addTopLevelComment(textareaRef.current.innerHTML);
@@ -27,6 +28,7 @@ function AddComment({ comment, commentIndex, isReply, isEdit }) {
 				);
 			textareaRef.current.innerHTML = `@${comment.user.username}`;
 		} else editComment();
+		setReload(true);
 	};
 
 	return (

@@ -6,7 +6,7 @@ function App({ comments }) {
 	const [reload, setReload] = useState(false);
 
 	useEffect(() => {
-		if (reload) setReload(false);
+		setReload(false);
 		if (reload) console.log("reload");
 	}, [reload]);
 
@@ -22,7 +22,7 @@ function App({ comments }) {
 						/>
 					))}
 			</ul>
-			<AddComment />
+			<AddComment setReload={setReload} />
 		</>
 	);
 }

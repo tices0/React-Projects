@@ -122,6 +122,8 @@ const getNewComment = (commentContent, isReply) => {
 		);
 	}
 
+	console.log(addParagraphsToContent(commentContent));
+
 	const highestId = getHighestId();
 	const newComment = {
 		id: highestId + 1,
@@ -151,6 +153,16 @@ const getHighestId = () => {
 	if (Math.max(...replyIds) > highestId) highestId = Math.max(...replyIds);
 	return highestId;
 };
+
+function addParagraphsToContent(content) {
+	const text = content
+		.html()
+		.replace(/<div>/g, "\n")
+		.replace(/<\/div>/g, "")
+		.replace(/<br>/g, "\n");
+	console.log("with paragraphs:", text);
+	return text;
+}
 
 const getReplyingTo = commentId => {
 	parsedJsonData.comments.forEach(comment => {

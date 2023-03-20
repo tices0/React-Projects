@@ -3,7 +3,7 @@ import { deleteComment } from "..";
 
 function DeleteScreen({ commentId, setOnDeleteScreen }) {
 	const handleSubmit = () => {
-		console.log("form submitted");
+		window.location.reload();
 		deleteComment(commentId);
 		setOnDeleteScreen(false);
 	};
@@ -24,14 +24,7 @@ function DeleteScreen({ commentId, setOnDeleteScreen }) {
 					>
 						No, cancel
 					</button>
-					<button
-						type="submit"
-						className="delete"
-						// onClick={() => {
-						// 	// deleteComment(commentId);
-						// 	// setOnDeleteScreen(false);
-						// }}
-					>
+					<button type="submit" form="delete" className="delete">
 						Yes, delete
 					</button>
 				</div>
