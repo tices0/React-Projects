@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import Replies from "./Replies";
 import AddComment from "./AddComment";
 import { user } from "..";
-import {
-	addToCommentScore,
-	substractFromCommentScore,
-	getTimeAgo,
-} from "..";
+import { addToCommentScore, substractFromCommentScore, getTimeAgo } from "..";
 import DeleteScreen from "./DeleteScreen";
+
+// const root = document.querySelector("#root");
 
 function Comments({ comment, index, setReload }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
-	const [onDeleteScreen, setOnDeleteScreen] = useState(false)
+	const [onDeleteScreen, setOnDeleteScreen] = useState(false);
 
 	const replyButtonClicked = (key, editButton) => {
 		setShowReplyForm(old => ({ ...old, [key]: !old[key] }));
@@ -64,7 +62,10 @@ function Comments({ comment, index, setReload }) {
 								<>
 									<button
 										className="delete"
-										onClick={() => setOnDeleteScreen(true)}
+										onClick={() => {
+											setOnDeleteScreen(true);
+											// root.style.opacity = 0.5;
+										}}
 									>
 										<i className="fas fa-trash"></i>
 										Delete
@@ -109,7 +110,6 @@ function Comments({ comment, index, setReload }) {
 					commentIndex={index}
 					isReply={true}
 					isEdit={isEditButton[index] ? true : false}
-					// commentisReply={'replyingTo' in comment ? true : false}
 				/>
 			) : (
 				""
@@ -121,7 +121,14 @@ function Comments({ comment, index, setReload }) {
 				""
 			)}
 
-			{onDeleteScreen? <DeleteScreen /> : ''}
+			{onDeleteScreen ? (
+				<DeleteScreen
+					commentId={comment.id}
+					setOnDeleteScreen={setOnDeleteScreen}
+				/>
+			) : (
+				""
+			)}
 		</>
 	);
 }

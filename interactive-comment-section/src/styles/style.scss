@@ -350,5 +350,78 @@ form {
 }
 
 // =============
+// Delete Screen
+// =============
+
+// body {
+// 	filter: brightness(50%);
+// }
+
+section.delete {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1;
+}
+
+.delete-container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: $white;
+	width: 400px;
+	padding: 2rem;
+	border-radius: 6px;
+	opacity: 1;
+	border: 2px solid black;
+	@include flexCenter(column);
+	align-items: flex-start;
+	gap: 1rem;
+
+	h1 {
+		font-weight: 500;
+		font-size: 20px;
+		color: $dark-blue;
+	}
+
+	p {
+		color: $greyish-blue;
+		line-height: 1;
+	}
+
+	.btns {
+		@include flexCenter(row);
+		gap: 1rem;
+
+		button {
+			text-transform: uppercase;
+			font-weight: 500;
+			height: 2.5rem;
+			padding: 0 1.5rem;
+			color: $white;
+			cursor: pointer;
+			border-radius: 6px;
+			white-space: nowrap;
+			margin-top: 0.25rem;
+
+			&.delete {
+				background-color: $soft-red;
+				&:hover {
+					background-color: $pale-red;
+				}
+			}
+
+			&.cancel {
+				background-color: $greyish-blue;
+				&:hover {
+					background-color: $moderate-blue;
+				}
+			}
+		}
+	}
+}
+
+// =============
 //
 // =============

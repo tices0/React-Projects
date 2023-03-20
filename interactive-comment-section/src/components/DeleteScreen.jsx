@@ -3,7 +3,7 @@ import { deleteComment } from "..";
 
 function DeleteScreen({ commentId, setOnDeleteScreen }) {
 	return (
-		<div className="big-delete-container">
+		<section className="delete">
 			<div className="delete-container">
 				<h1>Delete comment</h1>
 				<p>
@@ -18,6 +18,7 @@ function DeleteScreen({ commentId, setOnDeleteScreen }) {
 						No, cancel
 					</button>
 					<button
+						type="submit"
 						className="delete"
 						onClick={() => deleteComment(commentId)}
 					>
@@ -25,7 +26,7 @@ function DeleteScreen({ commentId, setOnDeleteScreen }) {
 					</button>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
 

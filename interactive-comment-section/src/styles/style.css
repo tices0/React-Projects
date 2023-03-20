@@ -308,4 +308,68 @@ form .submit:hover {
   form .submit {
     grid-area: submit;
   }
+}
+section.delete {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.delete-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: hsl(0, 0%, 100%);
+  width: 400px;
+  padding: 2rem;
+  border-radius: 6px;
+  opacity: 1;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.delete-container h1 {
+  font-weight: 500;
+  font-size: 20px;
+  color: hsl(212, 24%, 26%);
+}
+.delete-container p {
+  color: hsl(211, 10%, 45%);
+  line-height: 1;
+}
+.delete-container .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+.delete-container .btns button {
+  text-transform: uppercase;
+  font-weight: 500;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+}
+.delete-container .btns button.delete {
+  background-color: hsl(358, 79%, 66%);
+}
+.delete-container .btns button.delete:hover {
+  background-color: hsl(357, 100%, 86%);
+}
+.delete-container .btns button.cancel {
+  background-color: hsl(211, 10%, 45%);
+}
+.delete-container .btns button.cancel:hover {
+  background-color: hsl(238, 40%, 52%);
 }/*# sourceMappingURL=style.css.map */
