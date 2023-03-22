@@ -70,8 +70,13 @@ export const addReplyToTopLevelComment = (commentIndex, replyContent) => {
 export const addReplyToReply = (commentId, replyContent) => {
 	console.log("reply added to reply");
 	const newReply = getNewComment(replyContent, true);
-	console.log(newReply);
-	getReplyingTo(commentId);
+	const topLevelReplyIsFrom = getTopLevelCommentReplyIsFrom(commentId);
+	console.log(topLevelReplyIsFrom);
+	comments[topLevelReplyIsFrom].replies = [
+		...comments[topLevelReplyIsFrom].replies,
+		newReply,
+	];
+	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
 export const editComment = (comment, isReply, newContent) => {
@@ -94,28 +99,6 @@ export const deleteComment = (commentId, isReply) => {
 		comments[topLevelReplyIsFrom].replies.splice(commentToDelete, 1);
 	else parsedJsonData.comments.splice(commentToDelete, 1);
 	localStorage.data = JSON.stringify(parsedJsonData);
-};
-
-const findComment = (commentId, isReply) => {
-	let found = false;
-	let commentIndex;
-	let topLevelReplyIsFrom;
-	comments.forEach((comment, commentIndexInComments) => {
-		if (!found && comment.id === commentId && !isReply) {
-			found = true;
-			commentIndex = commentIndexInComments;
-		} else {
-			comment.replies.forEach((reply, replyIndex) => {
-				if (!found && reply.id === commentId) {
-					found = true;
-					commentIndex = replyIndex;
-					isReply = true;
-					topLevelReplyIsFrom = commentIndex;
-				}
-			});
-		}
-	});
-	return [commentIndex, topLevelReplyIsFrom];
 };
 
 // ==================
@@ -162,19 +145,44 @@ const getHighestId = () => {
 };
 
 function addParagraphsToContent(content) {
-	const text = content
+	return content
 		.replace(/<div>/g, "\n")
 		.replace(/<\/div>/g, "")
 		.replace(/<br>/g, "\n");
-	return text;
 }
 
-const getReplyingTo = commentId => {
-	parsedJsonData.comments.forEach(comment => {
+const findComment = (commentId, isReply) => {
+	let found = false;
+	let commentIndex;
+	let topLevelReplyIsFrom;
+	comments.forEach((comment, commentIndexInComments) => {
+		if (!found && comment.id === commentId && !isReply) {
+			found = true;
+			commentIndex = commentIndexInComments;
+		} else {
+			comment.replies.forEach((reply, replyIndex) => {
+				if (!found && reply.id === commentId) {
+					found = true;
+					commentIndex = replyIndex;
+					isReply = true;
+					topLevelReplyIsFrom = commentIndex;
+				}
+			});
+		}
+	});
+	return [commentIndex, topLevelReplyIsFrom];
+};
+
+const getTopLevelCommentReplyIsFrom = commentId => {
+	let topLevelReplyIsFrom;
+	parsedJsonData.comments.forEach((comment, commentIndex) => {
 		comment.replies.forEach(reply => {
-			if (reply.id === commentId) console.log(commentId, "found");
+			if (reply.id === commentId) {
+				topLevelReplyIsFrom = commentIndex;
+			}
 		});
 	});
+	return topLevelReplyIsFrom;
 };
 
 // ==================

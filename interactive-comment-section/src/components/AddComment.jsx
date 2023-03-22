@@ -12,13 +12,14 @@ function AddComment({ comment, commentIndex, isReply, isEdit }) {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		window.location.reload();
+		// window.location.reload();
 		if (textareaRef.current.innerHTML === "") return null;
 		if (!isReply) {
 			addTopLevelComment(textareaRef.current.innerHTML);
 			textareaRef.current.innerHTML = "";
 		} else if (!isEdit) {
-			if ("replyingTo" in comment) addReplyToReply("toplevelcomment");
+			if ("replyingTo" in comment)
+				addReplyToReply(comment.id, textareaRef.current.innerHTML);
 			else
 				addReplyToTopLevelComment(
 					commentIndex,
