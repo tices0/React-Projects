@@ -10,7 +10,8 @@ function DeleteScreen({ comment, setOnDeleteScreen }) {
 	};
 
 	return (
-		<form className="delete" id="delete" onSubmit={handleSubmit}>
+		<>
+			<form className="delete" id="delete" onSubmit={handleSubmit}></form>
 			<div className="delete-container">
 				<h1>Delete comment</h1>
 				<p>
@@ -30,7 +31,7 @@ function DeleteScreen({ comment, setOnDeleteScreen }) {
 					</button>
 				</div>
 			</div>
-		</form>
+		</>
 	);
 }
 

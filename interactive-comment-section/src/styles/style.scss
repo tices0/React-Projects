@@ -354,15 +354,19 @@ form {
 // =============
 
 // body {
-// 	filter: brightness(50%);
 // }
 
 form.delete {
 	position: fixed;
 	width: 100vw;
-	height: 100vh;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: calc(100vh + 6rem);
 	z-index: 1;
-	background-color: transparent;
+	background-color: black;
+	opacity: 0.5;
 }
 
 .delete-container {
@@ -375,7 +379,7 @@ form.delete {
 	padding: 2rem;
 	border-radius: 6px;
 	opacity: 1;
-	border: 2px solid black;
+	z-index: 2;
 	@include flexCenter(column);
 	align-items: flex-start;
 	gap: 1rem;
@@ -416,7 +420,7 @@ form.delete {
 			&.cancel {
 				background-color: $greyish-blue;
 				&:hover {
-					background-color: $moderate-blue;
+					background-color: $light-greyish-blue;
 				}
 			}
 		}
