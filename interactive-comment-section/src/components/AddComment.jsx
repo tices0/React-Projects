@@ -12,8 +12,12 @@ function AddComment({ comment, commentIndex, isReply, isEdit }) {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		// window.location.reload();
-		if (textareaRef.current.innerHTML === "") return null;
+		window.location.reload();
+		if (
+			textareaRef.current.innerHTML === "" ||
+			(isReply && textareaRef.current.innerHTML.split(" ").length < 2)
+		)
+			return null;
 		if (!isReply) {
 			addTopLevelComment(textareaRef.current.innerHTML);
 			textareaRef.current.innerHTML = "";

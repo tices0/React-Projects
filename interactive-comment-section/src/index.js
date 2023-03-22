@@ -83,6 +83,7 @@ export const editComment = (comment, isReply, newContent) => {
 	console.log("comment edited");
 	let commentToUpdate = findComment(comment.id, isReply)[0];
 	let topLevelReplyIsFrom = findComment(comment.id, isReply)[1];
+
 	if (isReply)
 		comments[topLevelReplyIsFrom].replies[commentToUpdate].content =
 			newContent;
