@@ -9,8 +9,6 @@ import {
 	getTimeAgo,
 } from "..";
 
-// const root = document.querySelector("#root");
-
 function Comments({ comment, index }) {
 	const [showReplyForm, setShowReplyForm] = useState({});
 	const [isEditButton, setIsEditButton] = useState({});
@@ -72,10 +70,7 @@ function Comments({ comment, index }) {
 								<>
 									<button
 										className="delete"
-										onClick={() => {
-											setOnDeleteScreen(true);
-											// root.style.opacity = 0.5;
-										}}
+										onClick={() => setOnDeleteScreen(true)}
 									>
 										<i className="fas fa-trash"></i>
 										Delete

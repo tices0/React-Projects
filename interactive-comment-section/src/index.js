@@ -5,8 +5,6 @@ import App from "./App";
 import jsonData from "./data.json";
 const moment = require("moment");
 
-// localStorage.removeItem("data");
-
 if (!localStorage.getItem("data"))
 	localStorage.setItem("data", JSON.stringify(jsonData));
 
@@ -49,17 +47,13 @@ export const substractFromCommentScore = comment => {
 // ==================
 
 export const addTopLevelComment = commentContent => {
-	console.log("comment added");
 	const newComment = getNewComment(commentContent);
-	console.log(newComment);
 	parsedJsonData.comments = [...parsedJsonData.comments, newComment];
 	localStorage.data = JSON.stringify(parsedJsonData);
 };
 
 export const addReplyToTopLevelComment = (commentIndex, replyContent) => {
-	console.log("reply added");
 	const newReply = getNewComment(replyContent, true);
-	console.log(newReply);
 	comments[commentIndex].replies = [
 		...comments[commentIndex].replies,
 		newReply,
@@ -68,10 +62,8 @@ export const addReplyToTopLevelComment = (commentIndex, replyContent) => {
 };
 
 export const addReplyToReply = (commentId, replyContent) => {
-	console.log("reply added to reply");
 	const newReply = getNewComment(replyContent, true);
 	const topLevelReplyIsFrom = getTopLevelCommentReplyIsFrom(commentId);
-	console.log(topLevelReplyIsFrom);
 	comments[topLevelReplyIsFrom].replies = [
 		...comments[topLevelReplyIsFrom].replies,
 		newReply,
@@ -80,7 +72,6 @@ export const addReplyToReply = (commentId, replyContent) => {
 };
 
 export const editComment = (comment, isReply, newContent) => {
-	console.log("comment edited");
 	let commentToUpdate = findComment(comment.id, isReply)[0];
 	let topLevelReplyIsFrom = findComment(comment.id, isReply)[1];
 
@@ -92,7 +83,6 @@ export const editComment = (comment, isReply, newContent) => {
 };
 
 export const deleteComment = (commentId, isReply) => {
-	console.log("comment deleted");
 	let commentToDelete = findComment(commentId, isReply)[0];
 	let topLevelReplyIsFrom = findComment(commentId, isReply)[1];
 
