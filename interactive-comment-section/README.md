@@ -32,7 +32,7 @@ Users should be able to:
 ![](./screenshot.png)
 
 ### Links
-
+- [Repository URL](https://github.com/tices0/React-Projects/tree/comment-section/interactive-comment-section) 
 -   Solution URL: [Add solution URL here](https://your-solution-url.com)
 -   Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
@@ -46,10 +46,6 @@ Users should be able to:
 -   [Google Fonts](https://fonts.google.com/) - For fonts
 
 ### What I learned
-
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
 
 To find _which comment to add the new reply to_, I looped over all of the comments and their replies. Here the comment's **index** in the `comments` array is returned so that the reply can be added to the item in the `comments` array with that index.
 
