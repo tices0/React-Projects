@@ -201,6 +201,7 @@ ul.comments {
 
 			.content {
 				color: $greyish-blue;
+				line-height: 1.4;
 
 				.replying-to {
 					font-weight: 500;
@@ -392,7 +393,7 @@ form.delete {
 
 	p {
 		color: $greyish-blue;
-		line-height: 1.45;
+		line-height: 1.4;
 	}
 
 	.btns {

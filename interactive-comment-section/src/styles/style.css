@@ -186,6 +186,7 @@ ul.comments .comment section .top .right .delete:hover {
 }
 ul.comments .comment section .content {
   color: hsl(211, 10%, 45%);
+  line-height: 1.4;
 }
 ul.comments .comment section .content .replying-to {
   font-weight: 500;
@@ -347,7 +348,7 @@ form.delete {
 }
 .delete-container p {
   color: hsl(211, 10%, 45%);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 .delete-container .btns {
   display: flex;
