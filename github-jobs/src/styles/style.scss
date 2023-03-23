@@ -1,0 +1,613 @@
+$title: #282538;
+$text: #334680;
+$button: #1e86ff;
+$main-grey: #b9bdcf;
+$light-grey: #b7bcce;
+$light-blue: #e3eafd;
+
+@mixin flexCenter($direction) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	color: $text;
+}
+
+button {
+	all: unset;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+i {
+	font-style: normal;
+}
+
+li {
+	list-style-type: none;
+}
+
+// general
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	color: $text;
+	background-color: #f6f7fb;
+	height: 100%;
+}
+
+#root {
+	padding: 4rem;
+	width: 100%;
+	height: 100%;
+
+	::placeholder {
+		color: $main-grey;
+	}
+}
+
+main {
+	display: grid;
+	grid-template-columns: 380px 1fr;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+// ===============
+// Re-used Components
+// ===============
+
+.full-time {
+	border: 1.5px solid $text;
+	border-radius: 4px;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 0.25rem 0.5rem;
+}
+
+.location,
+.location i,
+.time,
+.time i {
+	color: $main-grey;
+	font-size: 12.5px;
+}
+
+.time i,
+.location i {
+	margin-right: 0.35rem;
+}
+
+.not-found,
+.img-container {
+	background: #f2f2f2;
+	min-width: 90px;
+	min-height: 90px;
+	border-radius: 4px;
+	@include flexCenter(row);
+	// background: white;
+
+	p {
+		font-size: 12px;
+		color: #bdbdbd;
+	}
+
+	img {
+		object-fit: contain;
+	}
+}
+
+.img-container {
+	background-color: #fff;
+}
+
+// ===============
+// Title
+// ===============
+
+.title {
+	position: absolute;
+	left: 4rem;
+	top: calc(2rem - 18px);
+	font-weight: normal;
+	color: $title;
+	font-size: 24px;
+
+	i {
+		font-weight: bold;
+		color: $title;
+	}
+}
+
+// ===============
+// Search
+// ===============
+
+.search-container {
+	@include flexCenter(row);
+	width: 100%;
+	background: url(../media/backgroundImg.png);
+	padding: 2.5rem;
+	border-radius: 10px;
+	font-family: 'Roboto', sans-serif;
+
+	.search-bar {
+		height: 3rem;
+		width: calc(100% - 300px);
+		@include flexCenter(row);
+		justify-content: space-between;
+		gap: 1rem;
+		background-color: #fff;
+		padding: 0.25rem;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+
+		i {
+			color: $main-grey;
+			padding-left: 0.75rem;
+		}
+
+		.search {
+			height: 2.5rem;
+			width: 100%;
+			border: none;
+			font-size: 14.5px;
+
+			&:focus {
+				outline: none;
+				border: none;
+			}
+		}
+
+		input[type='submit'] {
+			background-color: $button;
+			color: #fff;
+			height: 2.5rem;
+			width: 150px;
+			font-size: 15px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+	}
+}
+
+// ===============
+// Sidebar
+// ===============
+
+section.sidebar {
+	input {
+		margin: 0 0.75rem;
+		transform: scale(1.25);
+	}
+
+	label {
+		font-size: 14px;
+		font-weight: 500;
+	}
+
+	h2 {
+		text-transform: uppercase;
+		color: $main-grey;
+		margin: 1rem 0;
+		font-size: 16px;
+	}
+
+	.from-home-checkbox,
+	li {
+		@include flexCenter(row);
+		justify-content: flex-start;
+	}
+
+	.search {
+		@include flexCenter(row);
+		justify-content: space-between;
+		gap: 1rem;
+		width: 100%;
+		background-color: #fff;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+		border-radius: 4px;
+		padding: 0 1rem;
+		height: 2.5rem;
+		font-family: 'Roboto', sans-serif;
+
+		i {
+			color: $main-grey;
+		}
+
+		input {
+			font-size: 14.5px;
+			height: 2rem;
+			margin: 0;
+			transform: scale(1);
+			width: 100%;
+			border: none;
+
+			&:focus {
+				outline: none;
+				border: none;
+			}
+		}
+	}
+
+	.options {
+		margin-top: 1.5rem;
+
+		li {
+			margin-bottom: 0.5rem;
+		}
+	}
+}
+
+// ===============
+// Jobs
+// ===============
+
+section.jobs-container {
+	font-family: 'Roboto', sans-serif;
+	@include flexCenter(column);
+	justify-content: space-between;
+	height: 100%;
+
+	.jobs {
+		@include flexCenter(column);
+		gap: 1rem;
+		width: 100%;
+		height: 100%;
+
+		li {
+			background-color: #fff;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+			border-radius: 4px;
+			@include flexCenter(row);
+			justify-content: flex-start;
+			gap: 1rem;
+			width: 100%;
+			padding: 1rem;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $light-blue;
+			}
+
+			.info {
+				@include flexCenter(row);
+				justify-content: space-between;
+				width: 100%;
+
+				.left {
+					@include flexCenter(column);
+					align-items: flex-start;
+					gap: 0.5rem;
+
+					h6 {
+						font-size: 12px;
+					}
+
+					p {
+						font-size: 18px;
+					}
+				}
+
+				.right {
+					align-self: flex-end;
+					@include flexCenter(row);
+					gap: 2rem;
+				}
+			}
+		}
+	}
+
+	nav {
+		align-self: flex-end;
+		margin-top: 1rem;
+
+		ul {
+			@include flexCenter(row);
+			gap: 0.5rem;
+
+			li {
+				border: 1.5px solid $light-blue;
+				height: 36px;
+				width: 36px;
+				cursor: pointer;
+				border-radius: 4px;
+				font-size: 12px;
+				@include flexCenter(row);
+
+				a {
+					width: 100%;
+					height: 100%;
+					@include flexCenter(row);
+				}
+
+				&:hover {
+					border-color: $button;
+
+					a {
+						color: $button;
+					}
+				}
+
+				&.selected {
+					background-color: $button;
+					border-color: $button;
+
+					a {
+						color: #fff;
+					}
+				}
+
+				&.break {
+					border: none;
+
+					&:hover {
+						border: 1.5px solid $button;
+					}
+				}
+			}
+		}
+	}
+}
+
+// MEDIA QUERIES
+
+@media only screen and (max-width: 1020px) {
+	// change position of location and time of each job
+	section.jobs-container {
+		.jobs li .info .right {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 920px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 200px);
+	}
+}
+
+@media only screen and (max-width: 890px) {
+	// change grid size to halves
+	main {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media only screen and (max-width: 840px) {
+	// move right info to under the left info
+	section.jobs-container .jobs li .info {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-start;
+			flex-direction: row;
+			gap: 1.5rem;
+		}
+	}
+
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 150px);
+	}
+}
+
+@media only screen and (max-width: 785px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 100px);
+	}
+}
+
+@media only screen and (max-width: 740px) {
+	// change to phone/ipad view
+	main {
+		grid-template-columns: 1fr;
+	}
+
+	// change job card design back to original
+	section.jobs-container .jobs li .info {
+		flex-direction: row;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-end;
+			flex-direction: row;
+			gap: 2rem;
+		}
+	}
+
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 50px);
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: calc(100% - 25px);
+	}
+}
+
+@media only screen and (max-width: 655px) {
+	// make search bar longer
+	.search-container .search-bar {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 630px) {
+	// make search bar longer
+	.search-container {
+		padding: 2.5rem 1rem;
+	}
+}
+
+@media only screen and (max-width: 620px) {
+	// change position of location and time of each job
+	section.jobs-container {
+		.jobs li .info .right {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 620px) {
+	// move right info to under the left info
+	section.jobs-container .jobs li .info {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+
+		.right {
+			align-self: flex-start;
+			flex-direction: row;
+			gap: 1.5rem;
+		}
+	}
+}
+
+// ===============
+// Job View
+// ===============
+
+section.job-view {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 1rem;
+
+	.sidebar {
+		button {
+			color: $button;
+			cursor: pointer;
+			margin-bottom: 1rem;
+			i {
+				color: $button;
+				margin-right: 1rem;
+			}
+		}
+
+		h2 {
+			color: $main-grey;
+			text-transform: uppercase;
+			font-size: 16px;
+			margin: 1.5rem 0 0.5rem 0;
+		}
+
+		p,
+		a {
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 21px;
+		}
+
+		a {
+			color: $button;
+		}
+
+		li {
+			list-style-type: '→';
+			list-style-position: inside;
+			padding-left: 1rem;
+
+			a {
+				padding-left: 0.5rem;
+			}
+		}
+	}
+
+	main {
+		@include flexCenter(column);
+		align-items: flex-start;
+		justify-content: flex-start;
+		gap: 0;
+		margin-top: 0;
+		font-family: 'Roboto', sans-serif;
+
+		.top {
+			@include flexCenter(row);
+			gap: 1rem;
+			margin-bottom: 0.5rem;
+
+			h1 {
+				font-size: 24px;
+			}
+		}
+
+		.time {
+			font-size: 13px;
+		}
+
+		.company-info {
+			@include flexCenter(row);
+			gap: 1rem;
+			margin: 1.5rem 0;
+
+			.not-found,
+			.img-container {
+				min-width: 60px;
+				min-height: 60px;
+
+				p {
+					font-size: 11.5px;
+				}
+			}
+
+			.info {
+				@include flexCenter(column);
+				height: 100%;
+				justify-content: space-around;
+				align-items: flex-start;
+
+				h2 {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.description {
+			font-size: 16px;
+			line-height: 150%;
+
+			p {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 845px) {
+	// move full-time under title
+	section.job-view main .top {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+}
+
+@media only screen and (max-width: 740px) {
+	section.job-view {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+}
+
+// ===============
+// Title
+// ===============
