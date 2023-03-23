@@ -347,7 +347,7 @@ form.delete {
 }
 .delete-container p {
   color: hsl(211, 10%, 45%);
-  line-height: 1;
+  line-height: 1.45;
 }
 .delete-container .btns {
   display: flex;
@@ -355,6 +355,7 @@ form.delete {
   align-items: center;
   flex-direction: row;
   gap: 1rem;
+  width: 100%;
 }
 .delete-container .btns button {
   text-transform: uppercase;
@@ -378,4 +379,23 @@ form.delete {
 }
 .delete-container .btns button.cancel:hover {
   background-color: hsl(239, 57%, 85%);
+}
+
+@media screen and (max-width: 500px) {
+  .delete-container {
+    width: 350px;
+    padding: 1.5rem;
+  }
+  .delete-container .btns {
+    gap: 0.75rem;
+  }
+  .delete-container .btns button {
+    height: 2.75rem;
+    padding: 0 1.25rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .delete-container {
+    width: calc(100% - 2rem);
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -392,12 +392,13 @@ form.delete {
 
 	p {
 		color: $greyish-blue;
-		line-height: 1;
+		line-height: 1.45;
 	}
 
 	.btns {
 		@include flexCenter(row);
 		gap: 1rem;
+		width: 100%;
 
 		button {
 			text-transform: uppercase;
@@ -424,6 +425,28 @@ form.delete {
 				}
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.delete-container {
+		width: 350px;
+		padding: 1.5rem;
+
+		.btns {
+			gap: 0.75rem;
+
+			button {
+				height: 2.75rem;
+				padding: 0 1.25rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.delete-container {
+		width: calc(100% - 2rem);
 	}
 }
 
