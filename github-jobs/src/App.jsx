@@ -48,6 +48,9 @@ function App() {
 		return <JobView setJobView={setJobView} currentJob={currentJob} />;
 	return (
 		<>
+			<h1 class="title">
+				<i>Github</i> Jobs
+			</h1>
 			{loading ? (
 				// show loading screen while data is being fetched
 				<Loading background="#334680" margin="0.5rem" size="2.5rem" />

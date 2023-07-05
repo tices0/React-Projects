@@ -8,13 +8,13 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://github-jobs-f3d40.web.app/">
       Demo
     </a>
-    <span> | </span>
+    <!-- <span> | </span>
     <a href="https://{your-url-to-the-solution}">
       Solution
-    </a>
+    </a> -->
     <span> | </span>
     <a href="https://devchallenges.io/challenges/TtUjDt19eIHxNQ4n5jps">
       Challenge
