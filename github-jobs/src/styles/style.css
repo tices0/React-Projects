@@ -42,6 +42,16 @@ body {
   color: #b9bdcf;
 }
 
+@media only screen and (max-width: 400px) {
+  #root {
+    padding: 4rem 3rem;
+  }
+}
+@media only screen and (max-width: 370px) {
+  #root {
+    padding: 4rem 2rem;
+  }
+}
 main {
   display: grid;
   grid-template-columns: 380px 1fr;
@@ -109,6 +119,16 @@ main {
   color: #282538;
 }
 
+@media only screen and (max-width: 400px) {
+  .title {
+    left: 3rem;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .title {
+    left: 2rem;
+  }
+}
 .search-container {
   display: flex;
   justify-content: center;
@@ -159,6 +179,19 @@ main {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 400px) {
+  .search-container .search-bar .search {
+    padding-right: 1rem;
+  }
+  .search-container .search-bar input[type=submit] {
+    display: none;
+  }
+}
+@media only screen and (max-width: 340px) {
+  section.sidebar .search, section.jobs-container .jobs li, section.jobs-container {
+    width: 250px;
+  }
+}
 section.sidebar input {
   margin: 0 0.75rem;
   transform: scale(1.25);

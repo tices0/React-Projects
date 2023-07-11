@@ -60,7 +60,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tices0/React-Projects/github-jobs
+$ git clone https://github.com/tochidavids/React-Projects/github-jobs
 
 # Install dependencies
 $ npm install
@@ -104,6 +104,6 @@ Use the `From Home` checkbox to only see _jobs that can be done remotely_.
 
 ## Contact
 
-<!-- -   Website [your-website.com](https://{your-web-site-link}) -->
-
--   GitHub [@tices0](https://{github.com/ytices0})
+-   [Portfolio Website](https://tochidavids.netlify.app)
+-   GitHub [@tochidavids](https://github.com/tochidavids)
+-   Email - tochidavids18@gmail.com

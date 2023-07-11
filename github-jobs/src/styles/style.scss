@@ -39,7 +39,7 @@ li {
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Poppins', sans-serif;
+	font-family: "Poppins", sans-serif;
 	color: $text;
 	background-color: #f6f7fb;
 	height: 100%;
@@ -52,6 +52,18 @@ body {
 
 	::placeholder {
 		color: $main-grey;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	#root {
+		padding: 4rem 3rem;
+	}
+}
+
+@media only screen and (max-width: 370px) {
+	#root {
+		padding: 4rem 2rem;
 	}
 }
 
@@ -128,6 +140,18 @@ main {
 	}
 }
 
+@media only screen and (max-width: 400px) {
+	.title {
+		left: 3rem;
+	}
+}
+
+@media only screen and (max-width: 370px) {
+	.title {
+		left: 2rem;
+	}
+}
+
 // ===============
 // Search
 // ===============
@@ -138,7 +162,7 @@ main {
 	background: url(../media/backgroundImg.png);
 	padding: 2.5rem;
 	border-radius: 10px;
-	font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 
 	.search-bar {
 		height: 3rem;
@@ -168,7 +192,7 @@ main {
 			}
 		}
 
-		input[type='submit'] {
+		input[type="submit"] {
 			background-color: $button;
 			color: #fff;
 			height: 2.5rem;
@@ -178,6 +202,24 @@ main {
 			border-radius: 4px;
 			cursor: pointer;
 		}
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.search-container .search-bar {
+		.search {
+			padding-right: 1rem;
+		}
+
+		input[type="submit"] {
+			display: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	section.sidebar .search, section.jobs-container .jobs li, section.jobs-container {
+		width: 250px;
 	}
 }
 
@@ -219,7 +261,7 @@ section.sidebar {
 		border-radius: 4px;
 		padding: 0 1rem;
 		height: 2.5rem;
-		font-family: 'Roboto', sans-serif;
+		font-family: "Roboto", sans-serif;
 
 		i {
 			color: $main-grey;
@@ -249,12 +291,18 @@ section.sidebar {
 	}
 }
 
+// @media only screen and (max-width: 370px) {
+// 	section.sidebar .search {
+// 		width: 275px;
+// 	}
+// }
+
 // ===============
 // Jobs
 // ===============
 
 section.jobs-container {
-	font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 	@include flexCenter(column);
 	justify-content: space-between;
 	height: 100%;
@@ -522,7 +570,7 @@ section.job-view {
 		}
 
 		li {
-			list-style-type: '→';
+			list-style-type: "→";
 			list-style-position: inside;
 			padding-left: 1rem;
 
@@ -538,7 +586,7 @@ section.job-view {
 		justify-content: flex-start;
 		gap: 0;
 		margin-top: 0;
-		font-family: 'Roboto', sans-serif;
+		font-family: "Roboto", sans-serif;
 
 		.top {
 			@include flexCenter(row);
