@@ -9,7 +9,7 @@
 <div align="center">
   <h3>
     <a href="https://github-jobs-f3d40.web.app/">
-      Demo
+      Live
     </a>
     <!-- <span> | </span>
     <a href="https://{your-url-to-the-solution}">
