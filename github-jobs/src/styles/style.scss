@@ -106,7 +106,6 @@ main {
 	min-height: 90px;
 	border-radius: 4px;
 	@include flexCenter(row);
-	// background: white;
 
 	p {
 		font-size: 12px;
@@ -287,7 +286,8 @@ section.sidebar {
 
 @media only screen and (max-width: 315px) {
 	section.sidebar .search {
-		width: calc(100% - 2rem);
+		width: calc(100vw - 4rem);
+		padding-right: 0.5rem;
 	}
 }
 

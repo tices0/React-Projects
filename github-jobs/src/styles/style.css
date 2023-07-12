@@ -248,7 +248,8 @@ section.sidebar .options li {
 
 @media only screen and (max-width: 315px) {
   section.sidebar .search {
-    width: calc(100% - 2rem);
+    width: calc(100vw - 4rem);
+    padding-right: 0.5rem;
   }
 }
 section.jobs-container {
