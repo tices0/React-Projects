@@ -1,0 +1,454 @@
+// primary
+$moderate-blue: hsl(238, 40%, 52%);
+$soft-red: hsl(358, 79%, 66%);
+$light-greyish-blue: hsl(239, 57%, 85%);
+$pale-red: hsl(357, 100%, 86%);
+
+// neutral
+$dark-blue: hsl(212, 24%, 26%);
+$greyish-blue: hsl(211, 10%, 45%);
+$light-grey: hsl(223, 19%, 93%);
+$very-light-grey: hsl(228, 33%, 97%);
+$white: hsl(0, 0%, 100%);
+
+@mixin flexCenter($direction) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+}
+
+button {
+	all: unset;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 16px;
+	font-style: normal;
+	font-family: "Rubik", sans-serif;
+}
+
+body {
+	font-size: 16px;
+	background-color: $very-light-grey;
+	padding: 3rem;
+	overflow-x: hidden;
+}
+
+img {
+	width: 100%;
+}
+
+#root {
+	@include flexCenter(column);
+	gap: 2rem;
+	padding: 0 calc(300px - 4rem);
+}
+
+@media screen and (max-width: 1200px) {
+	#root {
+		padding: 0 calc(250px - 4rem);
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	#root {
+		padding: 0 calc(200px - 4rem);
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	#root {
+		padding: 0 calc(150px - 4rem);
+	}
+}
+
+@media screen and (max-width: 900px) {
+	#root {
+		padding: 0 calc(100px - 4rem);
+	}
+}
+
+@media screen and (max-width: 800px) {
+	#root {
+		padding: 0;
+	}
+}
+
+// =============
+// Comment
+// =============
+
+ul.comments {
+	@include flexCenter(column);
+	gap: 1.25rem;
+	width: 100%;
+
+	.comment {
+		position: relative;
+		background-color: $white;
+		border-radius: 6px;
+		@include flexCenter(row);
+		justify-content: flex-start;
+		gap: 1.25rem;
+		padding: 1.25rem;
+		width: 100%;
+
+		.score {
+			background-color: $light-grey;
+			max-width: 40px;
+			min-width: 40px;
+			border-radius: 10px;
+			@include flexCenter(column);
+			gap: 0.25rem;
+
+			i {
+				color: $greyish-blue;
+				font-size: 12px;
+				font-weight: bold;
+				width: 100%;
+				height: 2rem;
+				text-align: center;
+				@include flexCenter(row);
+
+				&:hover {
+					color: $moderate-blue;
+					cursor: pointer;
+				}
+			}
+
+			.value {
+				color: $moderate-blue;
+				font-weight: 500;
+			}
+		}
+
+		section {
+			@include flexCenter(column);
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 1rem;
+			width: 100%;
+
+			.top {
+				@include flexCenter(row);
+				justify-content: space-between;
+				width: 100%;
+
+				img {
+					width: 2rem;
+					cursor: pointer;
+				}
+
+				.left,
+				.right {
+					@include flexCenter(row);
+					gap: 1rem;
+				}
+
+				.username {
+					font-weight: 500;
+					color: $dark-blue;
+					@include flexCenter(row);
+					gap: 0.5rem;
+					cursor: pointer;
+
+					.you-tag {
+						color: $white;
+						background-color: $moderate-blue;
+						border-radius: 2px;
+						padding: 0.2rem 0.3rem;
+						padding-top: 0.1rem;
+						font-size: 14px;
+						@include flexCenter(row);
+					}
+				}
+
+				.time {
+					color: $greyish-blue;
+				}
+
+				.right {
+					font-weight: 500;
+					gap: 1.5rem;
+
+					button {
+						color: $moderate-blue;
+						cursor: pointer;
+
+						&:hover {
+							color: $light-greyish-blue;
+						}
+
+						i {
+							margin-right: 0.5rem;
+						}
+					}
+
+					.delete {
+						color: $soft-red;
+
+						&:hover {
+							color: $pale-red;
+						}
+					}
+				}
+			}
+
+			.content {
+				color: $greyish-blue;
+				line-height: 1.4;
+
+				.replying-to {
+					font-weight: 500;
+					color: $moderate-blue;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 730px) {
+	ul.comments .comment {
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		justify-content: center;
+
+		.score {
+			flex-direction: row;
+			gap: 0.5rem;
+			max-width: unset;
+			min-width: unset;
+			min-height: 40px;
+			max-height: 40px;
+			align-self: flex-start;
+
+			i {
+				width: 2rem;
+				height: auto;
+			}
+		}
+
+		section .top .right {
+			position: absolute;
+			right: 1.5rem;
+			bottom: 2rem;
+		}
+	}
+}
+
+// =============
+// Replies
+// =============
+
+ul.replies {
+	@include flexCenter(row);
+	height: 100%;
+	width: 100%;
+
+	.line {
+		width: 5px;
+		background-color: $light-grey;
+		margin: 0 2.5rem;
+		align-self: stretch;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	ul.replies .line {
+		margin: 0 1.5rem;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	ul.replies .line {
+		margin: 0 1rem;
+	}
+}
+
+// =============
+// Add Comment
+// =============
+
+form {
+	@include flexCenter(row);
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+	background-color: $white;
+	border-radius: 6px;
+	padding: 1.25rem;
+	width: 100%;
+	margin-top: -0.75rem;
+
+	img {
+		width: 2.5rem;
+	}
+
+	.textarea {
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		border: 1.5px solid $light-grey;
+		outline: none;
+		width: 100%;
+		min-height: 80px;
+		overflow: auto;
+		cursor: text;
+		color: $dark-blue;
+
+		&:focus {
+			border-color: $greyish-blue;
+		}
+
+		&:empty:not(:focus):before {
+			content: "Add a comment...";
+			color: $greyish-blue;
+		}
+	}
+
+	.submit {
+		border: none;
+		background-color: $moderate-blue;
+		color: $white;
+		border-radius: 7px;
+		padding: 0.7rem 1.75rem;
+		cursor: pointer;
+		font-weight: 500;
+
+		&:hover {
+			background-color: $light-greyish-blue;
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	form {
+		img {
+			grid-area: img;
+			width: 2rem;
+		}
+
+		.textarea {
+			grid-area: textarea;
+		}
+
+		.submit {
+			grid-area: submit;
+		}
+
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			"textarea textarea"
+			"img submit";
+	}
+}
+
+// =============
+// Delete Screen
+// =============
+
+// body {
+// }
+
+form.delete {
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: black;
+	opacity: 0.5;
+}
+
+.delete-container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: $white;
+	width: 400px;
+	padding: 2rem;
+	border-radius: 6px;
+	opacity: 1;
+	z-index: 2;
+	@include flexCenter(column);
+	align-items: flex-start;
+	gap: 1rem;
+
+	h1 {
+		font-weight: 500;
+		font-size: 20px;
+		color: $dark-blue;
+	}
+
+	p {
+		color: $greyish-blue;
+		line-height: 1.4;
+	}
+
+	.btns {
+		@include flexCenter(row);
+		gap: 1rem;
+		width: 100%;
+
+		button {
+			text-transform: uppercase;
+			font-weight: 500;
+			height: 2.5rem;
+			padding: 0 1.5rem;
+			color: $white;
+			cursor: pointer;
+			border-radius: 6px;
+			white-space: nowrap;
+			margin-top: 0.25rem;
+
+			&.delete {
+				background-color: $soft-red;
+				&:hover {
+					background-color: $pale-red;
+				}
+			}
+
+			&.cancel {
+				background-color: $greyish-blue;
+				&:hover {
+					background-color: $light-greyish-blue;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.delete-container {
+		width: 350px;
+		padding: 1.5rem;
+
+		.btns {
+			gap: 0.75rem;
+
+			button {
+				height: 2.75rem;
+				padding: 0 1.25rem;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.delete-container {
+		width: calc(100% - 2rem);
+	}
+}
+
+// =============
+//
+// =============
