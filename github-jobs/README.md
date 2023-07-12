@@ -37,7 +37,7 @@
 
 ## Overview
 
-![screenshot](./src/media/screenshot.png)
+![screenshot](./screenshot.png)
 
 ### Built With
 
