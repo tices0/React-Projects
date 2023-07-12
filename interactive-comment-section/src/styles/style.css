@@ -1,0 +1,400 @@
+button {
+  all: unset;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 16px;
+  font-style: normal;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  font-size: 16px;
+  background-color: hsl(228, 33%, 97%);
+  padding: 3rem;
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 calc(300px - 4rem);
+}
+
+@media screen and (max-width: 1200px) {
+  #root {
+    padding: 0 calc(250px - 4rem);
+  }
+}
+@media screen and (max-width: 1100px) {
+  #root {
+    padding: 0 calc(200px - 4rem);
+  }
+}
+@media screen and (max-width: 1000px) {
+  #root {
+    padding: 0 calc(150px - 4rem);
+  }
+}
+@media screen and (max-width: 900px) {
+  #root {
+    padding: 0 calc(100px - 4rem);
+  }
+}
+@media screen and (max-width: 800px) {
+  #root {
+    padding: 0;
+  }
+}
+ul.comments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+ul.comments .comment {
+  position: relative;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  width: 100%;
+}
+ul.comments .comment .score {
+  background-color: hsl(223, 19%, 93%);
+  max-width: 40px;
+  min-width: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+ul.comments .comment .score i {
+  color: hsl(211, 10%, 45%);
+  font-size: 12px;
+  font-weight: bold;
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+ul.comments .comment .score i:hover {
+  color: hsl(238, 40%, 52%);
+  cursor: pointer;
+}
+ul.comments .comment .score .value {
+  color: hsl(238, 40%, 52%);
+  font-weight: 500;
+}
+ul.comments .comment section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+ul.comments .comment section .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+ul.comments .comment section .top img {
+  width: 2rem;
+  cursor: pointer;
+}
+ul.comments .comment section .top .left,
+ul.comments .comment section .top .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+ul.comments .comment section .top .username {
+  font-weight: 500;
+  color: hsl(212, 24%, 26%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+ul.comments .comment section .top .username .you-tag {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(238, 40%, 52%);
+  border-radius: 2px;
+  padding: 0.2rem 0.3rem;
+  padding-top: 0.1rem;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+ul.comments .comment section .top .time {
+  color: hsl(211, 10%, 45%);
+}
+ul.comments .comment section .top .right {
+  font-weight: 500;
+  gap: 1.5rem;
+}
+ul.comments .comment section .top .right button {
+  color: hsl(238, 40%, 52%);
+  cursor: pointer;
+}
+ul.comments .comment section .top .right button:hover {
+  color: hsl(239, 57%, 85%);
+}
+ul.comments .comment section .top .right button i {
+  margin-right: 0.5rem;
+}
+ul.comments .comment section .top .right .delete {
+  color: hsl(358, 79%, 66%);
+}
+ul.comments .comment section .top .right .delete:hover {
+  color: hsl(357, 100%, 86%);
+}
+ul.comments .comment section .content {
+  color: hsl(211, 10%, 45%);
+  line-height: 1.4;
+}
+ul.comments .comment section .content .replying-to {
+  font-weight: 500;
+  color: hsl(238, 40%, 52%);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 730px) {
+  ul.comments .comment {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  ul.comments .comment .score {
+    flex-direction: row;
+    gap: 0.5rem;
+    max-width: unset;
+    min-width: unset;
+    min-height: 40px;
+    max-height: 40px;
+    align-self: flex-start;
+  }
+  ul.comments .comment .score i {
+    width: 2rem;
+    height: auto;
+  }
+  ul.comments .comment section .top .right {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 2rem;
+  }
+}
+ul.replies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+ul.replies .line {
+  width: 5px;
+  background-color: hsl(223, 19%, 93%);
+  margin: 0 2.5rem;
+  align-self: stretch;
+}
+
+@media screen and (max-width: 550px) {
+  ul.replies .line {
+    margin: 0 1.5rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  ul.replies .line {
+    margin: 0 1rem;
+  }
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 6px;
+  padding: 1.25rem;
+  width: 100%;
+  margin-top: -0.75rem;
+}
+form img {
+  width: 2.5rem;
+}
+form .textarea {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1.5px solid hsl(223, 19%, 93%);
+  outline: none;
+  width: 100%;
+  min-height: 80px;
+  overflow: auto;
+  cursor: text;
+  color: hsl(212, 24%, 26%);
+}
+form .textarea:focus {
+  border-color: hsl(211, 10%, 45%);
+}
+form .textarea:empty:not(:focus):before {
+  content: "Add a comment...";
+  color: hsl(211, 10%, 45%);
+}
+form .submit {
+  border: none;
+  background-color: hsl(238, 40%, 52%);
+  color: hsl(0, 0%, 100%);
+  border-radius: 7px;
+  padding: 0.7rem 1.75rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+form .submit:hover {
+  background-color: hsl(239, 57%, 85%);
+}
+
+@media screen and (max-width: 575px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "textarea textarea" "img submit";
+  }
+  form img {
+    grid-area: img;
+    width: 2rem;
+  }
+  form .textarea {
+    grid-area: textarea;
+  }
+  form .submit {
+    grid-area: submit;
+  }
+}
+form.delete {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.delete-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: hsl(0, 0%, 100%);
+  width: 400px;
+  padding: 2rem;
+  border-radius: 6px;
+  opacity: 1;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.delete-container h1 {
+  font-weight: 500;
+  font-size: 20px;
+  color: hsl(212, 24%, 26%);
+}
+.delete-container p {
+  color: hsl(211, 10%, 45%);
+  line-height: 1.4;
+}
+.delete-container .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+}
+.delete-container .btns button {
+  text-transform: uppercase;
+  font-weight: 500;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+}
+.delete-container .btns button.delete {
+  background-color: hsl(358, 79%, 66%);
+}
+.delete-container .btns button.delete:hover {
+  background-color: hsl(357, 100%, 86%);
+}
+.delete-container .btns button.cancel {
+  background-color: hsl(211, 10%, 45%);
+}
+.delete-container .btns button.cancel:hover {
+  background-color: hsl(239, 57%, 85%);
+}
+
+@media screen and (max-width: 500px) {
+  .delete-container {
+    width: 350px;
+    padding: 1.5rem;
+  }
+  .delete-container .btns {
+    gap: 0.75rem;
+  }
+  .delete-container .btns button {
+    height: 2.75rem;
+    padding: 0 1.25rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .delete-container {
+    width: calc(100% - 2rem);
+  }
+}/*# sourceMappingURL=style.css.map */
