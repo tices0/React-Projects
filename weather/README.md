@@ -9,7 +9,7 @@
 <div align="center">
   <h3>
     <a href="https://weather-app-e04df.web.app/">
-      Demo
+      Live
     </a>
     <span> | </span>
     <a href="https://devchallenges.io/solutions/s6uFQbZcFFb28o0acv5x">
@@ -56,7 +56,7 @@
 -   What have you learned/improved?
 -   Your wisdom? :) -->
 
-This [mindmap](https://mm.tt/map/2575601274?t=Nr2gU4FpWC) was used to plan the process of building the app. It utilised decomposition to make the big features easier to implement by breaking them down into smaller problems. After completition, the branch was turned to white to show how much progress has been made.
+This [mindmap](https://mm.tt/map/2575601274?t=Nr2gU4FpWC) was used to plan the process of building the app. It utilised the concept of decomposition to make the big features easier to implement by breaking them down into smaller problems. After completition, the completed branch becomes white in order to show how much progress has been made.
 
 _Check [features](#features) to see what I learned/improved on through this project_
 
@@ -281,13 +281,13 @@ $ npm install
 $ npm start
 ```
 
-You will see something similar to the screenshot shown [here](#overview), however it will be updated according to your location. The side bar shows the current temperature, state of weather, date and location, and the main page shows the date, and maximum and minimum temperatures for the next 5 days. It also shows today's highlights according to the location: humidity, wind status (wind speed), visibilty and air pressure.
+You will see something similar to the screenshot shown [here](#overview), however it will be updated according to your location. The _side bar_ shows the current temperature, state of weather, date and location, and the _main page_ shows the date, and maximum and minimum temperatures for the next 5 days. It also shows **Today's Highlights** according to the location: humidity, wind status (wind speed), visibilty and air pressure.
 
-To _search for other locations_, click on the `Search for places` buttons. The sidebar will be changed to a search page where you can search for a location that is anywhere in the world. Use the `Search` button or hit enter to see the weather of the searched location. The information on the right of the search bar will also change.
+To **search for other locations**, click on the `Search for places` buttons. The sidebar will be changed to a search page where you can search for a location that is anywhere in the world. Use the `Search` button or hit enter to see the weather of the searched location. The information on the right of the search bar will also change.
 
-To _return to your current location_, click on the location button which is on the top-right edge of the sidebar. All the information displayed will be to do with your current location.
+To **return to your current location**, click on the *location button* which is on the top-right edge of the sidebar. All the information displayed will be about your current location.
 
-To _change between celcius and fahrenheit_, you can toggle between the `C` and `F` buttons on the top-right of the page.
+To **change between celcius and fahrenheit**, you can toggle between the `C` and `F` buttons on the top-right of the page.
 
 ## Acknowledgements
 
@@ -295,10 +295,12 @@ To _change between celcius and fahrenheit_, you can toggle between the `C` and `
 
 -   [Font Awesome](https://fontawesome.com/)
 -   [Countries and Timezones](https://github.com/manuelmhtr/countries-and-timezones)
+-   [Open-Meteo API](https://open-meteo.com/)
+-   [Nominatim API](https://nominatim.org/)
 -   [Firebase Hosting](https://firebase.google.com/)
 
 ## Contact
 
-<!-- -   Website [your-website.com](https://{your-web-site-link}) -->
-
--   GitHub [@tices](https://{github.com/tices})
+-   [Portfolio Website](https://tochidavids.netlify.app)
+-   GitHub [@tochidavids](https://github.com/tochidavids)
+-   Email - tochidavids18@gmail.com
