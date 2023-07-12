@@ -272,7 +272,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tices0/React-Projects
+$ git clone https://github.com/tochidavids/React-Projects
 
 # Install dependencies
 $ npm install
