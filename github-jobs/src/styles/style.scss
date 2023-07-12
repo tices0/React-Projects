@@ -208,18 +208,12 @@ main {
 @media only screen and (max-width: 400px) {
 	.search-container .search-bar {
 		.search {
-			padding-right: 1rem;
+			padding-right: 0.5rem;
 		}
 
 		input[type="submit"] {
 			display: none;
 		}
-	}
-}
-
-@media only screen and (max-width: 340px) {
-	section.sidebar .search, section.jobs-container .jobs li, section.jobs-container {
-		width: 250px;
 	}
 }
 
@@ -291,11 +285,11 @@ section.sidebar {
 	}
 }
 
-// @media only screen and (max-width: 370px) {
-// 	section.sidebar .search {
-// 		width: 275px;
-// 	}
-// }
+@media only screen and (max-width: 315px) {
+	section.sidebar .search {
+		width: calc(100% - 2rem);
+	}
+}
 
 // ===============
 // Jobs
@@ -656,6 +650,11 @@ section.job-view {
 	}
 }
 
-// ===============
-// Title
+@media only screen and (max-width: 340px) {
+	section.jobs-container .jobs li,
+	section.jobs-container {
+		width: 250px;
+	}
+}
+
 // ===============

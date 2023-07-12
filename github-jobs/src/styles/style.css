@@ -181,15 +181,10 @@ main {
 
 @media only screen and (max-width: 400px) {
   .search-container .search-bar .search {
-    padding-right: 1rem;
+    padding-right: 0.5rem;
   }
   .search-container .search-bar input[type=submit] {
     display: none;
-  }
-}
-@media only screen and (max-width: 340px) {
-  section.sidebar .search, section.jobs-container .jobs li, section.jobs-container {
-    width: 250px;
   }
 }
 section.sidebar input {
@@ -251,6 +246,11 @@ section.sidebar .options li {
   margin-bottom: 0.5rem;
 }
 
+@media only screen and (max-width: 315px) {
+  section.sidebar .search {
+    width: calc(100% - 2rem);
+  }
+}
 section.jobs-container {
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -563,5 +563,11 @@ section.job-view main .description p {
   section.job-view {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+@media only screen and (max-width: 340px) {
+  section.jobs-container .jobs li,
+  section.jobs-container {
+    width: 250px;
   }
 }/*# sourceMappingURL=style.css.map */
