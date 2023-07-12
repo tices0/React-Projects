@@ -60,7 +60,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tochidavids/React-Projects/github-jobs
+$ git clone https://github.com/tochidavids/React-Projects/tree/master/github-jobs/
 
 # Install dependencies
 $ npm install
