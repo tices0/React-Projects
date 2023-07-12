@@ -525,6 +525,18 @@ section.jobs-container {
 	}
 }
 
+@media only screen and (max-width: 340px) {
+	section.jobs-container {
+		width: 250px;
+	}
+}
+
+@media only screen and (max-width: 315px) {
+	section.jobs-container {
+		width: calc(100vw - 4rem);
+	}
+}
+
 // ===============
 // Job View
 // ===============
@@ -649,12 +661,3 @@ section.job-view {
 		gap: 2rem;
 	}
 }
-
-@media only screen and (max-width: 340px) {
-	section.jobs-container .jobs li,
-	section.jobs-container {
-		width: 250px;
-	}
-}
-
-// ===============

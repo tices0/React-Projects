@@ -453,6 +453,16 @@ section.jobs-container nav ul li.break:hover {
     gap: 1.5rem;
   }
 }
+@media only screen and (max-width: 340px) {
+  section.jobs-container {
+    width: 250px;
+  }
+}
+@media only screen and (max-width: 315px) {
+  section.jobs-container {
+    width: calc(100vw - 4rem);
+  }
+}
 section.job-view {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -563,11 +573,5 @@ section.job-view main .description p {
   section.job-view {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-}
-@media only screen and (max-width: 340px) {
-  section.jobs-container .jobs li,
-  section.jobs-container {
-    width: 250px;
   }
 }/*# sourceMappingURL=style.css.map */
