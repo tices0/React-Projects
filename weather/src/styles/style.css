@@ -25,11 +25,6 @@ ul {
   list-style-type: none;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-}
-
 #master-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
