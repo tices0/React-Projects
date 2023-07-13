@@ -26,6 +26,11 @@ ul {
 }
 
 #root {
+  width: 100%;
+  height: 100%;
+}
+
+#master-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   height: 100vh;
@@ -249,12 +254,12 @@ ul {
 }
 
 @media only screen and (max-width: 947px) {
-  body {
+  #master-container {
     grid-template-columns: 1fr 1fr;
   }
 }
 @media only screen and (max-width: 573px) {
-  body {
+  #master-container {
     grid-template-columns: 1fr;
   }
 }

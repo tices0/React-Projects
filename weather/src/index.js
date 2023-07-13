@@ -102,7 +102,7 @@ function Render() {
 	const [celcius, setCelcius] = useState(true);
 
 	return (
-		<>
+		<div id="master-container">
 			<div id="sidebar">
 				<Sidebar
 					newLat={newLat}
@@ -123,7 +123,7 @@ function Render() {
 					setCelcius={setCelcius}
 				/>
 			</div>
-		</>
+		</div>
 	);
 }
 
