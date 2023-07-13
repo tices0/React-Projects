@@ -177,9 +177,6 @@ function Main(props) {
 				<h1>Today's Highlights</h1>
 				<ul className="highlights">{loaded ? <Highlights /> : ""}</ul>
 			</main>
-			<footer>
-				created by <i>Tochi Davids</i> - devChallenges.io
-			</footer>
 		</section>
 	);
 }

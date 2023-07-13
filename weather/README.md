@@ -272,7 +272,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/tochidavids/React-Projects
+$ git clone https://github.com/tochidavids/React-Projects/tree/master/weather/
 
 # Install dependencies
 $ npm install
